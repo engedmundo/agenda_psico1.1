@@ -1,6 +1,6 @@
 from apps.core.models import CommonInfo
 from apps.financial_management.enums.payment_enum import PaymentChoices
-from apps.patients_management.models import Patient
+from apps.patient_management.models import Patient
 from django.db import models
 
 

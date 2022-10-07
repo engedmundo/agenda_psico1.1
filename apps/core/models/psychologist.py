@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 
 class Psychologist(CommonInfo):
-    psychologist = models.ForeignKey(
+    psychologist = models.OneToOneField(
         User,
         verbose_name="Psicólogo(a)",
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
     )
     crp_register = models.CharField(

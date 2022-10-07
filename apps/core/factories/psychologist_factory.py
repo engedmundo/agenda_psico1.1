@@ -8,11 +8,11 @@ from faker import Faker
 fake = Faker("pt_BR")
 
 
-class ProposalFactory(factory.django.DjangoModelFactory):
+class PsychologistFactory(factory.django.DjangoModelFactory):
     psychologist = factory.SubFactory(UserFactory)
     crp_register = fake.numerify(text="CRP 0#/######-IS")
     professional_address = fake.address()
-    secondary_address = fake.adress()
+    secondary_address = fake.address()
     phone_number = fake.phone_number()
     cpf = fake.date()
 

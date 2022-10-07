@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FinancialManagementConfig(AppConfig):
+class PatientManagementConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.financial_management"
+    name = "apps.patient_management"
