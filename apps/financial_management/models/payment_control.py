@@ -1,6 +1,6 @@
 from apps.core.models import CommonInfo
 from apps.financial_management.enums.payment_enum import PaymentChoices
-from apps.patient_management.models import Patient
+from apps.patient_management.models import Patient, TherapySession
 from django.db import models
 
 
@@ -16,7 +16,13 @@ class PaymentControl(CommonInfo):
     way_pay = models.CharField(
         "Forma de pagamento", choices=PaymentChoices.choices, max_length=50
     )
-    # associar sessions aos pagamentos
+    therapy_sessions = models.ForeignKey(
+        TherapySession,
+        verbose_name="Sessões",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Pagamento"
