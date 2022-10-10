@@ -1,0 +1,63 @@
+<div class="pacient-detail">
+  
+    <div class="card-title-container bg-dark">
+        <h2 class="card-title">{{ pacient_sessions.pacient }}</h2>
+    </div>
+
+    <div class="card-content">
+        <h3>Informações da sessão:</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="table-space-double">Número da sessão: </td>
+                    <td>{{ pacient_sessions.num_session }}</td>
+                </tr>
+                <tr>
+                    <td class="table-space-double">Data/horário: </td>
+                    <td>{{ pacient_sessions.date_session }} | {{ pacient_sessions.hour_session }}</td>
+                </tr>
+                {% if pacient_sessions.fault %}
+                    <tr>
+                        <td class="table-space-double">Paciente faltou? </td>
+                        <td>Sim</td>
+                    </tr>
+                    <tr>
+                        <td class="table-space-double">Justificativa da falta: </td>
+                        <td> {{ pacient_sessions.justify_fault }}</td>
+                    </tr>                       
+                {% endif %} 
+                <tr>
+                    <td class="table-space-double">Evolução do paciente: </td>
+                    <td> {{ pacient_sessions.evolution }}</td>
+                </tr>
+                {% if pacient_sessions.forwarding %}
+                <tr>
+                    <td class="table-space-double">Encaminhamento: </td>
+                    <td> {{ pacient_sessions.forwarding }}</td>
+                </tr>                       
+                {% endif %} 
+                <tr>
+                    <td class="table-space-double">Pagamento: </td>
+                    <td>{% if pacient_sessions.payment %}
+                        Pago
+                        {% else %}
+                        Não pago
+                        {% endif %} 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="card-footer container-grid">
+        <a class="btn-link" href="{% url 'pacient_sessions:pacient_session_update' pacient_sessions.id %}">
+            <i class="fas fa-edit"></i>
+            <span>Editar</span>
+        </a>
+        <a class="btn-link" href="{% url 'pacient_sessions:pacient_session_delete_confirm' pacient_sessions.id %}">
+            <i class="fas fa-trash"></i>
+            <span>Excluir</span>
+        </a>
+    </footer>
+    
+</div>

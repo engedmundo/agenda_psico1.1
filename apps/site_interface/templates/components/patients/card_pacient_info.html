@@ -1,0 +1,35 @@
+<div class="card card-list-item">
+   
+    <div class="card-title-container">
+        <h2 class="card-title">{{ pacient.pacient_name}}</h2>
+    </div>
+
+    <div class="card-prof-info">
+        <span class="card-prof-item">
+            <i class="fas fa-brain"></i>
+            {{ pacient.psychologist.first_name }}
+            {{ pacient.psychologist.last_name }}
+        </span>
+        <span class="card-prof-item">
+            <i class="fas fa-calendar-alt"></i>
+            Desde {{ pacient.created_at }}
+        </span>
+        <span class="card-prof-item">
+            <i class="fas fa-layer-group"></i>
+            <span>Convênio: {{ pacient.plain }}</span>
+        </span>
+    </div>
+
+    <div class="card-content">
+        <p><i class="fas fa-calendar-day"></i> {{ pacient.session_week_day }}</p>
+        <p><i class="fas fa-clock"></i> {{ pacient.session_hour }}</p>
+    </div>
+
+    <footer class="card-footer">
+        <a href="{% url 'pacients:pacient_details' pacient.id %}">
+            <i class="fas fa-user"></i>
+            <span>Informações do paciente</span>
+        </a>
+    </footer>
+    
+</div>

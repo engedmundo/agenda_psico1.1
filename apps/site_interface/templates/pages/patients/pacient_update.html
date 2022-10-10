@@ -1,0 +1,46 @@
+{% extends 'global/pages/base_template.html' %}
+
+{% block title %}Atualização de dados de paciente {% endblock title %}
+
+{% block body %}
+
+    <main class="main-content-container">
+        <div class="container">
+            <form action="" id="form-id" method="POST">
+                <div class="pacient-detail">
+                    <div class="card-title-container bg-dark">
+                        <h2 class="card-title">Atualizar dados de Paciente</h2>
+                    </div>
+                    
+                    <div class="card-content">
+                        {% csrf_token %}
+                        <div class="form-content form-content-grid">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <strong><label for="{{ field.id_for_label }}">{{ field.label }}</label></strong>
+                                        {{ field }}
+                                        {% if field.help_text %}
+                                            <p class="help-text">{{ field.help_text }}</p>
+                                        {% endif %}
+
+                                        {{ field.errors }}
+                                </div>
+                            {% endfor %}                            
+                        </div>
+                    </div>          
+                    
+                    <footer class="card-footer container-grid">
+                        <a class="btn-link" href="#" onclick="document.getElementById('form-id').submit();">
+                            <span>Atualizar dados</span>
+                        </a>
+                        
+                        <a class="btn-link" href="{% url 'pacients:pacients' %}">
+                            <span>Cancelar</span>
+                        </a>
+                    </footer>
+                </div>
+            </form>
+        </div>
+    </main>
+        
+{% endblock body %}

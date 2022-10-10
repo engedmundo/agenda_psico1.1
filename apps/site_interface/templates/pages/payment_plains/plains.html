@@ -1,0 +1,32 @@
+{% extends 'global/pages/base_template.html' %}
+
+{% block title %}Planos {% endblock title %}
+
+{% block body %}
+
+    <div class="container">        
+        <div class="main-content center container">
+            {% include 'global/components/messages.html' %}
+        </div> 
+
+        <div class="pacient-detail">
+            <div class="card-footer container-grid">
+                <span>
+                    <a href="{% url 'plains:plains_register' %}" class="btn-light">
+                        <h2>Cadastrar novo plano</h2>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content-container">
+        <div class="main-content-list container">
+            {% for plain in plains %}
+                {% include 'components/card_plain_info.html' %}
+            {% endfor %}
+        </div>    
+
+    </main>
+
+{% endblock body %}

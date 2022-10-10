@@ -1,0 +1,32 @@
+{% extends 'global/pages/base_template.html' %}
+
+{% block title %}Prontuários {% endblock title %}
+
+{% block body %}
+    {% comment %} {% include 'global/components/search_container.html' %} {% endcomment %}
+
+    <div class="container">        
+        <div class="main-content center container">
+            {% include 'global/components/messages.html' %}
+        </div> 
+
+        <div class="pacient-detail">
+            <div class="card-footer container-grid">
+                <span>
+                    <a href="{% url 'prontuaries:prontuary_register' %}" class="btn-light">
+                        <h2>Cadastrar novo prontuário</h2>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <main class="main-content-container">
+        <div class="main-content main-content-list container">
+            {% for prontuary in prontuaries %}
+                {% include 'components/card_prontuary_info.html' %}
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock body %}

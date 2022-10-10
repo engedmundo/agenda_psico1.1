@@ -1,0 +1,31 @@
+<div class="card card-list-item">
+   
+    <div class="card-title-container">
+        <h2 class="card-title">{{ prontuary.pacient }}</h2>
+    </div>
+
+    <div class="card-prof-info">
+        <span class="card-prof-item">
+            Código do prontuário: {{ prontuary.code }}
+        </span>
+    </div>
+
+    <div class="card-content">
+        <p><i class="fas fa-calendar-day"></i><strong> Data de abertura: </strong>{{ prontuary.open_date }}</p>
+        <p><i class="fas fa-calendar-day"></i><strong> Data de fechamento: </strong>
+            {% if prontuary.close_date %}
+                {{ prontuary.close_date }}
+            {% else %}
+                Em aberto
+            {% endif %}
+        </p>
+    </div>
+
+    <footer class="card-footer">
+        <a class="" href="{% url 'prontuaries:prontuary_details' prontuary.id %}">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>Ver prontuário</span>
+        </a>
+    </footer>
+    
+</div>

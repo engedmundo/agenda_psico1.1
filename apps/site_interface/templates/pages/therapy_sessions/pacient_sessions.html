@@ -1,0 +1,32 @@
+{% extends 'global/pages/base_template.html' %}
+
+{% block title %}Home {% endblock title %}
+
+{% block body %}
+    {% include 'components/search_container.html' %}
+
+    <div class="container">        
+        <div class="main-content center container">
+            {% include 'global/components/messages.html' %}
+        </div> 
+
+        <div class="pacient-detail">
+            <div class="card-footer container-grid">
+                <span>
+                    <a href="{% url 'pacient_sessions:pacient_session_register' %}" class="btn-light">
+                        <h2>Cadastrar nova sessão</h2>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <main class="main-content-container">
+        <div class="main-content main-content-list container">
+            {% for pacient_session in pacient_sessions %}
+                {% include 'components/card_info_pacient_session.html' %}
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+<div class="card card-list-item">
+   
+    <div class="card-title-container">
+        <h2 class="card-title">{{ pacient_session.pacient }}</h2>
+    </div>
+
+    <div class="card-prof-info">
+        <span class="card-prof-item">
+            Sessão 
+            {{ pacient_session.num_session }}
+        </span>
+    </div>
+
+    <div class="card-content">
+        <p><i class="fas fa-calendar-day"></i> {{ pacient_session.date_session }}</p>
+        <p><i class="fas fa-clock"></i> {{ pacient_session.hour_session }}</p>
+        <p><i class="fas fa-money-bill"></i> 
+            {% if pacient_session.payment %}
+                Pagamento Efetuado
+            {% else %}
+                Pagamento Pendente
+            {% endif %}
+        </p>
+    </div>
+
+    <footer class="card-footer">
+        <a class="" href="{% url 'pacient_sessions:pacient_sessions_details' pacient_session.id %}">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>Informações da sessão</span>
+        </a>
+    </footer>
+    
+</div>
