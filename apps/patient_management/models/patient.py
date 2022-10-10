@@ -9,13 +9,12 @@ class Patient(CommonInfo):
     psychologist = models.ForeignKey(
         Psychologist,
         verbose_name="Profissional responsável",
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.CASCADE,
     )
     birth_date = models.DateField("Data de Nascimento", null=True, blank=True)
     cpf = models.CharField("CPF", null=True, blank=True, max_length=11)
     phone_number = models.CharField("Telefone", max_length=15)
-    pacient_address = models.CharField(
+    patient_address = models.CharField(
         "Endereço", null=True, blank=True, max_length=100
     )
     email = models.EmailField("E-mail", null=True, blank=True, max_length=100)
@@ -39,4 +38,4 @@ class Patient(CommonInfo):
         verbose_name_plural = "Pacientes"
 
     def __str__(self):
-        return self.pacient_name
+        return self.patient_name

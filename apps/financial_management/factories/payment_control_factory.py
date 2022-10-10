@@ -11,7 +11,7 @@ fake = Faker("pt_BR")
 
 class PaymentControlFactory(factory.django.DjangoModelFactory):
     pacient = factory.SubFactory(PatientFactory)
-    value_pay = fake.numerify(text="R$ ###,##")
+    value_pay = fake.random_int(min=0, max=300)
     data_pay = fake.date()
     description = fake.random_element(
         elements=(
@@ -22,7 +22,6 @@ class PaymentControlFactory(factory.django.DjangoModelFactory):
         )
     )
     way_pay = fake.phone_number()
-    therapy_sessions = factory.SubFactory(TherapySessionFactory)
 
     class Meta:
         model = PaymentControl

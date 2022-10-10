@@ -7,9 +7,9 @@ fake = Faker("pt_BR")
 
 
 class PaymentPlainFactory(factory.django.DjangoModelFactory):
-    psycologist = factory.SubFactory(PsychologistFactory)
+    psychologist = factory.SubFactory(PsychologistFactory)
     name_plain = fake.word()
-    plain_value = fake.numerify(text="R$ ###,##")
+    plain_value = fake.random_int(min=0, max=500)
 
     class Meta:
         model = PaymentPlain

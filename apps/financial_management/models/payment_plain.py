@@ -3,16 +3,13 @@ from django.db import models
 
 
 class PaymentPlain(CommonInfo):
-    psycologist = models.ForeignKey(
+    psychologist = models.ForeignKey(
         Psychologist,
         verbose_name="Profissional responsável",
         on_delete=models.SET_NULL,
         null=True,
     )
-    name_plain = models.CharField(
-        "Descrição", 
-        max_length=30
-    )
+    name_plain = models.CharField("Descrição", max_length=30)
     plain_value = models.DecimalField(
         "Valor Plano (R$)",
         max_digits=8,

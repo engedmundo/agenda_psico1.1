@@ -15,14 +15,13 @@ class PatientFactory(factory.django.DjangoModelFactory):
     birth_date = fake.date()
     cpf = fake.cpf()
     phone_number = fake.phone_number()
-    pacient_address = fake.address()
+    patient_address = fake.address()
     email = fake.email()
     occupation = fake.job()
     responsable = fake.name()
     fone_resp = fake.phone_number()
     session_week_day = fake.day_of_week()
     session_hour = fake.numerify(text="##:##")
-    plain = factory.SubFactory(PaymentPlainFactory)
 
     class Meta:
         model = Patient
