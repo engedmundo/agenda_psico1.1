@@ -1,0 +1,15 @@
+{% extends 'global/pages/base_template.html' %}
+
+{% block title %}Login |{% endblock title %}
+
+{% block body %}
+    {% comment %} {% include 'global/components/search_container.html' %} {% endcomment %}
+   
+    <main class="main-content-container">
+        <div class="main-content-list container">
+            {% include 'components/card_login.html' %}
+        </div>    
+
+    </main>
+
+{% endblock body %}

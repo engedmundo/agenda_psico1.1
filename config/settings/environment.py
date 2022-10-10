@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="qwertyuiopasdfghjkll;kjhgfdsazxcvbnm,mnbvcx")
-DEBUG = os.getenv("DJANGO_DEBUG", default=False)
+DEBUG = os.getenv("DJANGO_DEBUG", default=True)
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default=["*"])
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"

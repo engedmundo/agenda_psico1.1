@@ -1,0 +1,28 @@
+<button class="button-show-menu button-show-menu-visible">
+    <i class="fas fa-bars"></i>
+    <span class="hidden-text">Show menu</span>
+</button>
+  
+<div class="menu-container menu-hidden">
+    {% comment %} <button class="button-show-menu button-show-menu-visible"> {% endcomment %}
+    <button class="button-close-menu button-close-menu-visible">
+        <i class="fas fa-times-circle"></i>
+        <span class="hidden-text">Close menu</span>
+    </button>
+
+<div class="menu-content">
+    <nav class="menu-nav">
+    <a href="{% url 'site_interface:home' %}">Home</a>
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'plains:plains' %}">Planos</a>
+    <a href="{% url 'pacients:pacients' %}">Pacientes</a>
+        <a href="{% url 'prontuaries:prontuaries' %}">Prontuários</a>
+        <a href="{% url 'pacient_sessions:pacient_sessions' %}">Sessões</a>
+        <a href="{% url 'site_interface:logout_view' %}">Sair</a>
+    {% else %}
+        <a href="{% url 'site_interface:login_view' %}">Login</a>
+    {% endif %}
+    </nav>
+</div>
+</div> 

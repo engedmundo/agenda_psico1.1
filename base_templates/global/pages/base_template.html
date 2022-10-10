@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'global/components/head.html' %}
+    <title>{% block title %}{% endblock title %} | Agenda Psico</title>
+
+</head>
+
+<body>
+    {% include 'global/components/menu.html' %}
+    {% include 'global/components/header.html' %}
+
+    {% block body %}{% endblock body %}
+    
+    {% include 'global/components/footer.html' %}
+    <script src="{% static 'global/js/scripts.js' %}"></script>
+</body>

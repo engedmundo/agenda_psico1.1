@@ -1,0 +1,41 @@
+<div class="pacient-detail">
+    <form action="{% url 'site_interface:login_create' %}" id="form-id" method="POST">
+    {% csrf_token %}
+    <div class="card-title-container bg-dark">
+        <h2 class="card-title">Login</h2>
+    </div>
+
+    <div class="card-content">
+            <div class="form-content form-content-grid">
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    {% if form.username.help_text %}
+                    <p class="help-text">{{ form.username.help_text }}</p>
+                    {% endif %}
+                    {{ form.username.errors }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                    {{ form.password }}
+                    {% if form.password.help_text %}
+                    <p class="help-text">{{ form.password.help_text }}</p>
+                    {% endif %}
+                    {{ form.password.errors }}
+                </div>
+            </div>
+        </div>        
+        
+        <footer class="card-footer container-grid">
+            <a class="btn-link" href="#" onclick="document.getElementById('form-id').submit();">
+                <i class="fas fa-edit"></i>
+                <span>Entrar</span>
+            </a>
+            <a class="btn-link" href="{% url 'site_interface:home' %}">
+                <i class="fas fa-trash"></i>
+                <span>Cancelar</span>
+            </a>
+        </footer>
+    
+    </form>
+</div>
