@@ -5,7 +5,7 @@ from django.db import models
 
 
 class PaymentControl(CommonInfo):
-    pacient = models.ForeignKey(
+    patient = models.ForeignKey(
         Patient, verbose_name="Paciente", on_delete=models.CASCADE
     )
     value_pay = models.DecimalField("Valor pago", max_digits=8, decimal_places=2)

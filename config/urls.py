@@ -15,9 +15,12 @@ urlpatterns = [
     # path('api/payments', include('apps.payments.api.urls')),
     # path('api/prontuaries', include('apps.prontuaries.api.urls')),
     # path('', include('apps.site_interface.urls')),
-    path('', include('apps.site_interface.urls')),
-    path('', include('apps.financial_management.urls')),
-    path('', include('apps.patient_management.urls')),
+    path('', include('apps.site_interface.urls.home_urls')),
+    path('patients', include('apps.site_interface.urls.patients_urls')),
+    path('payment_control', include('apps.site_interface.urls.payment_control_urls')),
+    path('payment_plains', include('apps.site_interface.urls.payment_plains_urls')),
+    path('prontuaries', include('apps.site_interface.urls.prontuaries_urls')),
+    path('therapy_sessions', include('apps.site_interface.urls.therapy_sessions_urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

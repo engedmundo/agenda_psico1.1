@@ -1,0 +1,6 @@
+from .home_forms import LoginForm
+from .patient_forms import PatientRegisterForm
+from .payment_control_forms import PaymentControlRegisterForm
+from .payment_plain_forms import PaymentPlainRegisterForm
+from .prontuary_forms import ProntuaryRegisterForm
+from .therapy_session_forms import TherapySessionRegisterForm

@@ -8,9 +8,9 @@
     <main class="main-content-container">
         <div class="main-content-list container">
             {% if request.user.is_authenticated %}
-                {% include 'components/card_logged.html' %}
+                {% include 'components/home/card_logged.html' %}
             {% else %}
-                {% include 'components/card_notlogged.html' %}
+                {% include 'components/home/card_notlogged.html' %}
             {% endif %}
         </div>    
 
