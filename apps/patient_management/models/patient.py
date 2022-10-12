@@ -3,7 +3,6 @@ from apps.financial_management.models import PaymentPlain
 from django.db import models
 
 
-# Create your models here.
 class Patient(CommonInfo):
     patient_name = models.CharField("Nome Completo", max_length=100)
     psychologist = models.ForeignKey(

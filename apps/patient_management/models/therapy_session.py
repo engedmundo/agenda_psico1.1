@@ -9,6 +9,9 @@ class TherapySession(CommonInfo):
     patient = models.ForeignKey(
         Patient, verbose_name="Paciente", on_delete=models.CASCADE
     )
+    session_number = models.CharField(
+        "Número da sessão", max_length=10
+    )
     date_session = models.DateField("Data da seção")
     hour_session = models.TimeField("Horário da sessão")
     fault = models.BooleanField("Paciente faltou?", default=False)

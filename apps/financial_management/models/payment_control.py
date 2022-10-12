@@ -16,13 +16,6 @@ class PaymentControl(CommonInfo):
     way_pay = models.CharField(
         "Forma de pagamento", choices=PaymentChoices.choices, max_length=50
     )
-    therapy_sessions = models.ForeignKey(
-        TherapySession,
-        verbose_name="Sessões",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
 
     class Meta:
         verbose_name = "Pagamento"
