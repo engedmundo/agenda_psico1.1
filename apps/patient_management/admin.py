@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from apps.core.services.filter_data_service import FilterDataService
+
 from .models import Patient, Prontuary, TherapySession
 
 
@@ -28,9 +30,12 @@ class ProntuaryInLine(admin.StackedInline):
     ]
 
 
-# Register your models here.
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        _service = FilterDataService(request=request)
+        return _service.patients_by_psychologist()
+
     list_display = [
         "patient_name",
         "phone_number",
@@ -53,6 +58,10 @@ class PatientAdmin(admin.ModelAdmin):
 
 @admin.register(TherapySession)
 class TherapySessionAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        _service = FilterDataService(request=request)
+        return _service.therapy_sessions_by_psycologist()
+
     list_display = [
         "patient",
         "session_id",
@@ -73,6 +82,10 @@ class TherapySessionAdmin(admin.ModelAdmin):
 
 @admin.register(Prontuary)
 class ProntuaryAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        _service = FilterDataService(request=request)
+        return _service.prontuaries_by_psycologist()
+
     list_display = [
         "patient",
         "open_date",
