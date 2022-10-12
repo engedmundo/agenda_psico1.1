@@ -26,4 +26,4 @@ class TherapySession(CommonInfo):
         verbose_name_plural = "Sessões"
 
     def __str__(self):
-        return self.patient
+        return str(self.session_id)

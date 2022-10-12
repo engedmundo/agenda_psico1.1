@@ -3,6 +3,31 @@ from django.contrib import admin
 from .models import Patient, Prontuary, TherapySession
 
 
+class TherapySessionInLine(admin.StackedInline):
+    model = TherapySession
+    extra = 0
+    list_display = [
+        "date_session",
+        "hour_session",
+        "fault",
+        "justify_fault",
+        "evolution",
+        "forwarding",
+        "payment",
+    ]
+
+
+class ProntuaryInLine(admin.StackedInline):
+    model = Prontuary
+    extra = 0
+    list_display = [
+        "patient",
+        "open_date",
+        "close_date",
+        "demand_description",
+    ]
+
+
 # Register your models here.
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
@@ -19,6 +44,11 @@ class PatientAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         "patient_name",
+        "patient",
+    ]
+    inlines = [
+        ProntuaryInLine,
+        TherapySessionInLine,
     ]
 
 

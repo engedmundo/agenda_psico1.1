@@ -16,4 +16,4 @@ class Prontuary(CommonInfo):
         verbose_name_plural = "Prontuários"
 
     def __str__(self):
-        return self.patient
+        return str(self.patient)

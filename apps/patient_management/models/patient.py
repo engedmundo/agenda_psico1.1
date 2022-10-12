@@ -38,4 +38,4 @@ class Patient(CommonInfo):
         verbose_name_plural = "Pacientes"
 
     def __str__(self):
-        return self.patient_name
+        return str(self.patient_name)
