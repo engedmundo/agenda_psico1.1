@@ -1,22 +1,14 @@
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-from .environment import BASE_DIR
+import os
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": os.environ.get("DATABASE_ENGINE"),
+        "NAME": os.environ.get("DATABASE_NAME"),
+        "USER": os.environ.get("DATABASE_USER"),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "HOST": os.environ.get("DATABASE_HOST"),
+        "PORT": os.environ.get("DATABASE_PORT"),
     }
 }
-
-# for use postgres
-# DATABASES = {
-#         'default': {
-#             'ENGINE': env('DB_ENGINE'),
-#             'NAME': env('DB_NAME'),
-#             'USER': env('DB_USER'),
-#             'PASSWORD': env('DB_PASSWORD'),
-#             'HOST': env('DB_HOST'),
-#             'PORT': env('DB_PORT'),
-#         }
-#     }
