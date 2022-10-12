@@ -44,7 +44,6 @@ class PatientAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         "patient_name",
-        "patient",
     ]
     inlines = [
         ProntuaryInLine,
@@ -65,6 +64,9 @@ class TherapySessionAdmin(admin.ModelAdmin):
         "payment",
     ]
     search_fields = [
+        "patient_name",
+    ]
+    autocomplete_fields = [
         "patient",
     ]
 
