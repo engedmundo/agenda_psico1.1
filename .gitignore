@@ -5,6 +5,9 @@
 __pycache__
 db.sqlite3
 media
+gunicorn-error-log
+static
+
 
 # Backup files # 
 *.bak 
@@ -15,6 +18,8 @@ media
 venv/
 *.venv/ 
 *venv/
+guinicorn.txt
+nginx-http.txt
 
 mydatabase
 
