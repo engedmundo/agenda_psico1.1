@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY", default="qwertyuiopasdfghjkll;kjhgfdsazxcvbnm,mnbvcx"
 )
 DEBUG = os.environ.get("DJANGO_DEBUG", default=True)
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = ["*",]
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
