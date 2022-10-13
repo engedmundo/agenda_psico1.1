@@ -1,5 +1,5 @@
 from apps.core.models import CommonInfo
-from apps.patients_management.models import Patient
+from apps.patient_management.models import Patient
 from django.db import models
 
 
@@ -16,4 +16,4 @@ class Prontuary(CommonInfo):
         verbose_name_plural = "Prontuários"
 
     def __str__(self):
-        return self.patient
+        return str(self.patient)

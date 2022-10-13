@@ -1,5 +1,5 @@
 from apps.core.models import CommonInfo
-from apps.patients_management.models import Patient
+from apps.patient_management.models import Patient
 from django.db import models
 
 
@@ -8,6 +8,9 @@ class TherapySession(CommonInfo):
     session_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(
         Patient, verbose_name="Paciente", on_delete=models.CASCADE
+    )
+    session_number = models.CharField(
+        "Número da sessão", max_length=10
     )
     date_session = models.DateField("Data da seção")
     hour_session = models.TimeField("Horário da sessão")
@@ -26,4 +29,4 @@ class TherapySession(CommonInfo):
         verbose_name_plural = "Sessões"
 
     def __str__(self):
-        return self.patient
+        return str(self.session_id)
