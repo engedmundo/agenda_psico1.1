@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.financial_management",
     "apps.patient_management",
+    "apps.front_end",
 ]
 
 MIDDLEWARE = [
