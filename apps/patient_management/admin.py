@@ -71,10 +71,10 @@ class PatientAdmin(admin.ModelAdmin):
     search_fields = [
         "patient_name",
     ]
-    form = PatientForm
-    inlines = [
-        ProntuaryInLine,
-    ]
+    # form = PatientForm
+    # inlines = [
+    #     ProntuaryInLine,
+    # ]
 
 
 @admin.register(TherapySession)
@@ -104,7 +104,7 @@ class TherapySessionAdmin(admin.ModelAdmin):
     search_fields = [
         "patient_name",
     ]
-    form = TherapySessionForm
+    # form = TherapySessionForm
     autocomplete_fields = [
         "patient",
     ]
@@ -135,6 +135,6 @@ class ProntuaryAdmin(admin.ModelAdmin):
     autocomplete_fields = [
         "patient",
     ]
-    inlines = [
-        TherapySessionInLine,
-    ]
+    # inlines = [
+    #     TherapySessionInLine,
+    # ]
