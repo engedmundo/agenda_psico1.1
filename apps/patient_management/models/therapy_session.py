@@ -1,5 +1,5 @@
 from apps.core.models import CommonInfo
-from apps.patient_management.models import Patient
+from apps.patient_management.models import Patient, Prontuary
 from django.db import models
 
 
@@ -7,11 +7,19 @@ from django.db import models
 class TherapySession(CommonInfo):
     session_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(
-        Patient, verbose_name="Paciente", on_delete=models.CASCADE
+        Patient,
+        verbose_name="Paciente",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
-    session_number = models.CharField(
-        "Número da sessão", max_length=10
+    prontuary = models.ForeignKey(
+        Prontuary,
+        verbose_name="Prontuário",
+        on_delete=models.CASCADE,
+        default=False,
     )
+    session_number = models.CharField("Número da sessão", max_length=10)
     date_session = models.DateField("Data da seção")
     hour_session = models.TimeField("Horário da sessão")
     fault = models.BooleanField("Paciente faltou?", default=False)

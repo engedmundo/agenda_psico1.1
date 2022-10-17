@@ -10,7 +10,7 @@ class PaymentControl(CommonInfo):
     )
     value_pay = models.DecimalField("Valor pago", max_digits=8, decimal_places=2)
     data_pay = models.DateField("Data de pagamento")
-    description = models.CharField(
+    description = models.TextField(
         "Descrição do pagamento", null=True, blank=True, max_length=100
     )
     way_pay = models.CharField(

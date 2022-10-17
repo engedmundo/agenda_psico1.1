@@ -1,9 +1,12 @@
-from django import forms
 from django.contrib import admin
 
-from apps.core.models import Psychologist
 from apps.core.services.filter_data_service import FilterDataService
 from apps.financial_management.models.payment_plain import PaymentPlain
+from apps.patient_management.forms import (
+    PatientForm,
+    TherapySessionForm,
+    TherapySessionInLineForm,
+)
 
 from .models import Patient, Prontuary, TherapySession
 
@@ -20,6 +23,7 @@ class TherapySessionInLine(admin.StackedInline):
         "forwarding",
         "payment",
     ]
+    form = TherapySessionInLineForm
 
 
 class ProntuaryInLine(admin.StackedInline):
@@ -27,29 +31,11 @@ class ProntuaryInLine(admin.StackedInline):
     extra = 0
     list_display = [
         "patient",
+        "prontuary_number",
         "open_date",
         "close_date",
         "demand_description",
     ]
-
-
-class PatientForm(forms.ModelForm):
-    class Meta:
-        model = Patient
-        fields = [
-            "patient_name",
-            "plain",
-            "birth_date",
-            "cpf",
-            "phone_number",
-            "patient_address",
-            "email",
-            "occupation",
-            "responsable",
-            "fone_resp",
-            "session_week_day",
-            "session_hour",
-        ]
 
 
 @admin.register(Patient)
@@ -85,11 +71,10 @@ class PatientAdmin(admin.ModelAdmin):
     search_fields = [
         "patient_name",
     ]
+    form = PatientForm
     inlines = [
         ProntuaryInLine,
-        TherapySessionInLine,
     ]
-    form = PatientForm  
 
 
 @admin.register(TherapySession)
@@ -107,7 +92,7 @@ class TherapySessionAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     list_display = [
-        "patient",
+        "prontuary",
         "session_number",
         "date_session",
         "hour_session",
@@ -119,6 +104,7 @@ class TherapySessionAdmin(admin.ModelAdmin):
     search_fields = [
         "patient_name",
     ]
+    form = TherapySessionForm
     autocomplete_fields = [
         "patient",
     ]
@@ -148,4 +134,7 @@ class ProntuaryAdmin(admin.ModelAdmin):
     ]
     autocomplete_fields = [
         "patient",
+    ]
+    inlines = [
+        TherapySessionInLine,
     ]

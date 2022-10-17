@@ -18,9 +18,18 @@ class Patient(CommonInfo):
     )
     email = models.EmailField("E-mail", null=True, blank=True, max_length=100)
     occupation = models.CharField("Profissão", null=True, blank=True, max_length=100)
+    school = models.CharField("Escola", null=True, blank=True, max_length=100)
     responsable = models.CharField("Responsavel", null=True, blank=True, max_length=100)
-    fone_resp = models.CharField(
+    phone_resp = models.CharField(
         "Telefone responsavel", null=True, blank=True, max_length=15
+    )
+    father = models.CharField("Nome do pai", null=True, blank=True, max_length=100)
+    phone_father = models.CharField(
+        "Telefone do pai", null=True, blank=True, max_length=15
+    )
+    mother = models.CharField("Nome da mãe", null=True, blank=True, max_length=100)
+    phone_mother = models.CharField(
+        "Telefone da mãe", null=True, blank=True, max_length=15
     )
     session_week_day = models.CharField(
         "Dia das sessões", null=True, blank=True, max_length=15

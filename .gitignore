@@ -8,6 +8,7 @@ media
 gunicorn-error-log
 static/admin
 zz_template-front/
+*.txt
 
 # Backup files # 
 *.bak 

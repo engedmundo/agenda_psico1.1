@@ -4,8 +4,11 @@ from django.db import models
 
 
 class Prontuary(CommonInfo):
-    patient = models.OneToOneField(
+    patient = models.ForeignKey(
         Patient, verbose_name="Paciente", on_delete=models.CASCADE
+    )
+    prontuary_number = models.CharField(
+        "Número do prontuário", max_length=10, default="1"
     )
     open_date = models.DateField("Data de abertura")
     close_date = models.DateField("Data de fechamento", null=True, blank=True)
@@ -16,4 +19,4 @@ class Prontuary(CommonInfo):
         verbose_name_plural = "Prontuários"
 
     def __str__(self):
-        return str(self.patient)
+        return f"{str(self.patient)} | Prontuário {str(self.prontuary_number)}"

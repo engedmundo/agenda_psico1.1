@@ -1,6 +1,6 @@
 from apps.core.models import Psychologist
 from apps.financial_management.models import PaymentControl, PaymentPlain
-from apps.patient_management.models import Prontuary, Patient, TherapySession
+from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.shortcuts import get_object_or_404
 
 
@@ -23,7 +23,7 @@ class FilterDataService:
         if self.request.user.is_superuser:
             return queryset.filter(patient=None)
 
-        return queryset.filter(patient__psychologist=self.psychologist)
+        return queryset.filter(prontuary__patient__psychologist=self.psychologist)
 
     def prontuaries_by_psycologist(self):
         queryset = Prontuary.objects.all()
