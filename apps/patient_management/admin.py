@@ -40,22 +40,22 @@ class ProntuaryInLine(admin.StackedInline):
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    def get_queryset(self, request):
-        _service = FilterDataService(request=request)
-        return _service.patients_by_psychologist()
+    # def get_queryset(self, request):
+    #     _service = FilterDataService(request=request)
+    #     return _service.patients_by_psychologist()
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        _service = FilterDataService(request=request)
-        if db_field.name == "plain":
-            kwargs["queryset"] = PaymentPlain.objects.filter(
-                psychologist=_service.psychologist
-            )
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    # def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    #     _service = FilterDataService(request=request)
+    #     if db_field.name == "plain":
+    #         kwargs["queryset"] = PaymentPlain.objects.filter(
+    #             psychologist=_service.psychologist
+    #         )
+    #     return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
-    def save_model(self, request, obj, form, change):
-        _service = FilterDataService(request=request)
-        obj.psychologist = _service.psychologist
-        super().save_model(request, obj, form, change)
+    # def save_model(self, request, obj, form, change):
+    #     _service = FilterDataService(request=request)
+    #     obj.psychologist = _service.psychologist
+    #     super().save_model(request, obj, form, change)
 
     list_display = [
         "patient_name",
@@ -79,17 +79,17 @@ class PatientAdmin(admin.ModelAdmin):
 
 @admin.register(TherapySession)
 class TherapySessionAdmin(admin.ModelAdmin):
-    def get_queryset(self, request):
-        _service = FilterDataService(request=request)
-        return _service.therapy_sessions_by_psycologist()
+    # def get_queryset(self, request):
+    #     _service = FilterDataService(request=request)
+    #     return _service.therapy_sessions_by_psycologist()
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        _service = FilterDataService(request=request)
-        if db_field.name == "prontuary":
-            kwargs["queryset"] = Patient.objects.filter(
-                psychologist=_service.psychologist
-            )
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    # def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    #     _service = FilterDataService(request=request)
+    #     if db_field.name == "prontuary":
+    #         kwargs["queryset"] = Patient.objects.filter(
+    #             psychologist=_service.psychologist
+    #         )
+    #     return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     list_display = [
         "prontuary",
@@ -112,17 +112,17 @@ class TherapySessionAdmin(admin.ModelAdmin):
 
 @admin.register(Prontuary)
 class ProntuaryAdmin(admin.ModelAdmin):
-    def get_queryset(self, request):
-        _service = FilterDataService(request=request)
-        return _service.prontuaries_by_psycologist()
+    # def get_queryset(self, request):
+    #     _service = FilterDataService(request=request)
+    #     return _service.prontuaries_by_psycologist()
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        _service = FilterDataService(request=request)
-        if db_field.name == "patient":
-            kwargs["queryset"] = Patient.objects.filter(
-                psychologist=_service.psychologist
-            )
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    # def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    #     _service = FilterDataService(request=request)
+    #     if db_field.name == "patient":
+    #         kwargs["queryset"] = Patient.objects.filter(
+    #             psychologist=_service.psychologist
+    #         )
+    #     return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     list_display = [
         "patient",
