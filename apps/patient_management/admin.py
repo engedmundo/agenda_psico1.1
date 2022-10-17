@@ -85,7 +85,7 @@ class TherapySessionAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         _service = FilterDataService(request=request)
-        if db_field.name == "patient":
+        if db_field.name == "prontuary":
             kwargs["queryset"] = Patient.objects.filter(
                 psychologist=_service.psychologist
             )

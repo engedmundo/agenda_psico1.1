@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="therapysession",
             name="prontuary",
             field=models.ForeignKey(
-                default=False,
+                default=1,
                 on_delete=django.db.models.deletion.CASCADE,
                 to="patient_management.prontuary",
                 verbose_name="Paciente",

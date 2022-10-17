@@ -18,6 +18,8 @@ class TherapySession(CommonInfo):
         verbose_name="Prontuário",
         on_delete=models.CASCADE,
         default=False,
+        null=True,
+        blank=True,
     )
     session_number = models.CharField("Número da sessão", max_length=10)
     date_session = models.DateField("Data da seção")
