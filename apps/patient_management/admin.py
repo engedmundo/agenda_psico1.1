@@ -108,10 +108,11 @@ class TherapySessionAdmin(admin.ModelAdmin):
     search_fields = [
         "patient_name",
     ]
-    # form = TherapySessionForm
+    form = TherapySessionForm
     autocomplete_fields = [
         "patient",
     ]
+    list_per_page = 10
 
 
 @admin.register(Prontuary)
