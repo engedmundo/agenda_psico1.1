@@ -10,7 +10,7 @@ static/admin
 zz_template-front/
 *.txt
 .DS_Store
-
+static/
 # Backup files # 
 *.bak 
 .old_apps
