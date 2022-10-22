@@ -18,7 +18,7 @@ SECRET_KEY = env("SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env("DJANGO_DEBUG")
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["34.125.197.120", "psiqueativa.com.br", "127.0.0.1"]
 # Setup support for proxy headers
