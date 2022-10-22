@@ -1,22 +1,18 @@
 {% load static %}
 {% block professional_card %}
-    <div class="col-lg-3 col-md-6">
-        <div class="member">
-            <div class="pic"><img src="/media/{{ psychologist.photo }}" width="100%" alt=""></div>
-                <h4>
-                    <a href="{% url 'site_interface:professional_description' psychologist.id %}">
-                    {{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}
-                    </a>
-                </h4>
-                <span>{{ psychologist.short_description }}</span>
-                <div class="social">
-                    <a href="{{ psychologist.twitter_link }}"><i class="bi bi-twitter"></i></a>
-                    <a href="{{ psychologist.whatsapp_number }}"><i class="bi bi-whatsapp"></i></a>
-                    <a href="{{ psychologist.instagram_link }}"><i class="bi bi-instagram"></i></a>
-                    <a href="{{ psychologist.linkedin_link }}"><i class="bi bi-linkedin"></i></a>
-                </div>
-                <br>
-            </div>
-        </div>
+{% for psychologist in psychologists %}
+  <div class="col-lg-3 col-md-6">
+    <div class="member">
+      <div class="pic">
+        <img src="/media/{{ psychologist.photo }}" width="100%" alt="">
+      </div>
+      <h4>
+        <a href="{% url 'site_interface:professional_description' psychologist.id %}">
+          {{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}
+        </a>
+      </h4>
+      <span>{{ psychologist.short_description }}</span>
     </div>
+  </div>
+{% endfor %}
 {% endblock professional_card %}

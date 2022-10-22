@@ -1,20 +1,21 @@
 {% load static %}
 {% block professionals %}
 
- <section id="professionals" class="section-bg">
-    <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <h3 class="section-title">Profissionais</h3>
-            <span class="section-divider"></span>
-            <p class="section-description"></p>
-        </div>
-        
-        <div class="row">
-            {% for psychologist in psychologists %}
-            {% include "components/professionals/professional_card.html" %}
-            {% endfor %}
-            <p class="section-description">Ver todos os profissionais (em breve)</p>
-        </div>
-        </div
+ <section id="team" class="section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h3 class="section-title">Profissionais</h3>
+        <span class="section-divider"></span>
+        <p class="section-description">
+          <a href="">Conheça todos os profissionais</a>  
+        </p>
+        <p class="section-description"></p>
+    </div>
+      
+    <div class="row">
+      {% include "components/professionals/professional_card.html" %}
+    </div>
+    <p class="section-description">Ver todos os profissionais (em breve)</p>
+  </div>
 </section>
 {% endblock professionals %}
