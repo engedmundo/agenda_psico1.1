@@ -20,7 +20,7 @@ SECRET_KEY = env("SECRET")
 # DEBUG = env("DJANGO_DEBUG")
 DEBUG = False
 
-ALLOWED_HOSTS = ["34.125.197.120", "psiqueativa.com.br", "127.0.0.1"]
+ALLOWED_HOSTS = ["*.psiqueativa.com.br", "127.0.0.1"]
 # Setup support for proxy headers
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
