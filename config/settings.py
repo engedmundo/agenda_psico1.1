@@ -18,14 +18,14 @@ SECRET_KEY = env("SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env("DJANGO_DEBUG")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["34.125.197.120", "psiqueativa.com.br", "127.0.0.1"]
 # Setup support for proxy headers
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CSRF_TRUSTED_ORIGINS = ["psiqueativa.com.br:80", "www.psiqueativa.com.br:80"] 
+CSRF_TRUSTED_ORIGINS = ["https://psiqueativa.com.br:80", "https://www.psiqueativa.com.br:80"] 
 
 # Application definition
 
