@@ -21,6 +21,9 @@ SECRET_KEY = env("SECRET")
 DEBUG = False
 
 ALLOWED_HOSTS = ["34.125.197.120", "psiqueativa.com.br", "127.0.0.1"]
+# Setup support for proxy headers
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = ["psiqueativa.com.br", "www.psiqueativa.com.br"] 
 
