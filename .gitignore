@@ -9,6 +9,7 @@ gunicorn-error-log
 static/admin
 zz_template-front/
 *.txt
+.DS_Store
 
 # Backup files # 
 *.bak 

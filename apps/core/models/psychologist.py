@@ -14,6 +14,12 @@ class Psychologist(CommonInfo):
         "Registro CRP",
         max_length=20
     )
+    short_description = models.CharField(
+        "Descrição curta",
+        max_length=100,
+        null=True,
+        blank=True,
+    )
     professional_address = models.CharField(
         "Endereço Profissional",
         max_length=200
@@ -51,8 +57,9 @@ class Psychologist(CommonInfo):
         null=True,
         blank=True,
     )
-    whatsapp_number = models.URLField(
-        "WhatsApp Profissional", 
+    whatsapp_number = models.CharField(
+        "WhatsApp Profissional",
+        max_length=20,
         null=True,
         blank=True,
     )
@@ -63,6 +70,11 @@ class Psychologist(CommonInfo):
     )
     photo = models.ImageField(
         "Imagem de Perfil",
+        upload_to = "media",
+        null=True,
+        blank=True,
+    )
+    schedule_description = models.TextField(
         null=True,
         blank=True,
     )

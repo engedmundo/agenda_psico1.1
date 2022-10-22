@@ -1,0 +1,63 @@
+{% load static %}
+{% block professional_description %}
+
+  <section id="advanced-features">
+
+    <div class="features-row section-bg" data-aos="fade-up">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <img class="advanced-feature-img-right wow fadeInRight" src="/media/{{psychologist.photo}}" width="100%" alt="psychologist profile photo">
+          </div>
+          <div class="col-6">
+            <h2>{{ psychologist.psychologist.first_name }} {{psychologist.psychologist.last_name }}</h2>
+            <h3>{{ psychologist.short_description }}</h3>
+            <p>{{ psychologist.bio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+        <div class="features-row" data-aos="fade-up">
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                <h2></i>Agenda</h2>
+                <p><i class="bi bi-calendar4-week"></i>
+                  {% if psychologist.schedule_description %}
+                    {{ psychologist.schedule_description }}
+                  {% else %}
+                    Em breve
+                  {% endif %}
+                </p>
+              </div>
+              
+              <div class="col-4">
+                <h2></i>Entre em contato</h2>
+                {% if psychologist.phone_number %}
+                  <a href="{{ psychologist.phone_number }}"><i class="bi bi-telephone"></i></a>  
+                {% endif %}
+
+                {% if psychologist.whatsapp_number %}
+                  <a href="{{ psychologist.whatsapp_number }}"><i class="bi bi-whatsapp"></i></a>
+                {% endif %}
+
+                {% if psychologist.linkedin_link %}
+                  <a href="{{ psychologist.linkedin_link }}"><i class="bi bi-linkedin"></i></a>
+                {% endif %}
+
+                {% if psychologist.twitter_link %}
+                  <a href="{{ psychologist.twitter_link }}"><i class="bi bi-twitter"></i></a>
+                {% endif %}
+
+                {% if psychologist.instagram_link %}
+                  <a href="{{ psychologist.instagram_link }}"><i class="bi bi-instagram"></i></a>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
+
+{% endblock professional_description %}
