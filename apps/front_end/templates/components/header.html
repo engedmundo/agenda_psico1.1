@@ -13,6 +13,15 @@
                 <li><a class="nav-link scrollto" href="#blog">Blog</a></li>
                 <li><a class="nav-link scrollto" href="/meuconsultorio/">Meu Consultório</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown"><a href="#"><span>Meu perfil</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="nav-link" href="#contact">Meus dados</a></li>
+                      <li><a class="nav-link" href="{% url 'site_interface:logout' %}">Logout</a></li>
+                    </ul>
+                  </li>
+
+                {% endif %}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
