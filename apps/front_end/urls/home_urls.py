@@ -6,6 +6,7 @@ from ..views import (
     login_view,
     logout_view,
     professional_description,
+    my_profile,
 )
 
 app_name = "site_interface"
@@ -36,5 +37,10 @@ urlpatterns = [
         "logout",
         logout_view,
         name="logout",
+    ),
+    path(
+        "my_profile/<int:id>",
+        my_profile,
+        name="my_profile",
     ),
 ]
