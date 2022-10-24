@@ -7,7 +7,7 @@
         <img src="/media/{{ psychologist.photo }}" width="100%" alt="">
       </div>
       <h4>
-        <a href="{% url 'site_interface:professional_description' psychologist.id %}">
+        <a href="{% url 'professional_description' psychologist.id %}">
           {{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}
         </a>
       </h4>

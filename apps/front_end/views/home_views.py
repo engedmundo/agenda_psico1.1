@@ -68,11 +68,11 @@ def login_create(request):
 
     else:
         messages.error(request, "Erro ao validar formulário")
-    
-    return redirect("site_interface:home")
+
+    return redirect("home")
 
 
-@login_required(login_url="site_interface:login_view")
+@login_required(login_url="login_view")
 def logout_view(request):
     logout(request)
-    return redirect("site_interface:home")
+    return redirect("home")

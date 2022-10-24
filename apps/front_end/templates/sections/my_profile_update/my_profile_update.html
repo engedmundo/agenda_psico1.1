@@ -1,0 +1,220 @@
+{% load static %}
+{% block my_profile %}
+  <section id="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+
+        <div class="col-lg-1 col-md-1">
+        </div>
+            
+            <div class="col-lg-10 col-md-10">
+              <div class="contact-about">
+                <div class="row">
+                  <h5>Editar meu perfil | {{ psychologist.psychologist }}</h5 >
+                </div>
+                <p>Altere e confirme as suas informações de usuário</p>
+              </div>
+             
+                <form action="" method="post" class="email-form" enctype="multipart/form-data">
+                  {% csrf_token %}
+                    <div class="row">
+                      <div class="form-group col-lg-6">
+                        <div class="form-group mt-3">
+                          <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                          <input 
+                            type="text" 
+                            name="first_name" 
+                            class="form-control" 
+                            id="first_name.id_for_label"
+                            value="{{ user_form.first_name.value }}"
+                            >
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                          <input 
+                          type="text" 
+                          name="last_name" 
+                          class="form-control" 
+                          id="last_name.id_for_label" 
+                          placeholder="Sobrenome" 
+                          value="{{ user_form.last_name.value }}"
+                          >
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                          <input 
+                          type="text" 
+                          name="email" 
+                          class="form-control" 
+                          id="email.id_for_label" 
+                          placeholder="E-mail" 
+                          value="{{ user_form.email.value }}"
+                          >
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="{{ psycho_form.crp_register.id_for_label }}">{{ psycho_form.crp_register.label }}</label>
+                          <input 
+                          type="text" 
+                          name="crp_register" 
+                          class="form-control" 
+                          id="crp_register.id_for_label" 
+                          value="{{ psycho_form.crp_register.value }}"
+                        >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.short_description.id_for_label }}">{{ psycho_form.short_description.label }}</label>
+                        <input 
+                          type="text" 
+                          name="short_description" 
+                          class="form-control" 
+                          id="short_description.id_for_label"
+                          value="{{ psycho_form.short_description.value }}"
+                        >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.phone_number.id_for_label }}">{{ psycho_form.phone_number.label }}</label>
+                        <input 
+                          type="text" 
+                          name="phone_number" 
+                          class="form-control" 
+                          id="phone_number.id_for_label"
+                          value="{{ psycho_form.phone_number.value }}"
+                        >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.cpf.id_for_label }}">{{ psycho_form.cpf.label }}</label>
+                        <input 
+                          type="text" 
+                          name="cpf" 
+                          class="form-control" 
+                          id="cpf.id_for_label"
+                          value="{{ psycho_form.cpf.value }}"
+                        >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.whatsapp_number.id_for_label }}">{{ psycho_form.whatsapp_number.label }}</label>
+                        <input 
+                        type="text"
+                        name="whatsapp_number" 
+                        class="form-control" 
+                        id="whatsapp_number.id_for_label"
+                        value="{{ psycho_form.whatsapp_number.value }}"
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.photo.id_for_label }}">{{ psycho_form.photo.label }}</label>
+                        <input 
+                        type="file" 
+                        name="photo" 
+                        class="form-control" 
+                        id="photo.id_for_label" 
+                        value="{{ psycho_form.photo.value }}"
+                        >
+                        <br>
+                        <p>
+                          <img class="advanced-feature-img-right wow fadeInRight" src="/media/{{psychologist.photo}}" width="100%" alt="psychologist profile photo">
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.professional_address.id_for_label }}">{{ psycho_form.professional_address.label }}</label>
+                    <input 
+                      type="text" 
+                      name="professional_address" 
+                      class="form-control" 
+                      id="professional_address.id_for_label"
+                      value="{{ psycho_form.professional_address.value }}"
+                    >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.secondary_address.id_for_label }}">{{ psycho_form.secondary_address.label }}</label>
+                    <input 
+                      type="text" 
+                      name="secondary_address" 
+                      class="form-control" 
+                      id="secondary_address.id_for_label"
+                      value="{{ psycho_form.secondary_address.value }}"
+                    >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.instagram_link.id_for_label }}">{{ psycho_form.instagram_link.label }}</label>
+                    <input 
+                      type="text" 
+                      name="instagram_link" 
+                      class="form-control" 
+                      id="instagram_link.id_for_label"
+                      value="{{ psycho_form.instagram_link.value }}"
+                    >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.twitter_link.id_for_label }}">{{ psycho_form.twitter_link.label }}</label>
+                    <input 
+                      type="text" 
+                      name="twitter_link" 
+                      class="form-control" 
+                      id="twitter_link.id_for_label"
+                      value="{{ psycho_form.twitter_link.value }}"
+                    >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.linkedin_link.id_for_label }}">{{ psycho_form.linkedin_link.label }}</label>
+                    <input 
+                      type="text" 
+                      name="linkedin_link" 
+                      class="form-control" 
+                      id="linkedin_link.id_for_label"
+                      value="{{ psycho_form.linkedin_link.value }}"
+                    >
+                  </div>
+
+                  
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.bio.id_for_label }}">{{ psycho_form.bio.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="bio"
+                        id="bio.id_for_label"
+                        rows="5"
+                        value="{{ psycho_form.bio.value }}"
+                      >{{ psycho_form.bio.value }}
+                    </textarea>
+                  </div>
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.schedule_description.id_for_label }}">{{ psycho_form.schedule_description.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="schedule_description"
+                        id="schedule_description.id_for_label"
+                        rows="5"
+                        value="{{ psycho_form.schedule_description.value }}"
+                      >{{ psycho_form.schedule_description.value }}
+                    </textarea>
+                  </div>
+                  
+                  <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Em construção</div>
+                  </div>
+                  <div class="text-center"><button type="submit" title="Send Message">Atualizar informações de perfil</button></div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-lg-1 col-md-1">
+            </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock my_profile %}

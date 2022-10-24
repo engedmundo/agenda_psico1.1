@@ -1,16 +1,7 @@
 from django.urls import path
 
-from ..views import (
-    home,
-    login_create,
-    login_view,
-    logout_view,
-    professional_description,
-    my_profile,
-)
-
-app_name = "site_interface"
-
+from .views import (home, login_create, login_view, logout_view, my_profile,
+                    my_profile_update, professional_description)
 
 urlpatterns = [
     path(
@@ -39,8 +30,8 @@ urlpatterns = [
         name="logout",
     ),
     path(
-        "my_profile/<int:id>",
-        my_profile,
+        "my_profile",
+        my_profile_update,
         name="my_profile",
     ),
 ]

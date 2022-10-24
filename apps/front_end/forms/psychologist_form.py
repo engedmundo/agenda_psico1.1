@@ -19,11 +19,11 @@ class PsychologistRegisterForm(forms.ModelForm):
 
     class Meta:
         model = Psychologist
+        widgets = {
+            "bio": forms.Textarea(attrs={"rows": 5}),
+            "photo": forms.FileInput(),
+        }
         fields = [
-            "psychologist",
-            # "psychologist__first_name",
-            # "psychologist__last_name",
-            # "psychologist__email",
             "crp_register",
             "short_description",
             "professional_address",

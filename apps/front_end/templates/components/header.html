@@ -3,21 +3,21 @@
     <div class="container d-flex justify-content-between align-items-center">
         
         <div id="logo">
-            <h1><a href="{% url 'site_interface:home' %}">Psique Ativa</a></h1>
+            <h1><a href="{% url 'home' %}">Psique Ativa</a></h1>
         </div>
         
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="{% url 'site_interface:home' %}">Home</a></li>
+                <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
                 <li><a class="nav-link scrollto" href="#team">Profissionais</a></li>
                 <li><a class="nav-link scrollto" href="#blog">Blog</a></li>
                 <li><a class="nav-link scrollto" href="/meuconsultorio/">Meu Consultório</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
+                <li><a class="nav-link scrollto" href="">Contato</a></li>
                 {% if request.user.is_authenticated %}
                     <li class="dropdown"><a href="#"><span>Meu perfil</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                      <li><a class="nav-link" href="{% url 'site_interface:my_profile' request.user.id %}">Editar meus dados</a></li>
-                      <li><a class="nav-link" href="{% url 'site_interface:logout' %}">Logout</a></li>
+                      <li><a class="nav-link" href="{% url 'my_profile' %}">Editar meus dados</a></li>
+                      <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                   </li>
 

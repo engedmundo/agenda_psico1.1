@@ -5,4 +5,4 @@ from .home_views import (
     logout_view,
     professional_description,
 )
-from .profile_views import my_profile
+from .profile_views import my_profile, my_profile_update
