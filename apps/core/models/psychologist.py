@@ -42,20 +42,23 @@ class Psychologist(CommonInfo):
         blank=True,
         max_length=11
     )
-    instagram_link = models.URLField(
+    instagram_link = models.CharField(
         "Link Instagram Profissional", 
         null=True,
         blank=True,
+        max_length=100,
     )
-    twitter_link = models.URLField(
+    twitter_link = models.CharField(
         "Link Twitter Profissional", 
         null=True,
         blank=True,
+        max_length=100,
     )
-    linkedin_link = models.URLField(
+    linkedin_link = models.CharField(
         "Link LinkedIn Profissional", 
         null=True,
         blank=True,
+        max_length=100,
     )
     whatsapp_number = models.CharField(
         "WhatsApp Profissional",

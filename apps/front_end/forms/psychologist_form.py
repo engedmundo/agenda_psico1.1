@@ -38,11 +38,13 @@ class PsychologistRegisterForm(forms.ModelForm):
             "schedule_description",
             "photo",
         ]
+        required = [
+            "crp_register",
+            "short_description",
+            "bio",
+        ]
 
         labels = {
-            "psychologist__first_name": "Primeiro nome",
-            "psychologist__last_name": "Sobrenome",
-            "psychologist__email": "Email profissional",
             "crp_register": "Registro profissional",
             "short_description": "Descrição curta/titulação",
             "professional_address": "Endereço profissional",
