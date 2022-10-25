@@ -1,7 +1,14 @@
 from django.urls import path
 
-from .views import (home, login_create, login_view, logout_view, my_profile,
-                    my_profile_update, professional_description)
+from .views import (
+    home,
+    login_create,
+    login_view,
+    logout_view,
+    my_profile_update,
+    payment_plains_list,
+    professional_description,
+)
 
 urlpatterns = [
     path(
@@ -33,5 +40,10 @@ urlpatterns = [
         "my_profile",
         my_profile_update,
         name="my_profile",
+    ),
+    path(
+        "payment_plains",
+        payment_plains_list,
+        name="payment_plains",
     ),
 ]
