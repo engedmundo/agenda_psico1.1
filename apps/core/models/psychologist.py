@@ -40,7 +40,7 @@ class Psychologist(CommonInfo):
         "CPF",
         null=True,
         blank=True,
-        max_length=11
+        max_length=20,
     )
     instagram_link = models.CharField(
         "Link Instagram Profissional", 
