@@ -43,8 +43,8 @@ def my_profile_update(request):
     )
 
     if psycho_form.is_valid() and user_form.is_valid():
-        user_form.save()
-        psycho_form.save()
+        user_object = user_form.save()
+        psycho_object = psycho_form.save()
         messages.success(request, "Perfil atualizado com sucesso")
         return redirect("my_profile")
 

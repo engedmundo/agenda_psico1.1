@@ -1,30 +1,46 @@
 {% block header %}
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex justify-content-between align-items-center">
-        
-        <div id="logo">
-            <h1><a href="{% url 'home' %}">Psique Ativa</a></h1>
-        </div>
-        
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
-                <li><a class="nav-link scrollto" href="#team">Profissionais</a></li>
-                <li><a class="nav-link scrollto" href="#blog">Blog</a></li>
-                <li><a class="nav-link scrollto" href="/meuconsultorio/">Meu Consultório</a></li>
-                <li><a class="nav-link scrollto" href="">Contato</a></li>
-                {% if request.user.is_authenticated %}
-                    <li class="dropdown"><a href="#"><span>Meu perfil</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                      <li><a class="nav-link" href="{% url 'my_profile' %}">Editar meus dados</a></li>
-                      <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                  </li>
-
-                {% endif %}
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
+  <div class="container d-flex justify-content-between align-items-center">
+    <div id="logo">
+      <h1><a href="{% url 'home' %}">Psique Ativa</a></h1>
     </div>
+    
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
+        {% if request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="/meuconsultorio/">Meu Consultório</a></li>
+          <li class="dropdown"><a href=""><span>Financeiro</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a class="nav-link" href="">Recebimentos</a></li>
+              <li><a class="nav-link" href="">Despesas</a></li>
+              <li><a class="nav-link" href="">Planos de pagamento</a></li>
+              <li><a class="nav-link" href="">Categorias de despesas</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href=""><span>Pacientes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a class="nav-link" href="">Pacientes</a></li>
+              <li><a class="nav-link" href="">Prontuários</a></li>
+              <li><a class="nav-link" href="">Sessões</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Meu perfil</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a class="nav-link" href="{% url 'my_profile' %}">Editar meus dados</a></li>
+              <li><a class="nav-link" href="{% url 'my_profile' %}">Modalidades de atendimento</a></li>
+              <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="">Agenda</a></li>
+      {% else %}
+          <li><a class="nav-link scrollto" href="#team">Profissionais</a></li>
+          <li><a class="nav-link scrollto" href="#blog">Blog</a></li>
+          <li><a class="nav-link scrollto" href="">Contato</a></li>
+        {% endif %}
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+  </div>
 </header>
 {% endblock header %}

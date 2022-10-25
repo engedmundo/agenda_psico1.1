@@ -16,50 +16,49 @@
               </div>
              
                 <form action="" method="post" class="email-form" enctype="multipart/form-data">
-                  {% csrf_token %}
-                    <div class="row">
-                      <div class="form-group col-lg-6">
-                        <div class="form-group mt-3">
-                          <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
-                          <input 
-                            type="text" 
-                            name="first_name" 
-                            class="form-control" 
-                            id="first_name.id_for_label"
-                            value="{{ user_form.first_name.value }}"
-                            >
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
-                          <input 
+                {% csrf_token %}
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <div class="form-group mt-3">
+                        <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                        <input 
                           type="text" 
-                          name="last_name" 
+                          name="first_name" 
                           class="form-control" 
-                          id="last_name.id_for_label" 
-                          placeholder="Sobrenome" 
-                          value="{{ user_form.last_name.value }}"
+                          id="first_name.id_for_label"
+                          value="{{ user_form.first_name.value }}"
                           >
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
-                          <input 
-                          type="text" 
-                          name="email" 
-                          class="form-control" 
-                          id="email.id_for_label" 
-                          placeholder="E-mail" 
-                          value="{{ user_form.email.value }}"
-                          >
-                        </div>
-                        <div class="form-group mt-3">
-                          <label for="{{ psycho_form.crp_register.id_for_label }}">{{ psycho_form.crp_register.label }}</label>
-                          <input 
-                          type="text" 
-                          name="crp_register" 
-                          class="form-control" 
-                          id="crp_register.id_for_label" 
-                          value="{{ psycho_form.crp_register.value }}"
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                        <input 
+                        type="text" 
+                        name="last_name" 
+                        class="form-control" 
+                        id="last_name.id_for_label" 
+                        placeholder="Sobrenome" 
+                        value="{{ user_form.last_name.value }}"
                         >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                        <input 
+                        type="text" 
+                        name="email" 
+                        class="form-control" 
+                        id="email.id_for_label" 
+                        placeholder="E-mail" 
+                        value="{{ user_form.email.value }}"
+                        >
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="{{ psycho_form.crp_register.id_for_label }}">{{ psycho_form.crp_register.label }}</label>
+                        <input 
+                        type="text" 
+                        name="crp_register" 
+                        class="form-control" 
+                        id="crp_register.id_for_label" 
+                        value="{{ psycho_form.crp_register.value }}">
                       </div>
                       <div class="form-group mt-3">
                         <label for="{{ psycho_form.short_description.id_for_label }}">{{ psycho_form.short_description.label }}</label>
@@ -175,8 +174,6 @@
                     >
                   </div>
 
-                  
-                  
                   <div class="form-group mt-3">
                     <label for="{{ psycho_form.bio.id_for_label }}">{{ psycho_form.bio.label }}</label>
                     <textarea 

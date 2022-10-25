@@ -17,7 +17,7 @@ def home(request):
 
     return render(
         request,
-        "pages/index.html",
+        "pages/home/index.html",
         context={
             "psychologists": psychologists,
         },
@@ -28,7 +28,7 @@ def professional_description(request, id):
     psychologist = get_object_or_404(Psychologist, id=id)
     return render(
         request,
-        "pages/profile_description.html",
+        "pages/home/profile_description.html",
         context={
             "psychologist": psychologist,
         },
@@ -39,7 +39,7 @@ def login_view(request):
     form = LoginForm()
     return render(
         request,
-        "pages/login.html",
+        "pages/home/login.html",
         context={
             "form": form,
         },
