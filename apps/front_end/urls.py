@@ -1,16 +1,6 @@
 from django.urls import path
 
-from .views import (
-    create_payment_plain,
-    home,
-    login_create,
-    login_view,
-    logout_view,
-    my_profile_update,
-    payment_plain_save,
-    payment_plains_list,
-    professional_description,
-)
+from .views import *
 
 urlpatterns = [
     path(
@@ -19,43 +9,63 @@ urlpatterns = [
         name="home",
     ),
     path(
-        "professional_description/<int:id>",
+        "professional_description/<int:id>/",
         professional_description,
         name="professional_description",
     ),
     path(
-        "login",
+        "login/",
         login_view,
         name="login",
     ),
     path(
-        "login/create",
+        "login/create/",
         login_create,
         name="login_create",
     ),
     path(
-        "logout",
+        "logout/",
         logout_view,
         name="logout",
     ),
     path(
-        "my_profile",
+        "my_profile/",
         my_profile_update,
         name="my_profile",
     ),
     path(
-        "payment_plains",
+        "payment_plains/",
         payment_plains_list,
         name="payment_plains",
     ),
     path(
-        "create_payment_plain",
+        "payment_plains/create/",
         create_payment_plain,
         name="create_payment_plain",
     ),
     path(
-        "create_payment_plain/save",
+        "payment_plains/save/",
         payment_plain_save,
         name="payment_plain_save",
+    ),
+    path(
+        "payment_plain/<int:id>/update/",
+        payment_plain_update,
+        name="payment_plain_update",
+    ),
+    path(
+        "payment_plain/<int:id>/archive/",
+        payment_plain_archive,
+        name="payment_plain_archive",
+    ),
+    path(
+        "payment_plain/<int:id>/archive_confirm/",
+        payment_plain_archive_confirm,
+        name="payment_plain_archive_confirm",
+    ),
+    path(
+        "payment_plains/archived",
+        payment_plains_archived,
+        name="payment_plains_arquived",
     ),
 ]

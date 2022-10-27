@@ -3,7 +3,7 @@ from apps.financial_management.forms import PaymentPlainRegisterForm
 from apps.financial_management.models import PaymentPlain
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
@@ -60,9 +60,67 @@ def payment_plain_save(request):
 
     return redirect("payment_plains")
 
+@login_required(login_url="site_interface:home")
+def payment_plain_update(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    if not payment_plain:
+        raise Http404()
+
+    if payment_plain.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    form = PaymentPlainRegisterForm(
+        data=request.POST or None,
+        instance=payment_plain,
+    )
+
+    if form.is_valid():
+        payment_plain = form.save(commit=False)
+        payment_plain.psychologist = psychologist
+        payment_plain.save()
+        messages.success(request, "Plano de pagamento cadastrado com sucesso")
+        return redirect("payment_plains")
+
+    return render(
+        request,
+        "pages/financial/update_payment_plain.html",
+        context={
+            "psychologist": psychologist,
+            "form": form,
+        },
+    )
+
+@login_required(login_url="site_interface:home")
+def payment_plain_archive_confirm(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    return render(
+        request,
+        "pages/financial/archive_payment_plain.html",
+        context={
+            "psychologist": psychologist,
+            "payment_plain": payment_plain,
+        },
+    )
+
+@login_required(login_url="site_interface:home")
+def payment_plain_archive(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    if payment_plain.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    payment_plain.is_active = False
+    payment_plain.save()
+
+    return redirect("payment_plains")
 
 @login_required(login_url="login_view")
-def payment_plains_list_archived(request):
+def payment_plains_archived(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plains = PaymentPlain.objects.filter(
         psychologist=psychologist,

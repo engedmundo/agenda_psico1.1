@@ -22,7 +22,10 @@
                       <p>Valor do plano: R$ {{ payment_plain.plain_value }}</p>
                     </div>
                     <div>
-                      <p><a href="">Editar</a> | <a href="">Arquivar</a></p>
+                      <p>
+                        <a href="{% url 'payment_plain_update' payment_plain.id %}" class="text-center form-button">Editar</a>
+                        <a href="{% url 'payment_plain_archive_confirm' payment_plain.id %}" class="text-center form-button">Arquivar</a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -38,9 +41,6 @@
               </div>
             </div>
           </ul>
-
-        
-  
         </div>
       </section>
 
