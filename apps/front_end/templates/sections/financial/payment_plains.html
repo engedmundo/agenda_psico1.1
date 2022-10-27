@@ -11,12 +11,12 @@
           <ul class="faq-list">
             {% for payment_plain in payment_plains %}
               <li>
-                <div data-bs-toggle="collapse" class="collapsed question" href="#faq1"> 
+                <div data-bs-toggle="collapse" class="collapsed question" href="#faq{{ forloop.counter }}"> 
                   Plano: {{ payment_plain.name_plain }} <i class="bi bi-chevron-down icon-show">
                   </i><i class="bi bi-chevron-up icon-close"></i>
                 </div>
 
-                <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+                <div id="faq{{ forloop.counter }}" class="collapse" data-bs-parent=".faq-list">
                   <div class="d-flex justify-content-between">
                     <div>
                       <p>Valor do plano: R$ {{ payment_plain.plain_value }}</p>
