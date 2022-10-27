@@ -1,0 +1,1 @@
+from .payment_plain_form import PaymentPlainRegisterForm

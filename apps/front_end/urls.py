@@ -7,6 +7,7 @@ from .views import (
     login_view,
     logout_view,
     my_profile_update,
+    payment_plain_save,
     payment_plains_list,
     professional_description,
 )
@@ -51,5 +52,10 @@ urlpatterns = [
         "create_payment_plain",
         create_payment_plain,
         name="create_payment_plain",
+    ),
+    path(
+        "create_payment_plain/save",
+        payment_plain_save,
+        name="payment_plain_save",
     ),
 ]

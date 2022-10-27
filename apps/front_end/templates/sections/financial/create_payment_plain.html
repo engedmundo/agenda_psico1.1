@@ -14,28 +14,26 @@
                 </div>
               </div>
              
-                <form action="" method="post" class="email-form" enctype="multipart/form-data">
+                <form action="{% url 'payment_plain_save' %}" method="post" class="email-form" enctype="multipart/form-data">
                 {% csrf_token %}
                   <div class="form-group mt-3">
-                    <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
-                    <input 
+                    <label for="{{ form.name_plain.id_for_label }}">{{ form.name_plain.label }}</label>
+                      <input 
                         type="text" 
-                        name="first_name" 
+                        name="name_plain" 
                         class="form-control" 
-                        id="first_name.id_for_label"
-                    >
+                        id="name_plain.id_for_label"
+                      >
                   </div>
-                  
+                      
                   <div class="form-group mt-3">
-                    <label for="{{ psycho_form.schedule_description.id_for_label }}">{{ psycho_form.schedule_description.label }}</label>
-                    <textarea 
-                      class="form-control"
-                        name="schedule_description"
-                        id="schedule_description.id_for_label"
-                        rows="5"
-                        value="{{ psycho_form.schedule_description.value }}"
-                      >{{ psycho_form.schedule_description.value }}
-                    </textarea>
+                    <label for="{{ form.plain_value.id_for_label }}">{{ form.plain_value.label }}</label>
+                      <input 
+                        type="text" 
+                        class="form-control"
+                        name="plain_value"
+                        id="plain_value.id_for_label"  
+                      >
                   </div>
                   
                   <div class="my-3">
@@ -49,8 +47,7 @@
             </div>
 
             <div class="form-group mt-3">
-              {{user_form.errors}}
-              {{psycho_form.errors}}
+              {{ form.errors }}
             </div>
 
             <div class="col-lg-1 col-md-1">
