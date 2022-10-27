@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import (
+    create_payment_plain,
     home,
     login_create,
     login_view,
@@ -45,5 +46,10 @@ urlpatterns = [
         "payment_plains",
         payment_plains_list,
         name="payment_plains",
+    ),
+    path(
+        "create_payment_plain",
+        create_payment_plain,
+        name="create_payment_plain",
     ),
 ]

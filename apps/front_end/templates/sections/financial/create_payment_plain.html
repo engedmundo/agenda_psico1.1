@@ -1,0 +1,62 @@
+{% load static %}
+{% block my_profile %}
+  <section id="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+
+        <div class="col-lg-1 col-md-1">
+        </div>
+            
+            <div class="col-lg-10 col-md-10">
+              <div class="contact-about">
+                <div class="row">
+                  <h5>Criar novo plano de pagamento</h5 >
+                </div>
+              </div>
+             
+                <form action="" method="post" class="email-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div class="form-group mt-3">
+                    <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                    <input 
+                        type="text" 
+                        name="first_name" 
+                        class="form-control" 
+                        id="first_name.id_for_label"
+                    >
+                  </div>
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.schedule_description.id_for_label }}">{{ psycho_form.schedule_description.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="schedule_description"
+                        id="schedule_description.id_for_label"
+                        rows="5"
+                        value="{{ psycho_form.schedule_description.value }}"
+                      >{{ psycho_form.schedule_description.value }}
+                    </textarea>
+                  </div>
+                  
+                  <div class="my-3">
+                    <div class="loading">Carregando</div>
+                    <div class="error-message">Erro ao cadastrar novo plano</div>
+                    <div class="sent-message">Plano criado com sucesso</div>
+                  </div>
+                  <div class="text-center"><button type="submit" title="Send Message">Cadastrar novo plano</button></div>
+                </form>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              {{user_form.errors}}
+              {{psycho_form.errors}}
+            </div>
+
+            <div class="col-lg-1 col-md-1">
+            </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock my_profile %}

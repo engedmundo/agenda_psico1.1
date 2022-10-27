@@ -17,14 +17,26 @@
                 </div>
 
                 <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-                  <p>
-                    Valor do plano: R$ {{ payment_plain.plain_value }}
-                  </p>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <p>Valor do plano: R$ {{ payment_plain.plain_value }}</p>
+                    </div>
+                    <div>
+                      <p><a href="">Editar</a> | <a href="">Arquivar</a></p>
+                    </div>
+                  </div>
                 </div>
+
               </li>
             {% endfor %}
-            <p>Inserir novo plano</p>
-            <p>Mostrar arquivados</p>
+            <div class="d-flex justify-content-between">
+              <div>
+                <a href="{% url 'create_payment_plain' %}" class="text-right form-button">Inserir novo plano</a>
+              </div>
+              <div>
+                <a href="" class="text-center form-button">Mostrar arquivados</a>
+              </div>
+            </div>
           </ul>
 
         

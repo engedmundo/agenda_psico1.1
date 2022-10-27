@@ -1388,3 +1388,20 @@ section {
 #footer .footer-links a:hover {
   color: #1dc8cd;
 }
+
+/*--------------------------------------------------------------
+# personal styles
+--------------------------------------------------------------*/
+
+.form-button {
+  background: linear-gradient(45deg, #1de099, #1dc8cd);
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 30px;
+  color: #fff;
+}
+
+.form-button:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
