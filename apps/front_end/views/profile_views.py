@@ -11,7 +11,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def my_profile(request, id):
     psychologist = get_object_or_404(Psychologist, id=id)
 
@@ -24,7 +24,7 @@ def my_profile(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def my_profile_update(request):
     user = get_object_or_404(User, username=request.user)
     psychologist = get_object_or_404(Psychologist, psychologist=user)

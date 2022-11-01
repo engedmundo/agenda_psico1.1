@@ -1,7 +1,7 @@
 from .home_views import (
     home,
     login_create,
-    login_view,
+    login,
     logout_view,
     professional_description,
 )
@@ -13,5 +13,8 @@ from .payment_plains_views import (
     payment_plain_archive,
     payment_plain_archive_confirm,
     payment_plains_archived,
+    payment_plain_unarchive,
+    payment_plain_delete,
+    payment_plain_delete_confirm,
 )
 from .profile_views import my_profile, my_profile_update

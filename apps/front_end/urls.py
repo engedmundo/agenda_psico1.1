@@ -15,7 +15,7 @@ urlpatterns = [
     ),
     path(
         "login/",
-        login_view,
+        login,
         name="login",
     ),
     path(
@@ -64,8 +64,23 @@ urlpatterns = [
         name="payment_plain_archive_confirm",
     ),
     path(
-        "payment_plains/archived",
+        "payment_plains/archived/",
         payment_plains_archived,
         name="payment_plains_arquived",
+    ),
+    path(
+        "payment_plain/<int:id>/unarchive/",
+        payment_plain_unarchive,
+        name="payment_plain_unarchive",
+    ),
+    path(
+        "payment_plain/<int:id>/delete/",
+        payment_plain_delete,
+        name="payment_plain_delete",
+    ),
+    path(
+        "payment_plain/<int:id>/delete_confirm/",
+        payment_plain_delete_confirm,
+        name="payment_plain_delete_confirm",
     ),
 ]

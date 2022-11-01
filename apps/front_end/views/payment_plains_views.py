@@ -7,7 +7,7 @@ from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def payment_plains_list(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plains = PaymentPlain.objects.filter(
@@ -25,7 +25,7 @@ def payment_plains_list(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def create_payment_plain(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     register_form_data = request.session.get("register_form_data", None)
@@ -41,7 +41,7 @@ def create_payment_plain(request):
     )
 
 
-@login_required(login_url="site_interface:home")
+@login_required(login_url="login")
 def payment_plain_save(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     if not request.POST:
@@ -60,7 +60,8 @@ def payment_plain_save(request):
 
     return redirect("payment_plains")
 
-@login_required(login_url="site_interface:home")
+
+@login_required(login_url="login")
 def payment_plain_update(request, id):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -92,7 +93,8 @@ def payment_plain_update(request, id):
         },
     )
 
-@login_required(login_url="site_interface:home")
+
+@login_required(login_url="login")
 def payment_plain_archive_confirm(request, id):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -106,7 +108,8 @@ def payment_plain_archive_confirm(request, id):
         },
     )
 
-@login_required(login_url="site_interface:home")
+
+@login_required(login_url="login")
 def payment_plain_archive(request, id):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -119,7 +122,8 @@ def payment_plain_archive(request, id):
 
     return redirect("payment_plains")
 
-@login_required(login_url="login_view")
+
+@login_required(login_url="login")
 def payment_plains_archived(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     payment_plains = PaymentPlain.objects.filter(
@@ -129,9 +133,50 @@ def payment_plains_archived(request):
 
     return render(
         request,
-        "pages/financial/payment_plains_list.html",
+        "pages/financial/payment_plains_arquived_list.html",
         context={
             "psychologist": psychologist,
             "payment_plains": payment_plains,
+        },
+    )
+
+
+@login_required(login_url="login")
+def payment_plain_unarchive(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    if payment_plain.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    payment_plain.is_active = True
+    payment_plain.save()
+
+    return redirect("payment_plains")
+
+
+@login_required(login_url="login")
+def payment_plain_delete(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    if payment_plain.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    payment_plain.delete()
+    messages.success(request, "Deletado com sucesso")
+    return redirect("payment_plains")
+
+@login_required(login_url="login")
+def payment_plain_delete_confirm(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    payment_plain = get_object_or_404(PaymentPlain, pk=id)
+
+    return render(
+        request,
+        "pages/financial/archive_payment_plain.html",
+        context={
+            "psychologist": psychologist,
+            "payment_plain": payment_plain,
         },
     )

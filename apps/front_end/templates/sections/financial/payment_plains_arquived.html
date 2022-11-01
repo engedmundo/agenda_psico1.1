@@ -3,7 +3,7 @@
     <section id="faq">
         <div class="container">
           <div class="section-header">
-            <h3 class="section-title">Planos de Pagamento</h3>
+            <h3 class="section-title">Planos de Pagamento Arquivados</h3>
             <span class="section-divider"></span>
             <p class="section-description">Profissional: {{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}</p>
           </div>
@@ -23,8 +23,8 @@
                     </div>
                     <div>
                       <p>
-                        <a href="{% url 'payment_plain_update' payment_plain.id %}" class="text-center form-button">Editar</a>
-                        <a href="{% url 'payment_plain_archive_confirm' payment_plain.id %}" class="text-center form-button">Arquivar</a>
+                        <a href="{% url 'payment_plain_update' payment_plain.id %}" class="text-center form-button">Exluir</a>
+                        <a href="{% url 'payment_plain_unarchive' payment_plain.id %}" class="text-center form-button">Desarquivar</a>
                       </p>
                     </div>
                   </div>
@@ -34,10 +34,7 @@
             {% endfor %}
             <div class="d-flex justify-content-between">
               <div>
-                <a href="{% url 'create_payment_plain' %}" class="text-right form-button">Inserir novo plano</a>
-              </div>
-              <div>
-                <a href="{% url 'payment_plains_arquived' %}" class="text-center form-button">Mostrar arquivados</a>
+                <a href="{% url 'payment_plains' %}" class="text-center form-button">Mostrar não arquivados</a>
               </div>
             </div>
           </ul>
