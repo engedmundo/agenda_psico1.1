@@ -167,6 +167,7 @@ def payment_plain_delete(request, id):
     messages.success(request, "Deletado com sucesso")
     return redirect("payment_plains")
 
+
 @login_required(login_url="login")
 def payment_plain_delete_confirm(request, id):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
@@ -174,7 +175,7 @@ def payment_plain_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/financial/archive_payment_plain.html",
+        "pages/financial/delete_payment_plain.html",
         context={
             "psychologist": psychologist,
             "payment_plain": payment_plain,
