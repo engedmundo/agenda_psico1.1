@@ -35,7 +35,7 @@ def professional_description(request, id):
     )
 
 
-def login(request):
+def login_view(request):
     form = LoginForm()
     return render(
         request,
