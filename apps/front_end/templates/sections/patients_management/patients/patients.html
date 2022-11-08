@@ -1,0 +1,37 @@
+{% load static %}
+{% block patients_list %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Pacientes</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          {% for patient in patients %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="">{{ patient.patient_name }}</a></h4>
+                <p class="description"><i class="bi bi-telephone"></i> {{ patient.phone_number }}</p>
+                <p class="description"><i class="bi bi-calendar-week"></i></i> {{ patient.session_week_day }}</p>
+                <p class="description"><i class="bi bi-clock"></i> {{ patient.session_hour }} </p>
+                <p class="description"><i class="bi bi-bank"></i> {{ patient.plain.name_plain }}</p>
+                <p class="description">Paciente desde {{ patient.created_at }}</p>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <a href="{% url 'create_payment_plain' %}" class="text-right form-button">Inserir novo paciente</a>
+            </div>
+            <div>
+              <a href="{% url 'payment_plains_arquived' %}" class="text-center form-button">Mostrar arquivados</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock patients_list %}

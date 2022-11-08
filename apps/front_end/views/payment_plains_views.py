@@ -17,7 +17,7 @@ def payment_plains_list(request):
 
     return render(
         request,
-        "pages/financial/payment_plains.html",
+        "pages/financial/payment_plains/payment_plains.html",
         context={
             "psychologist": psychologist,
             "payment_plains": payment_plains,
@@ -33,7 +33,7 @@ def create_payment_plain(request):
     form = PaymentPlainRegisterForm(register_form_data)
     return render(
         request,
-        "pages/financial/create_payment_plain.html",
+        "pages/financial/payment_plains/create_payment_plain.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -86,7 +86,7 @@ def payment_plain_update(request, id):
 
     return render(
         request,
-        "pages/financial/update_payment_plain.html",
+        "pages/financial/payment_plains/update_payment_plain.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -101,7 +101,7 @@ def payment_plain_archive_confirm(request, id):
 
     return render(
         request,
-        "pages/financial/archive_payment_plain.html",
+        "pages/financial/payment_plains/archive_payment_plain.html",
         context={
             "psychologist": psychologist,
             "payment_plain": payment_plain,
@@ -133,7 +133,7 @@ def payment_plains_archived(request):
 
     return render(
         request,
-        "pages/financial/payment_plains_arquived_list.html",
+        "pages/financial/payment_plains/payment_plains_arquived_list.html",
         context={
             "psychologist": psychologist,
             "payment_plains": payment_plains,
@@ -175,7 +175,7 @@ def payment_plain_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/financial/delete_payment_plain.html",
+        "pages/financial/payment_plains/payment_plains/delete_payment_plain.html",
         context={
             "psychologist": psychologist,
             "payment_plain": payment_plain,

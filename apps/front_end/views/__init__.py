@@ -18,3 +18,4 @@ from .payment_plains_views import (
     payment_plain_delete_confirm,
 )
 from .profile_views import my_profile, my_profile_update
+from .patient_views import patients_list
