@@ -1,12 +1,13 @@
 from apps.core.models import Psychologist
 from apps.patient_management.models import Patient
+from apps.patient_management.forms import PatientRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def patients_list(request):
     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     patients = Patient.objects.filter(
@@ -24,23 +25,23 @@ def patients_list(request):
     )
 
 
-# @login_required(login_url="login")
-# def create_payment_plain(request):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     register_form_data = request.session.get("register_form_data", None)
+@login_required(login_url="login_view")
+def create_patient(request):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    register_form_data = request.session.get("register_form_data", None)
 
-#     form = PaymentPlainRegisterForm(register_form_data)
-#     return render(
-#         request,
-#         "pages/financial/payment_plains/create_payment_plain.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#         },
-#     )
+    form = PatientRegisterForm(psychologist=psychologist, data=register_form_data)
+    return render(
+        request,
+        "pages/patients_management/patients/create_patient.html",
+        context={
+            "psychologist": psychologist,
+            "form": form,
+        },
+    )
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_save(request):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     if not request.POST:
@@ -60,7 +61,7 @@ def patients_list(request):
 #     return redirect("payment_plains")
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_update(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -93,7 +94,7 @@ def patients_list(request):
 #     )
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_archive_confirm(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -108,7 +109,7 @@ def patients_list(request):
 #     )
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_archive(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -122,7 +123,7 @@ def patients_list(request):
 #     return redirect("payment_plains")
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plains_archived(request):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plains = PaymentPlain.objects.filter(
@@ -140,7 +141,7 @@ def patients_list(request):
 #     )
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_unarchive(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -154,7 +155,7 @@ def patients_list(request):
 #     return redirect("payment_plains")
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_delete(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)
@@ -167,7 +168,7 @@ def patients_list(request):
 #     return redirect("payment_plains")
 
 
-# @login_required(login_url="login")
+# @login_required(login_url="login_view")
 # def payment_plain_delete_confirm(request, id):
 #     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
 #     payment_plain = get_object_or_404(PaymentPlain, pk=id)

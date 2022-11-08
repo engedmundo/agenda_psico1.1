@@ -8,13 +8,11 @@
         </div>
             
             <div class="col-lg-10 col-md-10">
-              <div class="contact-about">
-                <div class="row">
-                  <h5>Editar meu perfil | {{ psychologist.psychologist }}</h5 >
-                </div>
+              <div class="section-header">
+                <h3 class="section-title">Editar meu perfil | {{ psychologist.psychologist }}</h3>
+                <span class="section-divider"></span>
                 <p>Altere e confirme as suas informações de usuário</p>
-              </div>
-             
+              </div>             
                 <form action="" method="post" class="email-form" enctype="multipart/form-data">
                 {% csrf_token %}
                   <div class="row">

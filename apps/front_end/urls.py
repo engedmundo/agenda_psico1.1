@@ -88,11 +88,11 @@ urlpatterns = [
         patients_list,
         name="patients_list",
     ),
-    # path(
-    #     "payment_plains/create/",
-    #     create_payment_plain,
-    #     name="create_payment_plain",
-    # ),
+    path(
+        "patients/create/",
+        create_patient,
+        name="create_patient",
+    ),
     # path(
     #     "payment_plains/save/",
     #     payment_plain_save,

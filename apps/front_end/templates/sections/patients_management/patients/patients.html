@@ -14,18 +14,31 @@
             <div class="col-lg-6">
               <div class="box">
                 <h4 class="title"><a href="">{{ patient.patient_name }}</a></h4>
-                <p class="description"><i class="bi bi-telephone"></i> {{ patient.phone_number }}</p>
-                <p class="description"><i class="bi bi-calendar-week"></i></i> {{ patient.session_week_day }}</p>
-                <p class="description"><i class="bi bi-clock"></i> {{ patient.session_hour }} </p>
-                <p class="description"><i class="bi bi-bank"></i> {{ patient.plain.name_plain }}</p>
-                <p class="description">Paciente desde {{ patient.created_at }}</p>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="description"><i class="bi bi-telephone"></i> {{ patient.phone_number }}</p>
+                    <p class="description"><i class="bi bi-calendar-week"></i></i> {{ patient.session_week_day }}</p>
+                    <p class="description"><i class="bi bi-clock"></i> {{ patient.session_hour }} </p>
+                    <p class="description"><i class="bi bi-bank"></i> {{ patient.plain.name_plain }}</p>
+                    <p class="description">Paciente desde {{ patient.created_at }}</p>
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <p><a href=""><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                    <p><a href=""><i class="bi bi-archive"></i> Arquivar</a></p>
+                    <p><a href=""><i class="bi bi-card-heading"></i> Prontuário</a></p>
+                    <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
               </div>
             </div>
           {% endfor %}
 
           <div class="d-flex justify-content-between">
             <div>
-              <a href="{% url 'create_payment_plain' %}" class="text-right form-button">Inserir novo paciente</a>
+              <a href="{% url 'create_patient' %}" class="text-right form-button">Inserir novo paciente</a>
             </div>
             <div>
               <a href="{% url 'payment_plains_arquived' %}" class="text-center form-button">Mostrar arquivados</a>

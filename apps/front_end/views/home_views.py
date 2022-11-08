@@ -72,7 +72,7 @@ def login_create(request):
     return redirect("home")
 
 
-@login_required(login_url="login")
+@login_required(login_url="login_view")
 def logout_view(request):
     logout(request)
     return redirect("home")
