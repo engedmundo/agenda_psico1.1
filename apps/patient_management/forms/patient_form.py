@@ -30,13 +30,6 @@ class PatientForm(forms.ModelForm):
 
 
 class PatientRegisterForm(forms.ModelForm):
-    def __init__(self, psychologist=None, **kwargs):
-        super(PatientRegisterForm, self).__init__(**kwargs)
-        if psychologist:
-            self.fields["plain"].queryset = PaymentPlain.objects.filter(
-                psychologist=psychologist
-            )
-
     class Meta:
         model = Patient
         fields = [
@@ -57,10 +50,6 @@ class PatientRegisterForm(forms.ModelForm):
             "phone_mother",
             "session_week_day",
             "session_hour",
-        ]
-        required = [
-            "name_plain",
-            "plain_value",
         ]
 
         labels = {

@@ -4,20 +4,20 @@
     <div class="container" data-aos="fade-up">
       <div class="row">
 
-        <div class="col-lg-1 col-md-1">
+        <div class="col-lg-2 col-md-2">
         </div>
         
-        <div class="col-lg-10 col-md-10">
+        <div class="col-lg-8 col-md-8">
           <div class="section-header">
             <h3 class="section-title">Cadastrar Paciente</h3>
             <span class="section-divider"></span>
           </div>
-            <form action="{% url 'payment_plain_save' %}" method="post" class="email-form" enctype="multipart/form-data">
+            <form action="{% url 'patient_save' %}" method="post" class="email-form" enctype="multipart/form-data">
               {% csrf_token %}
                 <div class="row">
                   <div class="form-group col-lg-6">
                     <div class="form-group mt-3">
-                      <label for="{{ form.patient_name.id_for_label }}">{{ form.patient_name.label }}</label>
+                      <label for="{{ form.patient_name.id_for_label }}">* {{ form.patient_name.label }}</label>
                         <input 
                           type="text" 
                           name="patient_name" 
@@ -27,13 +27,13 @@
                     </div>
                         
                     <div class="form-group mt-3">
-                      <label for="{{ form.plain.id_for_label }}">{{ form.plain.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="plain"
-                          id="plain.id_for_label"  
-                        >
+                      <label for="{{ form.plain.id_for_label }}">* {{ form.plain.label }}</label>
+                      <br>
+                        <select name="plain" id="plain.id_for_label" class="form-control">
+                          {% for payment_plain in payment_plains %}
+                            <option value={{ payment_plain.id }}>{{ payment_plain.name_plain }}</option>
+                          {% endfor %}
+                        </select>
                     </div>
 
                     <div class="form-group mt-3">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group mt-3">
-                      <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+                      <label for="{{ form.phone_number.id_for_label }}">* {{ form.phone_number.label }}</label>
                         <input 
                           type="text" 
                           class="form-control"
@@ -79,7 +79,7 @@
                     <div class="form-group mt-3">
                       <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                         <input 
-                          type="text" 
+                          type="email" 
                           class="form-control"
                           name="email"
                           id="email.id_for_label"  
@@ -106,30 +106,9 @@
                         >
                     </div>
 
-                    <div class="form-group mt-3">
-                      <label for="{{ form.responsable.id_for_label }}">{{ form.responsable.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="responsable"
-                          id="responsable.id_for_label"  
-                        >
-                    </div>
                   </div>
 
                   <div class="form-group col-lg-6">
-                    
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.phone_resp.id_for_label }}">{{ form.phone_resp.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="phone_resp"
-                          id="phone_resp.id_for_label"  
-                        >
-                    </div>
-
                     <div class="form-group mt-3">
                       <label for="{{ form.responsable.id_for_label }}">{{ form.responsable.label }}</label>
                         <input 
@@ -216,13 +195,16 @@
                   <div class="error-message">Erro ao cadastrar novo plano</div>
                   <div class="sent-message">Plano criado com sucesso</div>
                 </div>
+                <div class="text-center">
+                  <p>Campos marcados com * são obrigatórios</p>
+                </div>
                 <div class="text-center"><button type="submit" title="Send Message">Cadastrar</button></div>
             </form>
             <div class="form-group mt-3">
               {{ form.errors }}
             </div>
 
-            <div class="col-lg-1 col-md-1">
+            <div class="col-lg-2 col-md-2">
             </div>
 
       </div>

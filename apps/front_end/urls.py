@@ -93,11 +93,11 @@ urlpatterns = [
         create_patient,
         name="create_patient",
     ),
-    # path(
-    #     "payment_plains/save/",
-    #     payment_plain_save,
-    #     name="payment_plain_save",
-    # ),
+    path(
+        "patients/save/",
+        patient_save,
+        name="patient_save",
+    ),
     # path(
     #     "payment_plain/<int:id>/update/",
     #     payment_plain_update,
