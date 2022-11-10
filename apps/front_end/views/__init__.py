@@ -5,7 +5,14 @@ from .home_views import (
     logout_view,
     professional_description,
 )
-from .patient_views import create_patient, patients_list, patient_save
+from .patient_views import (
+    create_patient,
+    patient_archive,
+    patient_archive_confirm,
+    patient_save,
+    patient_update,
+    patients_list,
+)
 from .payment_plains_views import (
     create_payment_plain,
     payment_plain_archive,

@@ -4,55 +4,224 @@
     <div class="container" data-aos="fade-up">
       <div class="row">
 
-        <div class="col-lg-1 col-md-1">
+        <div class="col-lg-2 col-md-2">
         </div>
-            
-            <div class="col-lg-10 col-md-10">
-              <div class="contact-about">
+        
+        <div class="col-lg-8 col-md-8">
+          <div class="section-header">
+            <h3 class="section-title">Atualizar dados do Paciente</h3>
+            <span class="section-divider"></span>
+          </div>
+            <form action="" method="post" class="email-form" enctype="multipart/form-data">
+              {% csrf_token %}
                 <div class="row">
-                  <h5>Atualizar plano de pagamento</h5 >
-                </div>
-              </div>
-             
-                <form action="" method="post" class="email-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="form-group mt-3">
-                    <label for="{{ form.name_plain.id_for_label }}">{{ form.name_plain.label }}</label>
-                      <input 
-                        type="text" 
-                        name="name_plain" 
-                        class="form-control" 
-                        id="name_plain.id_for_label"
-                        value="{{ form.name_plain.value }}"
-                        >
-                      </div>
-                      
-                      <div class="form-group mt-3">
-                        <label for="{{ form.plain_value.id_for_label }}">{{ form.plain_value.label }}</label>
+                  <div class="form-group col-lg-6">
+                    <div class="form-group mt-3">
+                      <label for="{{ form.patient_name.id_for_label }}">* {{ form.patient_name.label }}</label>
                         <input 
-                        type="text" 
-                        class="form-control"
-                        name="plain_value"
-                        id="plain_value.id_for_label"  
-                        value="{{ form.plain_value.value }}"
-                      >
-                  </div>
-                  
-                  <div class="my-3">
-                    <div class="loading">Carregando</div>
-                    <div class="error-message">Erro ao cadastrar novo plano</div>
-                    <div class="sent-message">Plano criado com sucesso</div>
-                  </div>
-                  <div class="text-center"><button type="submit" title="Send Message">Atualizar plano de pagamento</button></div>
-                </form>
-              </div>
-            </div>
+                          type="text" 
+                          name="patient_name" 
+                          class="form-control" 
+                          id="patient_name.id_for_label"
+                          value="{% if form.patient_name.value %}{{ form.patient_name.value }}{% endif %}"
+                        >
+                    </div>
+                        
+                    <div class="form-group mt-3">
+                      <label for="{{ form.plain.id_for_label }}">* {{ form.plain.label }}</label>
+                      <br>
+                        <select name="plain" id="plain.id_for_label" class="form-control">
+                          {% for payment_plain in payment_plains %}
+                            <option value={{ payment_plain.id }}>{{ payment_plain.name_plain }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
 
+                    <div class="form-group mt-3">
+                      <label for="{{ form.birth_date.id_for_label }}">{{ form.birth_date.label }}</label>
+                        <input 
+                          type="date" 
+                          class="form-control"
+                          name="birth_date"
+                          id="birth_date.id_for_label"
+                          value="{{ form.birth_date.value|date:'Y-m-d'}}"
+                          >
+                    </div>
+                        
+                    <div class="form-group mt-3">
+                      <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="cpf"
+                          id="cpf.id_for_label"
+                          value="{% if form.cpf.value %}{{ form.cpf.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.phone_number.id_for_label }}">* {{ form.phone_number.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="phone_number"
+                          id="phone_number.id_for_label" 
+                          value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.patient_address.id_for_label }}">{{ form.patient_address.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="patient_address"
+                          id="patient_address.id_for_label"
+                          value="{% if form.patient_address.value %}{{ form.patient_address.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        <input 
+                          type="email" 
+                          class="form-control"
+                          name="email"
+                          id="email.id_for_label"
+                          value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.occupation.id_for_label }}">{{ form.occupation.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="occupation"
+                          id="occupation.id_for_label"
+                          value="{% if form.occupation.value %}{{ form.occupation.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.school.id_for_label }}">{{ form.school.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="school"
+                          id="school.id_for_label"
+                          value="{% if form.school.value %}{{ form.school.value }}{% endif %}"
+                        >
+                    </div>
+
+                  </div>
+
+                  <div class="form-group col-lg-6">
+                    <div class="form-group mt-3">
+                      <label for="{{ form.responsable.id_for_label }}">{{ form.responsable.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="responsable"
+                          id="responsable.id_for_label"
+                          value="{% if form.responsable.value %}{{ form.responsable.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.phone_resp.id_for_label }}">{{ form.phone_resp.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="phone_resp"
+                          id="phone_resp.id_for_label"
+                          value="{% if form.phone_resp.value %}{{ form.phone_resp.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.father.id_for_label }}">{{ form.father.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="father"
+                          id="father.id_for_label"
+                          value="{% if form.father.value %}{{ form.father.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.phone_father.id_for_label }}">{{ form.phone_father.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="phone_father"
+                          id="phone_father.id_for_label"
+                          value="{% if form.phone_father.value %}{{ form.phone_father.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.mother.id_for_label }}">{{ form.mother.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="mother"
+                          id="mother.id_for_label"
+                          value="{{ form.mother.value }}"
+                          value="{% if form.mother.value %}{{ form.mother.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.phone_mother.id_for_label }}">{{ form.phone_mother.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="phone_mother"
+                          id="phone_mother.id_for_label"
+                          value="{% if form.phone_mother.value %}{{ form.phone_mother.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.session_week_day.id_for_label }}">{{ form.session_week_day.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="session_week_day"
+                          id="session_week_day.id_for_label"
+                          value="{% if form.session_week_day.value %}{{ form.session_week_day.value }}{% endif %}"
+                        >
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="{{ form.session_hour.id_for_label }}">{{ form.session_hour.label }}</label>
+                        <input 
+                          type="text" 
+                          class="form-control"
+                          name="session_hour"
+                          id="session_hour.id_for_label"
+                          value="{% if form.session_hour.value %}{{ form.session_hour.value }}{% endif %}"
+                        >
+                    </div>
+                  </div>
+                </div>
+                <div class="my-3">
+                  <div class="loading">Carregando</div>
+                  <div class="error-message">Erro ao cadastrar novo plano</div>
+                  <div class="sent-message">Plano criado com sucesso</div>
+                </div>
+                <div class="text-center">
+                  <p>Campos marcados com * são obrigatórios</p>
+                </div>
+                <div class="text-center"><button type="submit" title="Send Message">Atualizar</button></div>
+            </form>
             <div class="form-group mt-3">
               {{ form.errors }}
             </div>
 
-            <div class="col-lg-1 col-md-1">
+            <div class="col-lg-2 col-md-2">
             </div>
 
       </div>

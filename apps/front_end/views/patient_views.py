@@ -80,66 +80,88 @@ def patient_save(request):
     return redirect("patients_list")
 
 
-# @login_required(login_url="login_view")
-# def payment_plain_update(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
+@login_required(login_url="login_view")
+def patient_update(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    patient = get_object_or_404(
+        Patient,
+        pk=id,
+    )
+    payment_plains = PaymentPlain.objects.filter(
+        psychologist=psychologist,
+    )
 
-#     if not payment_plain:
-#         raise Http404()
+    if not patient:
+        raise Http404()
 
-#     if payment_plain.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     form = PaymentPlainRegisterForm(
-#         data=request.POST or None,
-#         instance=payment_plain,
-#     )
+    form = PatientRegisterForm(
+        data=request.POST or None,
+        instance=patient,
+    )
 
-#     if form.is_valid():
-#         payment_plain = form.save(commit=False)
-#         payment_plain.psychologist = psychologist
-#         payment_plain.save()
-#         messages.success(request, "Plano de pagamento cadastrado com sucesso")
-#         return redirect("payment_plains")
+    if form.is_valid():
+        patient = form.save(commit=False)
+        patient.psychologist = psychologist
+        patient.save()
+        messages.success(request, "Paciente atualizado com sucesso")
+        return redirect("patients_list")
 
-#     return render(
-#         request,
-#         "pages/financial/payment_plains/update_payment_plain.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#         },
-#     )
-
-
-# @login_required(login_url="login_view")
-# def payment_plain_archive_confirm(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
-
-#     return render(
-#         request,
-#         "pages/financial/payment_plains/archive_payment_plain.html",
-#         context={
-#             "psychologist": psychologist,
-#             "payment_plain": payment_plain,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/patients/update_patient.html",
+        context={
+            "psychologist": psychologist,
+            "form": form,
+            "payment_plains": payment_plains,
+        },
+    )
 
 
-# @login_required(login_url="login_view")
-# def payment_plain_archive(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
+@login_required(login_url="login_view")
+def patient_archive_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    patient = get_object_or_404(
+        Patient,
+        pk=id,
+    )
 
-#     if payment_plain.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    return render(
+        request,
+        "pages/patients_management/patients/archive_patient.html",
+        context={
+            "psychologist": psychologist,
+            "patient": patient,
+        },
+    )
 
-#     payment_plain.is_active = False
-#     payment_plain.save()
 
-#     return redirect("payment_plains")
+@login_required(login_url="login_view")
+def patient_archive(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    patient = get_object_or_404(
+        Patient,
+        pk=id,
+    )
+
+    if patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    patient.is_active = False
+    patient.save()
+
+    return redirect("patients_list")
 
 
 # @login_required(login_url="login_view")

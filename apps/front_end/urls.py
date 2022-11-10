@@ -98,21 +98,21 @@ urlpatterns = [
         patient_save,
         name="patient_save",
     ),
-    # path(
-    #     "payment_plain/<int:id>/update/",
-    #     payment_plain_update,
-    #     name="payment_plain_update",
-    # ),
-    # path(
-    #     "payment_plain/<int:id>/archive/",
-    #     payment_plain_archive,
-    #     name="payment_plain_archive",
-    # ),
-    # path(
-    #     "payment_plain/<int:id>/archive_confirm/",
-    #     payment_plain_archive_confirm,
-    #     name="payment_plain_archive_confirm",
-    # ),
+    path(
+        "patients/<int:id>/update/",
+        patient_update,
+        name="patient_update",
+    ),
+    path(
+        "patient/<int:id>/archive/",
+        patient_archive,
+        name="patient_archive",
+    ),
+    path(
+        "patient/<int:id>/archive_confirm/",
+        patient_archive_confirm,
+        name="patient_archive_confirm",
+    ),
     # path(
     #     "payment_plains/archived/",
     #     payment_plains_archived,

@@ -24,8 +24,8 @@
                   </div>
                   <div>
                     <a href=""></a>
-                    <p><a href=""><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
-                    <p><a href=""><i class="bi bi-archive"></i> Arquivar</a></p>
+                    <p><a href="{% url 'patient_update' patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                    <p><a href="{% url 'patient_archive_confirm' patient.id %}"><i class="bi bi-archive"></i> Arquivar</a></p>
                     <p><a href=""><i class="bi bi-card-heading"></i> Prontuário</a></p>
                     <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
                   </div>

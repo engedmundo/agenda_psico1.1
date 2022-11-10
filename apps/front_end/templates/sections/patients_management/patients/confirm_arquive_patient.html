@@ -4,21 +4,31 @@
   <div class="container" data-aos="fade-up">
 
     <div class="section-header">
-      <h3 class="section-title">Arquivar item</h3>
+      <h3 class="section-title">Arquivar Paciente</h3>
       <span class="section-divider"></span>
-      <p class="section-description">Deseja arquivar o plano de pagamento abaixo?</p>
+      <p class="section-description">Deseja arquivar o Paciente abaixo?</p>
     </div>
 
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4 col-md-6">
         <div class="box">
-          <h3>{{ payment_plain.name_plain }}</h3>
+          <h3>{{ patient.patient_name }}</h3>
           <ul>
-            <li><b>Valor:</b> R${{ payment_plain.plain_value }}</li>
+            {% if  patient.cpf %}
+              <li><b>CPF:</b>{{ patient.cpf }}</li>
+            {% endif %}
+            <li><b>Telefone:</b>{{ patient.phone_number }}</li>
+            {% if patient.email %}
+              <li><b>E-mail:</b>{{ patient.email }}</li>
+            {% endif %}
+            {% if patient.occupation %}
+              <li><b>Profissão:</b>{{ patient.occupation }}</li>
+            {% endif %}
+            <li><b>Plano:</b>{{ patient.plain }}</li>
           </ul>
           <br><br>
-          <a href="{% url 'payment_plain_archive' payment_plain.id %}" class="text-center form-button">Arquivar</a>
-          <a href="{% url 'payment_plains' %}" class="text-center form-button">Cancelar</a>
+          <a href="{% url 'patient_archive' patient.id %}" class="text-center form-button">Arquivar</a>
+          <a href="{% url 'patients_list' %}" class="text-center form-button">Cancelar</a>
         </div>
       </div>
 
