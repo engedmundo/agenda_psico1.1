@@ -62,4 +62,4 @@ class PaymentControlAdmin(admin.ModelAdmin):
         "way_pay",
     ]
     search_fields = ["patient"]
-    autocomplete_fields = ["patient"]
+    autocomplete_fields = ["patient", "therapy_session"]

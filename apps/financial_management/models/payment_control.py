@@ -6,15 +6,39 @@ from django.db import models
 
 class PaymentControl(CommonInfo):
     patient = models.ForeignKey(
-        Patient, verbose_name="Paciente", on_delete=models.CASCADE
+        Patient,
+        verbose_name="Paciente",
+        on_delete=models.CASCADE,
     )
-    value_pay = models.DecimalField("Valor pago", max_digits=8, decimal_places=2)
-    data_pay = models.DateField("Data de pagamento")
+    value_pay = models.DecimalField(
+        "Valor pago",
+        max_digits=8,
+        decimal_places=2,
+    )
+    data_pay = models.DateField(
+        "Data de pagamento",
+    )
     description = models.TextField(
-        "Descrição do pagamento", null=True, blank=True, max_length=100
+        "Descrição do pagamento",
+        null=True,
+        blank=True,
+        max_length=100,
     )
     way_pay = models.CharField(
-        "Forma de pagamento", choices=PaymentChoices.choices, max_length=50
+        "Forma de pagamento",
+        choices=PaymentChoices.choices,
+        max_length=50,
+    )
+    therapy_session = models.ManyToManyField(
+        TherapySession,
+        verbose_name="Sessões",
+        blank=True,
+    )
+    checking_copy = models.ImageField(
+        "Comprovante de pagamento",
+        upload_to = "media",
+        null=True,
+        blank=True,
     )
 
     class Meta:

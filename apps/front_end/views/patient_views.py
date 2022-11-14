@@ -164,22 +164,22 @@ def patient_archive(request, id):
     return redirect("patients_list")
 
 
-# @login_required(login_url="login_view")
-# def payment_plains_archived(request):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plains = PaymentPlain.objects.filter(
-#         psychologist=psychologist,
-#         is_active=False,
-#     )
+@login_required(login_url="login_view")
+def patients_archived(request):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user,)
+    patients = Patient.objects.filter(
+        psychologist=psychologist,
+        is_active=False,
+    )
 
-#     return render(
-#         request,
-#         "pages/financial/payment_plains/payment_plains_arquived_list.html",
-#         context={
-#             "psychologist": psychologist,
-#             "payment_plains": payment_plains,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/patients/archived_patients.html",
+        context={
+            "psychologist": psychologist,
+            "patients": patients,
+        },
+    )
 
 
 # @login_required(login_url="login_view")
