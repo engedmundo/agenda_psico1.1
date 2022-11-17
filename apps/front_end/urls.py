@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import *
 
+# home views
 urlpatterns = [
     path(
         "",
@@ -33,6 +34,10 @@ urlpatterns = [
         my_profile_update,
         name="my_profile",
     ),
+]
+
+# payment plains urls
+urlpatterns += [
     path(
         "payment_plains/",
         payment_plains_list,
@@ -83,6 +88,10 @@ urlpatterns = [
         payment_plain_delete_confirm,
         name="payment_plain_delete_confirm",
     ),
+]
+
+# patients urls
+urlpatterns += [
     path(
         "patients/",
         patients_list,
@@ -113,24 +122,24 @@ urlpatterns = [
         patient_archive_confirm,
         name="patient_archive_confirm",
     ),
+    path(
+        "patients/archived/",
+        patients_archived,
+        name="patients_arquived",
+    ),
+    path(
+        "patient/<int:id>/unarchive/",
+        patient_unarchive,
+        name="patient_unarchive",
+    ),
     # path(
-    #     "payment_plains/archived/",
-    #     payment_plains_archived,
-    #     name="payment_plains_arquived",
+    #     "patients/<int:id>/delete/",
+    #     patients_delete,
+    #     name="patients_delete",
     # ),
     # path(
-    #     "payment_plain/<int:id>/unarchive/",
-    #     payment_plain_unarchive,
-    #     name="payment_plain_unarchive",
-    # ),
-    # path(
-    #     "payment_plain/<int:id>/delete/",
-    #     payment_plain_delete,
-    #     name="payment_plain_delete",
-    # ),
-    # path(
-    #     "payment_plain/<int:id>/delete_confirm/",
-    #     payment_plain_delete_confirm,
-    #     name="payment_plain_delete_confirm",
+    #     "patients/<int:id>/delete_confirm/",
+    #     patients_delete_confirm,
+    #     name="patients_delete_confirm",
     # ),
 ]

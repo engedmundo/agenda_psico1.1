@@ -21,18 +21,39 @@ class TherapySession(CommonInfo):
         null=True,
         blank=True,
     )
-    session_number = models.CharField("Número da sessão", max_length=10)
-    date_session = models.DateField("Data da seção")
-    hour_session = models.TimeField("Horário da sessão")
-    fault = models.BooleanField("Paciente faltou?", default=False)
+    session_number = models.CharField(
+        "Número da sessão",
+        max_length=10,
+    )
+    date_session = models.DateField(
+        "Data da seção",
+    )
+    hour_session = models.TimeField(
+        "Horário da sessão",
+    )
+    fault = models.BooleanField(
+        "Paciente faltou?",
+        default=False,
+    )
     justify_fault = models.CharField(
-        "Justificativa da falta", null=True, blank=True, max_length=500
+        "Justificativa da falta",
+        null=True,
+        blank=True,
+        max_length=500,
     )
-    evolution = models.TextField("Evolução do caso")
+    evolution = models.TextField(
+        "Evolução do caso",
+    )
     forwarding = models.TextField(
-        "Encaminhamento", null=True, blank=True, max_length=5000
+        "Encaminhamento",
+        null=True,
+        blank=True,
+        max_length=5000,
     )
-    payment = models.BooleanField("Pagamento", default=False)
+    payment = models.BooleanField(
+        "Pagamento",
+        default=False,
+    )
 
     class Meta:
         verbose_name = "Sessão"

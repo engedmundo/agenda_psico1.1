@@ -11,7 +11,9 @@ from .patient_views import (
     patient_archive_confirm,
     patient_save,
     patient_update,
+    patients_archived,
     patients_list,
+    patient_unarchive,
 )
 from .payment_plains_views import (
     create_payment_plain,

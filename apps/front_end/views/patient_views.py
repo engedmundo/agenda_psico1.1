@@ -182,18 +182,18 @@ def patients_archived(request):
     )
 
 
-# @login_required(login_url="login_view")
-# def payment_plain_unarchive(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
+@login_required(login_url="login_view")
+def patient_unarchive(request, id):
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    patient = get_object_or_404(Patient, pk=id)
 
-#     if payment_plain.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     payment_plain.is_active = True
-#     payment_plain.save()
+    patient.is_active = True
+    patient.save()
 
-#     return redirect("payment_plains")
+    return redirect("patients_list")
 
 
 # @login_required(login_url="login_view")
