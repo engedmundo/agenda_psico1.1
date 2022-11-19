@@ -166,7 +166,10 @@ def patient_archive(request, id):
 
 @login_required(login_url="login_view")
 def patients_archived(request):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user,)
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
     patients = Patient.objects.filter(
         psychologist=psychologist,
         is_active=False,
@@ -184,7 +187,9 @@ def patients_archived(request):
 
 @login_required(login_url="login_view")
 def patient_unarchive(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -196,29 +201,33 @@ def patient_unarchive(request, id):
     return redirect("patients_list")
 
 
-# @login_required(login_url="login_view")
-# def payment_plain_delete(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
+@login_required(login_url="login_view")
+def patient_delete(request, id):
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
+    patient = get_object_or_404(Patient, pk=id)
 
-#     if payment_plain.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     payment_plain.delete()
-#     messages.success(request, "Deletado com sucesso")
-#     return redirect("payment_plains")
+    patient.delete()
+    messages.success(request, "Paciente excluído com sucesso")
+    return redirect("patients_list")
 
 
-# @login_required(login_url="login_view")
-# def payment_plain_delete_confirm(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     payment_plain = get_object_or_404(PaymentPlain, pk=id)
+@login_required(login_url="login_view")
+def patient_delete_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
+    patient = get_object_or_404(Patient, pk=id)
 
-#     return render(
-#         request,
-#         "pages/financial/payment_plains/payment_plains/delete_payment_plain.html",
-#         context={
-#             "psychologist": psychologist,
-#             "payment_plain": payment_plain,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/patients/delete_patient.html",
+        context={
+            "psychologist": psychologist,
+            "patient": patient,
+        },
+    )

@@ -14,6 +14,8 @@ from .patient_views import (
     patients_archived,
     patients_list,
     patient_unarchive,
+    patient_delete,
+    patient_delete_confirm,
 )
 from .payment_plains_views import (
     create_payment_plain,

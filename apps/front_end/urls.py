@@ -132,14 +132,14 @@ urlpatterns += [
         patient_unarchive,
         name="patient_unarchive",
     ),
-    # path(
-    #     "patients/<int:id>/delete/",
-    #     patients_delete,
-    #     name="patients_delete",
-    # ),
-    # path(
-    #     "patients/<int:id>/delete_confirm/",
-    #     patients_delete_confirm,
-    #     name="patients_delete_confirm",
-    # ),
+    path(
+        "patient/<int:id>/delete/",
+        patient_delete,
+        name="patient_delete",
+    ),
+    path(
+        "patient/<int:id>/delete_confirm/",
+        patient_delete_confirm,
+        name="patient_delete_confirm",
+    ),
 ]

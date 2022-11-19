@@ -4,22 +4,22 @@
   <div class="container" data-aos="fade-up">
 
     <div class="section-header">
-      <h3 class="section-title">Deletar item</h3>
+      <h3 class="section-title">Deletar Paciente</h3>
       <span class="section-divider"></span>
-      <p class="section-description">Deseja apagar o plano de pagamento abaixo?</p>
+      <p class="section-description">Deseja apagar o paciente abaixo?</p>
     </div>
     
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4 col-md-6">
         <div class="box">
-          <h3>{{ payment_plain.name_plain }}</h3>
+          <h3>{{ patient.patient_name }}</h3>
           <ul>
-            <li><b>Valor:</b> R${{ payment_plain.plain_value }}</li>
+            <li><b>Telefone:</b> {{ patient.phone_number }}</li>
           </ul>
           <br><br>
           <p class="section-description">Esta ação não poderá ser desfeita!!!</p>
-          <a href="{% url 'payment_plain_delete' payment_plain.id %}" class="text-center form-button">Excluir</a>
-          <a href="{% url 'payment_plains' %}" class="text-center form-button">Cancelar</a>
+          <a href="{% url 'patient_delete' patient.id %}" class="text-center form-button">Excluir</a>
+          <a href="{% url 'patients_list' %}" class="text-center form-button">Cancelar</a>
         </div>
       </div>
 
