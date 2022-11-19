@@ -1,0 +1,53 @@
+{% load static %}
+{% block patients_list %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Prontuários</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          {% for prontuary in prontuaries %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</a></h4>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="description"><i class="bi bi-telephone"></i> {{ prontuary.patient.phone_number }}</p>
+                    <p class="description"><i class="bi bi-card-list"></i> {{ prontuary.demand_description }}</p>
+                    <p class="description">Aberto em {{ prontuary.open_date }}</p>
+                    {% if prontuary.close_date %}
+                      <p class="description"><i class="bi bi-calendar-week"></i> Fechado em {{ prontuary.close_date }}</p>
+                    {% endif %}
+                    <p class="description">Paciente desde {{ prontuary.patient.created_at }}</p>
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                    <p><a href="{% url 'patient_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
+                    <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
+                    <p><a href="{% url 'patient_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
+                    <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <a href="{% url 'create_patient' %}" class="text-right form-button">Inserir novo prontuário</a>
+            </div>
+            <div>
+              <a href="{% url 'patients_arquived' %}" class="text-center form-button">Mostrar arquivados</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock patients_list %}

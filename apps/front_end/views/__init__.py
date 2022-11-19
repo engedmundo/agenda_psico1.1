@@ -29,4 +29,5 @@ from .payment_plains_views import (
     payment_plains_archived,
     payment_plains_list,
 )
+from .prontuary_views import prontuaries_list
 from .profile_views import my_profile, my_profile_update

@@ -143,3 +143,57 @@ urlpatterns += [
         name="patient_delete_confirm",
     ),
 ]
+
+# prontuaries urls
+urlpatterns += [
+    path(
+        "prontuaries/",
+        prontuaries_list,
+        name="prontuaries_list",
+    ),
+    # path(
+    #     "prontuaries/create/",
+    #     create_patient,
+    #     name="create_patient",
+    # ),
+    # path(
+    #     "prontuaries/save/",
+    #     patient_save,
+    #     name="patient_save",
+    # ),
+    # path(
+    #     "prontuaries/<int:id>/update/",
+    #     patient_update,
+    #     name="patient_update",
+    # ),
+    # path(
+    #     "patient/<int:id>/archive/",
+    #     patient_archive,
+    #     name="patient_archive",
+    # ),
+    # path(
+    #     "patient/<int:id>/archive_confirm/",
+    #     patient_archive_confirm,
+    #     name="patient_archive_confirm",
+    # ),
+    # path(
+    #     "patients/archived/",
+    #     patients_archived,
+    #     name="patients_arquived",
+    # ),
+    # path(
+    #     "patient/<int:id>/unarchive/",
+    #     patient_unarchive,
+    #     name="patient_unarchive",
+    # ),
+    # path(
+    #     "patient/<int:id>/delete/",
+    #     patient_delete,
+    #     name="patient_delete",
+    # ),
+    # path(
+    #     "patient/<int:id>/delete_confirm/",
+    #     patient_delete_confirm,
+    #     name="patient_delete_confirm",
+    # ),
+]

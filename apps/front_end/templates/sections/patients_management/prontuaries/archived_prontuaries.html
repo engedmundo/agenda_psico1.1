@@ -1,0 +1,44 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Pacientes Arquivados</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          {% for patient in patients %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="{% url 'patient_update' patient.id %}">{{ patient.patient_name }}</a></h4>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="description"><i class="bi bi-telephone"></i> {{ patient.phone_number }}</p>
+                    <p class="description"><i class="bi bi-bank"></i> {{ patient.plain.name_plain }}</p>
+                    <p class="description"><i class="bi bi-calendar-week"></i> Paciente desde {{ patient.created_at }}</p>
+                    <p class="description"><i class="bi bi-pen"></i> Última atualização em {{ patient.updated_at }}</p>
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <p><a href="{% url 'patient_unarchive' patient.id %}"><i class="bi bi-archive"></i> Desarquivar</a></p>
+                    <p><a href="{% url 'patient_delete_confirm' patient.id %}"><i class="bi bi-trash"></i> Excluir</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <a href="{% url 'patients_list' %}" class="text-center form-button">Mostrar ativos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock content %}

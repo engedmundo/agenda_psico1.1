@@ -5,14 +5,26 @@ from django.db import models
 
 class Prontuary(CommonInfo):
     patient = models.ForeignKey(
-        Patient, verbose_name="Paciente", on_delete=models.CASCADE
+        Patient,
+        verbose_name="Paciente",
+        on_delete=models.CASCADE,
     )
     prontuary_number = models.CharField(
-        "Número do prontuário", max_length=10, default="1"
+        verbose_name="Número do prontuário",
+        max_length=10,
+        default="1",
     )
-    open_date = models.DateField("Data de abertura")
-    close_date = models.DateField("Data de fechamento", null=True, blank=True)
-    demand_description = models.TextField("Avaliação da demanda")
+    open_date = models.DateField(
+        verbose_name="Data de abertura",
+    )
+    close_date = models.DateField(
+        verbose_name="Data de fechamento",
+        null=True,
+        blank=True,
+    )
+    demand_description = models.TextField(
+        verbose_name="Avaliação da demanda",
+    )
 
     class Meta:
         verbose_name = "Prontuário"
