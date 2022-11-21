@@ -151,16 +151,16 @@ urlpatterns += [
         prontuaries_list,
         name="prontuaries_list",
     ),
-    # path(
-    #     "prontuaries/create/",
-    #     create_patient,
-    #     name="create_patient",
-    # ),
-    # path(
-    #     "prontuaries/save/",
-    #     patient_save,
-    #     name="patient_save",
-    # ),
+    path(
+        "prontuaries/create/",
+        create_prontuary,
+        name="create_prontuary",
+    ),
+    path(
+        "prontuaries/save/",
+        prontuary_save,
+        name="prontuary_save",
+    ),
     # path(
     #     "prontuaries/<int:id>/update/",
     #     patient_update,

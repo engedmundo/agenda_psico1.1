@@ -9,13 +9,13 @@ from .patient_views import (
     create_patient,
     patient_archive,
     patient_archive_confirm,
+    patient_delete,
+    patient_delete_confirm,
     patient_save,
+    patient_unarchive,
     patient_update,
     patients_archived,
     patients_list,
-    patient_unarchive,
-    patient_delete,
-    patient_delete_confirm,
 )
 from .payment_plains_views import (
     create_payment_plain,
@@ -29,5 +29,5 @@ from .payment_plains_views import (
     payment_plains_archived,
     payment_plains_list,
 )
-from .prontuary_views import prontuaries_list
 from .profile_views import my_profile, my_profile_update
+from .prontuary_views import create_prontuary, prontuaries_list, prontuary_save

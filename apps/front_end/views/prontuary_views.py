@@ -1,6 +1,6 @@
 from apps.core.models import Psychologist
 from apps.financial_management.models import PaymentPlain
-from apps.patient_management.forms import PatientRegisterForm
+from apps.patient_management.forms import PatientRegisterForm, ProntuaryRegisterForm
 from apps.patient_management.models import Patient, Prontuary
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -16,6 +16,7 @@ def prontuaries_list(request):
     )
     prontuaries = Prontuary.objects.filter(
         patient__psychologist=psychologist,
+        patient__is_active=True,
         is_active=True,
     )
 
@@ -29,55 +30,55 @@ def prontuaries_list(request):
     )
 
 
-# @login_required(login_url="login_view")
-# def create_patient(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     register_form_data = request.session.get(
-#         "register_form_data",
-#         None,
-#     )
-#     payment_plains = PaymentPlain.objects.filter(
-#         psychologist=psychologist,
-#     )
+@login_required(login_url="login_view")
+def create_prontuary(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    register_form_data = request.session.get(
+        "register_form_data",
+        None,
+    )
+    patients = Patient.objects.filter(
+        psychologist=psychologist,
+    )
 
-#     form = PatientRegisterForm(
-#         register_form_data,
-#     )
-#     return render(
-#         request,
-#         "pages/patients_management/patients/create_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#             "payment_plains": payment_plains,
-#         },
-#     )
+    form = ProntuaryRegisterForm(
+        register_form_data,
+    )
+    return render(
+        request,
+        "pages/patients_management/prontuary/create_prontuary.html",
+        context={
+            "psychologist": psychologist,
+            "form": form,
+            "patients": patients,
+        },
+    )
 
 
-# @login_required(login_url="login_view")
-# def patient_save(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     if not request.POST:
-#         raise Http404()
+@login_required(login_url="login_view")
+def prontuary_save(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    if not request.POST:
+        raise Http404()
 
-#     POST = request.POST
-#     request.session["register_form_data"] = POST
-#     form = PatientRegisterForm(POST)
+    POST = request.POST
+    request.session["register_form_data"] = POST
+    form = ProntuaryRegisterForm(POST)
 
-#     if form.is_valid():
-#         patient = form.save(commit=False)
-#         patient.psychologist = psychologist
-#         patient.save()
-#         messages.success(request, "Paciente cadastrado com sucesso")
-#         del request.session["register_form_data"]
+    if form.is_valid():
+        prontuary = form.save(commit=False)
+        prontuary.psychologist = psychologist
+        prontuary.save()
+        messages.success(request, "Prontuário cadastrado com sucesso")
+        del request.session["register_form_data"]
 
-#     return redirect("patients_list")
+    return redirect("prontuaries_list")
 
 
 # @login_required(login_url="login_view")
