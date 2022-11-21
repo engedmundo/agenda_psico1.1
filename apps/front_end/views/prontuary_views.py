@@ -81,47 +81,45 @@ def prontuary_save(request):
     return redirect("prontuaries_list")
 
 
-# @login_required(login_url="login_view")
-# def patient_update(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patient = get_object_or_404(
-#         Patient,
-#         pk=id,
-#     )
-#     payment_plains = PaymentPlain.objects.filter(
-#         psychologist=psychologist,
-#     )
+@login_required(login_url="login_view")
+def prontuary_update(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
+    patient = prontuary.patient
 
-#     if not patient:
-#         raise Http404()
+    if not prontuary:
+        raise Http404()
 
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     form = PatientRegisterForm(
-#         data=request.POST or None,
-#         instance=patient,
-#     )
+    form = ProntuaryRegisterForm(
+        data=request.POST or None,
+        instance=prontuary,
+    )
 
-#     if form.is_valid():
-#         patient = form.save(commit=False)
-#         patient.psychologist = psychologist
-#         patient.save()
-#         messages.success(request, "Paciente atualizado com sucesso")
-#         return redirect("patients_list")
+    if form.is_valid():
+        print("entrei")
+        prontuary = form.save(commit=False)
+        prontuary.save()
+        messages.success(request, "Prontuário atualizado com sucesso")
+        return redirect("prontuaries_list")
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/update_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#             "payment_plains": payment_plains,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/prontuary/update_prontuary.html",
+        context={
+            "psychologist": psychologist,
+            "form": form,
+            "prontuary": prontuary,
+        },
+    )
 
 
 # @login_required(login_url="login_view")

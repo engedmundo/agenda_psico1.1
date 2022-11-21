@@ -30,4 +30,9 @@ from .payment_plains_views import (
     payment_plains_list,
 )
 from .profile_views import my_profile, my_profile_update
-from .prontuary_views import create_prontuary, prontuaries_list, prontuary_save
+from .prontuary_views import (
+    create_prontuary,
+    prontuaries_list,
+    prontuary_save,
+    prontuary_update,
+)

@@ -161,11 +161,11 @@ urlpatterns += [
         prontuary_save,
         name="prontuary_save",
     ),
-    # path(
-    #     "prontuaries/<int:id>/update/",
-    #     patient_update,
-    #     name="patient_update",
-    # ),
+    path(
+        "prontuaries/<int:id>/update/",
+        prontuary_update,
+        name="prontuary_update",
+    ),
     # path(
     #     "patient/<int:id>/archive/",
     #     patient_archive,
