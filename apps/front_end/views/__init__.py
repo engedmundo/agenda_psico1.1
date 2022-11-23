@@ -32,7 +32,13 @@ from .payment_plains_views import (
 from .profile_views import my_profile, my_profile_update
 from .prontuary_views import (
     create_prontuary,
+    prontuaries_archived,
     prontuaries_list,
+    prontuary_archive,
+    prontuary_archive_confirm,
+    prontuary_delete,
+    prontuary_delete_confirm,
     prontuary_save,
+    prontuary_unarchive,
     prontuary_update,
 )

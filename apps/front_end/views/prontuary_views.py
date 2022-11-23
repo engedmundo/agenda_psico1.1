@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from apps.core.models import Psychologist
 from apps.financial_management.models import PaymentPlain
 from apps.patient_management.forms import PatientRegisterForm, ProntuaryRegisterForm
@@ -105,7 +107,6 @@ def prontuary_update(request, id):
     )
 
     if form.is_valid():
-        print("entrei")
         prontuary = form.save(commit=False)
         prontuary.save()
         messages.success(request, "Prontuário atualizado com sucesso")
@@ -122,111 +123,125 @@ def prontuary_update(request, id):
     )
 
 
-# @login_required(login_url="login_view")
-# def patient_archive_confirm(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patient = get_object_or_404(
-#         Patient,
-#         pk=id,
-#     )
+@login_required(login_url="login_view")
+def prontuary_archive_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/archive_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patient": patient,
-#         },
-#     )
-
-
-# @login_required(login_url="login_view")
-# def patient_archive(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patient = get_object_or_404(
-#         Patient,
-#         pk=id,
-#     )
-
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
-
-#     patient.is_active = False
-#     patient.save()
-
-#     return redirect("patients_list")
+    return render(
+        request,
+        "pages/patients_management/prontuary/archive_prontuary.html",
+        context={
+            "psychologist": psychologist,
+            "prontuary": prontuary,
+        },
+    )
 
 
-# @login_required(login_url="login_view")
-# def patients_archived(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patients = Patient.objects.filter(
-#         psychologist=psychologist,
-#         is_active=False,
-#     )
+@login_required(login_url="login_view")
+def prontuary_archive(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/archived_patients.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patients": patients,
-#         },
-#     )
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
+    prontuary.is_active = False
+    if not prontuary.close_date:
+        prontuary.close_date = datetime.today()
+    prontuary.save()
 
-# @login_required(login_url="login_view")
-# def patient_unarchive(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist, psychologist__username=request.user
-#     )
-#     patient = get_object_or_404(Patient, pk=id)
-
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
-
-#     patient.is_active = True
-#     patient.save()
-
-#     return redirect("patients_list")
+    return redirect("prontuaries_list")
 
 
-# @login_required(login_url="login_view")
-# def patient_delete(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist, psychologist__username=request.user
-#     )
-#     patient = get_object_or_404(Patient, pk=id)
+@login_required(login_url="login_view")
+def prontuaries_archived(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuaries = Prontuary.objects.filter(
+        patient__psychologist=psychologist,
+        is_active=False,
+    )
 
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    return render(
+        request,
+        "pages/patients_management/prontuary/archived_prontuaries.html",
+        context={
+            "psychologist": psychologist,
+            "prontuaries": prontuaries,
+        },
+    )
 
-#     patient.delete()
-#     messages.success(request, "Paciente excluído com sucesso")
-#     return redirect("patients_list")
+
+@login_required(login_url="login_view")
+def prontuary_unarchive(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
+
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    prontuary.is_active = True
+    prontuary.save()
+
+    return redirect("prontuaries_list")
 
 
-# @login_required(login_url="login_view")
-# def patient_delete_confirm(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist, psychologist__username=request.user
-#     )
-#     patient = get_object_or_404(Patient, pk=id)
+@login_required(login_url="login_view")
+def prontuary_delete(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/delete_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patient": patient,
-#         },
-#     )
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    prontuary.delete()
+    messages.success(request, "Prontuário excluído com sucesso")
+    return redirect("prontuaries_list")
+
+
+@login_required(login_url="login_view")
+def prontuary_delete_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
+
+    return render(
+        request,
+        "pages/patients_management/prontuary/delete_prontuary.html",
+        context={
+            "psychologist": psychologist,
+            "prontuary": prontuary,
+        },
+    )

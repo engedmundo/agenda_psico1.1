@@ -166,34 +166,34 @@ urlpatterns += [
         prontuary_update,
         name="prontuary_update",
     ),
-    # path(
-    #     "patient/<int:id>/archive/",
-    #     patient_archive,
-    #     name="patient_archive",
-    # ),
-    # path(
-    #     "patient/<int:id>/archive_confirm/",
-    #     patient_archive_confirm,
-    #     name="patient_archive_confirm",
-    # ),
-    # path(
-    #     "patients/archived/",
-    #     patients_archived,
-    #     name="patients_arquived",
-    # ),
-    # path(
-    #     "patient/<int:id>/unarchive/",
-    #     patient_unarchive,
-    #     name="patient_unarchive",
-    # ),
-    # path(
-    #     "patient/<int:id>/delete/",
-    #     patient_delete,
-    #     name="patient_delete",
-    # ),
-    # path(
-    #     "patient/<int:id>/delete_confirm/",
-    #     patient_delete_confirm,
-    #     name="patient_delete_confirm",
-    # ),
+    path(
+        "prontuary/<int:id>/archive/",
+        prontuary_archive,
+        name="prontuary_archive",
+    ),
+    path(
+        "prontuary/<int:id>/archive_confirm/",
+        prontuary_archive_confirm,
+        name="prontuary_archive_confirm",
+    ),
+    path(
+        "prontuaries/archived/",
+        prontuaries_archived,
+        name="prontuaries_arquived",
+    ),
+    path(
+        "prontuary/<int:id>/unarchive/",
+        prontuary_unarchive,
+        name="prontuary_unarchive",
+    ),
+    path(
+        "prontuary/<int:id>/delete/",
+        prontuary_delete,
+        name="prontuary_delete",
+    ),
+    path(
+        "prontuary/<int:id>/delete_confirm/",
+        prontuary_delete_confirm,
+        name="prontuary_delete_confirm",
+    ),
 ]

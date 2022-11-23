@@ -1,0 +1,37 @@
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Arquivar Prontuário</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja arquivar o Prontuário abaixo?</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="box">
+          <h3>{{ prontuary.patient.patient_name }}</h3>
+          <ul>
+            <li><b>Número do prontuário:</b> {{ prontuary.prontuary_number }}</li>
+            <li><b>Data de abertura:</b> {{ prontuary.open_date }}</li>
+            <li><b>Data de fechamento:</b>
+              {% if prontuary.close_date %}
+                {{ prontuary.close_date }}
+              {% else %}
+                Prontuário aberto
+              {% endif %}
+            </li>
+            <li><b>Demanda:</b> {{ prontuary.demand_description }}</li>
+          </ul>
+          <br><br>
+          <a href="{% url 'prontuary_archive' prontuary.id %}" class="text-center form-button">Arquivar</a>
+          <a href="{% url 'prontuaries_list' %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
