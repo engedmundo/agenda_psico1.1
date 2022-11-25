@@ -41,4 +41,5 @@ from .prontuary_views import (
     prontuary_save,
     prontuary_unarchive,
     prontuary_update,
+    prontuary_details,
 )

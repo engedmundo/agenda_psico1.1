@@ -17,14 +17,13 @@
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="description"><i class="bi bi-telephone"></i> {{ prontuary.patient.phone_number }}</p>
-                    <p class="description"><i class="bi bi-card-list"></i> {{ prontuary.demand_description }}</p>
                     <p class="description">Aberto em {{ prontuary.open_date }}</p>
                     {% if prontuary.close_date %}
                       <p class="description"><i class="bi bi-calendar-week"></i> Fechado em {{ prontuary.close_date }}</p>
                     {% endif %}
                     <p class="description">Paciente desde {{ prontuary.patient.created_at }}</p>
                     <br>
-                    <p><a href=""><i class="bi bi-clipboard2-pulse"></i> Prontuário Detalhado EM CONSTRUÇÃO</a></p>
+                    <p><a href="{% url 'prontuary_details' prontuary.id %}"><i class="bi bi-clipboard2-pulse"></i> Prontuário Detalhado</a></p>
                   </div>
                   <div>
                     <a href=""></a>

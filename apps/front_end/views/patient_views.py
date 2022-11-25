@@ -1,7 +1,7 @@
 from apps.core.models import Psychologist
 from apps.financial_management.models import PaymentPlain
 from apps.patient_management.forms import PatientRegisterForm
-from apps.patient_management.models import Patient
+from apps.patient_management.models import Patient, Prontuary
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseBadRequest
@@ -154,12 +154,19 @@ def patient_archive(request, id):
         Patient,
         pk=id,
     )
+    prontuaries = Prontuary.objects.filter(
+        patient=patient,
+    )
 
     if patient.psychologist != psychologist:
         raise HttpResponseBadRequest
 
     patient.is_active = False
     patient.save()
+
+    for prontuary in prontuaries:
+        prontuary.is_active = False
+        prontuary.save()
 
     return redirect("patients_list")
 

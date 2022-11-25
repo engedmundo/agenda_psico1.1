@@ -1,9 +1,8 @@
 from datetime import datetime
 
 from apps.core.models import Psychologist
-from apps.financial_management.models import PaymentPlain
-from apps.patient_management.forms import PatientRegisterForm, ProntuaryRegisterForm
-from apps.patient_management.models import Patient, Prontuary
+from apps.patient_management.forms import ProntuaryRegisterForm
+from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseBadRequest
@@ -122,6 +121,35 @@ def prontuary_update(request, id):
         },
     )
 
+@login_required(login_url="login_view")
+def prontuary_details(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
+    therapy_sessions = TherapySession.objects.filter(
+        prontuary=prontuary,
+    )
+
+    if not prontuary:
+        raise Http404()
+
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    return render(
+        request,
+        "pages/patients_management/prontuary/prontuary_details.html",
+        context={
+            "psychologist": psychologist,
+            "prontuary": prontuary,
+            "therapy_sessions": therapy_sessions,
+        },
+    )
 
 @login_required(login_url="login_view")
 def prontuary_archive_confirm(request, id):

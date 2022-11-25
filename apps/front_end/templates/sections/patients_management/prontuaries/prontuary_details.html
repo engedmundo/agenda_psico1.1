@@ -1,0 +1,81 @@
+{% load static %}
+{% block patients_list %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</h3>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="box col-lg-8">
+          <div class="row">
+            <div class="col-lg-8">
+              <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
+              <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
+              <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
+              <p class="section-description">
+                {% if prontuary.close_date %}
+                  <b>Data de fechamento:</b>{{ prontuary.close_date}}
+                {% else %}
+                  <b>Prontuário aberto!</b>
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-lg-4">
+              <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
+                  <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
+                  <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row d-flex justify-content-center">
+        {% for session in therapy_sessions %}
+          <div class="col-lg-6">
+            <div class="box">
+              <h4 class="title">Sessão {{ session.session_number }}</h4>
+              <div class="d-flex justify-content-between">
+                <div>
+                  <p class="description"><b>Data:</b> {{ session.date_session }}</p>
+                  <p class="description"><b>Horário:</b> {{ session.hour_session }}</p>
+                  {% if session.fault %}
+                    <p class="description"><b>Paciente Faltou!</b></p>
+                  {% endif %}
+                  {% if session.justify_fault %}
+                    <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
+                  {% endif %}
+                  <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
+                  {% if session.forwarding %}
+                    <p class="description"><b>Encaminhamento:</b> {{ session.forwarding }}</p>
+                  {% endif %}
+                  {% if session.payment %}
+                    <p class="description"><b><i class="bi bi-check-circle"></i> Sessão paga!</b></p>
+                  {% else %}
+                    <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
+                  {% endif %}                  
+                </div>
+                <div>                 
+                  <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
+                  <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
+                  <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div>
+          <a href="{% url 'prontuaries_arquived' %}" class="text-center form-button">Mostrar arquivados</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock patients_list %}

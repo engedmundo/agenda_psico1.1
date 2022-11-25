@@ -167,6 +167,11 @@ urlpatterns += [
         name="prontuary_update",
     ),
     path(
+        "prontuary/<int:id>/",
+        prontuary_details,
+        name="prontuary_details",
+    ),
+    path(
         "prontuary/<int:id>/archive/",
         prontuary_archive,
         name="prontuary_archive",
