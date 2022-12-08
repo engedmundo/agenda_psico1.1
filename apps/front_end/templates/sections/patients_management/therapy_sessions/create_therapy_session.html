@@ -6,62 +6,76 @@
       <div class="section-header">
         <h3 class="section-title">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</h3>
         <span class="section-divider"></span>
-        <p>Cadastrar nova sessão</p>
+        <h5 class="section-description">Cadastrar nova sessão</h5>
       </div>
 
       <div class="row d-flex justify-content-center">
         <div class="box col-lg-8">
+          <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
+          <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
+          <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
+          <p class="section-description">
+            {% if prontuary.close_date %}
+              <b>Data de fechamento:</b>{{ prontuary.close_date}}
+            {% else %}
+              <b>Prontuário aberto!</b>
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="box col-lg-8">
           <div class="row">
             <form action="{% url 'prontuary_save' %}" method="post" class="email-form" enctype="multipart/form-data">
               {% csrf_token %}
-                <div class="row">                        
+                <div class="row">                                              
                   <div class="form-group mt-3">
-                    <label for="{{ form.patient.id_for_label }}">* {{ form.patient.label }}</label>
-                    <br>
-                    <select name="patient" id="patient.id_for_label" class="form-control">
-                      {% for patient in patients %}
-                        <option value={{ patient.id }}>{{ patient.patient_name }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                      
-                  <div class="form-group mt-3">
-                    <label for="{{ form.prontuary_number.id_for_label }}">* {{ form.prontuary_number.label }}</label>
+                    <label for="{{ form.session_number.id_for_label }}">* {{ form.session_number.label }}</label>
                       <input 
                         type="text" 
                         class="form-control"
-                        name="prontuary_number"
-                        id="prontuary_number.id_for_label"
+                        name="session_number"
+                        id="session_number.id_for_label"
                         value="1"  
                       >
                   </div>
 
                   <div class="form-group mt-3">
-                    <label for="{{ form.open_date.id_for_label }}">* {{ form.open_date.label }}</label>
+                    <label for="{{ form.date_session.id_for_label }}">* {{ form.date_session.label }}</label>
                       <input 
                         type="date" 
                         class="form-control"
-                        name="open_date"
-                        id="open_date.id_for_label"  
+                        name="date_session"
+                        id="date_session.id_for_label"  
                       >
                   </div>
                   
                   <div class="form-group mt-3">
-                    <label for="{{ form.close_date.id_for_label }}">{{ form.close_date.label }}</label>
+                    <label for="{{ form.hour_session.id_for_label }}">{{ form.hour_session.label }}</label>
                       <input 
                         type="date" 
                         class="form-control"
-                        name="close_date"
-                        id="close_date.id_for_label"  
+                        name="hour_session"
+                        id="hour_session.id_for_label"  
                       >
                   </div>
 
                   <div class="form-group mt-3">
-                    <label for="{{ form.demand_description.id_for_label }}">* {{ form.demand_description.label }}</label>
+                    <label for="{{ form.evolution.id_for_label }}">* {{ form.evolution.label }}</label>
                     <textarea 
                       class="form-control"
-                        name="demand_description"
-                        id="demand_description.id_for_label"
+                        name="evolution"
+                        id="evolution.id_for_label"
+                        rows="5"
+                      >
+                    </textarea>
+                  </div>    
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.forwarding.id_for_label }}">* {{ form.forwarding.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="forwarding"
+                        id="forwarding.id_for_label"
                         rows="5"
                       >
                     </textarea>
@@ -105,30 +119,7 @@
             </div>
           </div>
         </div>
-        <div class="box col-lg-8">
-          <div class="row">
-            <div class="col-lg-9">
-              <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
-              <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
-              <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
-              <p class="section-description">
-                {% if prontuary.close_date %}
-                  <b>Data de fechamento:</b>{{ prontuary.close_date}}
-                {% else %}
-                  <b>Prontuário aberto!</b>
-                {% endif %}
-              </p>
-            </div>
-            <div class="col-lg-3">
-              <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
-                  <p><a href="{% url 'prontuary_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
-                  <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
-                  <p><a href="{% url 'prontuary_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
-                  <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
-            </div>
-          </div>
-        </div>
-        <br>
+        
       
         {% for session in therapy_sessions %}
         <div class="box col-lg-8">
