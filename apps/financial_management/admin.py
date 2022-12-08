@@ -56,7 +56,7 @@ class PaymentControlAdmin(admin.ModelAdmin):
         "way_pay",
     ]
     list_filter = [
-        ("patient", admin.RelatedOnlyFieldListFilter), 
+        ("patient", admin.RelatedOnlyFieldListFilter),
         "data_pay",
         "value_pay",
         "way_pay",

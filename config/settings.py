@@ -23,14 +23,14 @@ DEBUG = env("DJANGO_DEBUG")
 ALLOWED_HOSTS = ["34.125.197.120", "psiqueativa.com.br", "127.0.0.1"]
 # Setup support for proxy headers
 USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.psiqueativa.com.br:80",
     "https://*.psiqueativa.com.br",
     "https://www.psiqueativa.com.br:80",
     "https://www.psiqueativa.com.br",
-] 
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -84,7 +84,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DJANGO_STAGE=env("DJANGO_STAGE")
+DJANGO_STAGE = env("DJANGO_STAGE")
 
 if DJANGO_STAGE == "dev":
     DATABASES = {
@@ -104,7 +104,6 @@ elif DJANGO_STAGE == "prod":
             "PORT": env("DATABASE_PORT"),
         }
     }
-
 
 
 # Password validation

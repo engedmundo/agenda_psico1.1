@@ -32,48 +32,45 @@
             </div>
           </div>
         </div>
-      </div>
-      <br>
-
-      <div class="row d-flex justify-content-center">
+        <br>
+      
         {% for session in therapy_sessions %}
-          <div class="col-lg-6">
-            <div class="box">
-              <h4 class="title">Sessão {{ session.session_number }}</h4>
-              <div class="d-flex justify-content-between">
-                <div>
-                  <p class="description"><b>Data:</b> {{ session.date_session }}</p>
-                  <p class="description"><b>Horário:</b> {{ session.hour_session }}</p>
-                  <br>
-                  {% if session.fault %}
-                    <p class="description"><b>Paciente Faltou!</b></p>
-                  {% endif %}
-                  {% if session.justify_fault %}
-                    <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
-                    <br>
-                  {% endif %}
-                  <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
-                  <br>
-                  {% if session.forwarding %}
-                    <p class="description"><b>Encaminhamento:</b> {{ session.forwarding }}</p>
-                    <br>
-                  {% endif %}
-                  {% if session.payment %}
-                    <p class="description"><b><i class="bi bi-check-circle"></i> Sessão paga!</b></p>
-                  {% else %}
-                    <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
-                  {% endif %}
-                  <br>                          
-                  <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
-                  <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
-                  <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
-                </div>
-              </div>
+        <div class="box col-lg-8">
+          <h4 class="title">Sessão {{ session.session_number }}</h4>
+            <div>
+              <p class="description"><b>Data:</b> {{ session.date_session }}</p>
+              <p class="description"><b>Horário:</b> {{ session.hour_session }}</p>
+              <br>
+              {% if session.fault %}
+                <p class="description"><b>Paciente Faltou!</b></p>
+              {% endif %}
+
+              {% if session.justify_fault %}
+                <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
+                <br>
+              {% endif %}
+              
+              <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
+              <br>
+              
+              {% if session.forwarding %}
+                <p class="description"><b>Encaminhamento:</b> {{ session.forwarding }}</p>
+                <br>
+              {% endif %}
+              
+              {% if session.payment %}
+                <p class="description"><b><i class="bi bi-check-circle"></i> Sessão paga!</b></p>
+              {% else %}
+                <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
+              {% endif %}
+              <br>                          
+              
+              <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
+              <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
+              <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
             </div>
-            <br>
-          </div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
   </section>
 {% endblock content %}

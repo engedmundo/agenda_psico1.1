@@ -1404,6 +1404,10 @@ section {
   color: rgb(0, 0, 0);
 }
 
+.bottom-margin {
+  margin-bottom: 10px;
+}
+
 .wip {
   border: rgb(0, 0, 0) solid 2px;
 }

@@ -202,3 +202,62 @@ urlpatterns += [
         name="prontuary_delete_confirm",
     ),
 ]
+
+# therapy sessions urls
+urlpatterns += [
+    path(
+        "prontuaries/<int:id>/create_session/",
+        create_therapy_session,
+        name="create_session",
+    ),
+    # path(
+    #     "prontuaries/create/",
+    #     create_prontuary,
+    #     name="create_prontuary",
+    # ),
+    # path(
+    #     "prontuaries/save/",
+    #     prontuary_save,
+    #     name="prontuary_save",
+    # ),
+    # path(
+    #     "prontuaries/<int:id>/update/",
+    #     prontuary_update,
+    #     name="prontuary_update",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/",
+    #     prontuary_details,
+    #     name="prontuary_details",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/archive/",
+    #     prontuary_archive,
+    #     name="prontuary_archive",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/archive_confirm/",
+    #     prontuary_archive_confirm,
+    #     name="prontuary_archive_confirm",
+    # ),
+    # path(
+    #     "prontuaries/archived/",
+    #     prontuaries_archived,
+    #     name="prontuaries_arquived",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/unarchive/",
+    #     prontuary_unarchive,
+    #     name="prontuary_unarchive",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/delete/",
+    #     prontuary_delete,
+    #     name="prontuary_delete",
+    # ),
+    # path(
+    #     "prontuary/<int:id>/delete_confirm/",
+    #     prontuary_delete_confirm,
+    #     name="prontuary_delete_confirm",
+    # ),
+]

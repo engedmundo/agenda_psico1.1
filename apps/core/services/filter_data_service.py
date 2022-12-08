@@ -46,7 +46,9 @@ class FilterDataService:
 
         return queryset.filter(patient__psychologist=self.psychologist)
 
-    def patients_by_prontuary(self, ):
+    def patients_by_prontuary(
+        self,
+    ):
         queryset = Prontuary.objects.all()
         if self.request.user.is_superuser:
             return queryset.filter(psychologist=None)

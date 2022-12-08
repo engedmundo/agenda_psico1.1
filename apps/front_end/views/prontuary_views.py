@@ -121,6 +121,7 @@ def prontuary_update(request, id):
         },
     )
 
+
 @login_required(login_url="login_view")
 def prontuary_details(request, id):
     psychologist = get_object_or_404(
@@ -133,7 +134,7 @@ def prontuary_details(request, id):
     )
     therapy_sessions = TherapySession.objects.filter(
         prontuary=prontuary,
-    )
+    ).order_by("-date_session", "-pk")
 
     if not prontuary:
         raise Http404()
@@ -150,6 +151,7 @@ def prontuary_details(request, id):
             "therapy_sessions": therapy_sessions,
         },
     )
+
 
 @login_required(login_url="login_view")
 def prontuary_archive_confirm(request, id):

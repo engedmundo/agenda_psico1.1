@@ -36,7 +36,7 @@ class PaymentControl(CommonInfo):
     )
     checking_copy = models.ImageField(
         "Comprovante de pagamento",
-        upload_to = "media",
+        upload_to="media",
         null=True,
         blank=True,
     )

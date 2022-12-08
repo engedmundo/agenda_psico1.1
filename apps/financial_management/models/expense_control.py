@@ -14,10 +14,14 @@ class ExpenseControl(CommonInfo):
         verbose_name="Categoria da despesa",
         on_delete=models.CASCADE,
     )
-    expense_value = models.DecimalField("Valor da despesa", max_digits=8, decimal_places=2)
+    expense_value = models.DecimalField(
+        "Valor da despesa", max_digits=8, decimal_places=2
+    )
     completion_date = models.DateField("Data de pagamento")
     description = models.TextField(
-        "Descrição da despesa", null=True, blank=True,
+        "Descrição da despesa",
+        null=True,
+        blank=True,
     )
     cpf_cnpj = models.CharField(
         verbose_name="CPF/CNPJ despesa",

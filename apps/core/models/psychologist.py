@@ -10,20 +10,14 @@ class Psychologist(CommonInfo):
         verbose_name="Psicólogo(a)",
         on_delete=models.CASCADE,
     )
-    crp_register = models.CharField(
-        "Registro CRP",
-        max_length=20
-    )
+    crp_register = models.CharField("Registro CRP", max_length=20)
     short_description = models.CharField(
         "Descrição curta",
         max_length=100,
         null=True,
         blank=True,
     )
-    professional_address = models.CharField(
-        "Endereço Profissional",
-        max_length=200
-    )
+    professional_address = models.CharField("Endereço Profissional", max_length=200)
     secondary_address = models.CharField(
         "Endereço secundário",
         max_length=200,
@@ -43,19 +37,19 @@ class Psychologist(CommonInfo):
         max_length=20,
     )
     instagram_link = models.CharField(
-        "Link Instagram Profissional", 
+        "Link Instagram Profissional",
         null=True,
         blank=True,
         max_length=100,
     )
     twitter_link = models.CharField(
-        "Link Twitter Profissional", 
+        "Link Twitter Profissional",
         null=True,
         blank=True,
         max_length=100,
     )
     linkedin_link = models.CharField(
-        "Link LinkedIn Profissional", 
+        "Link LinkedIn Profissional",
         null=True,
         blank=True,
         max_length=100,
@@ -73,7 +67,7 @@ class Psychologist(CommonInfo):
     )
     photo = models.ImageField(
         "Imagem de Perfil",
-        upload_to = "media",
+        upload_to="media",
         null=True,
         blank=True,
     )

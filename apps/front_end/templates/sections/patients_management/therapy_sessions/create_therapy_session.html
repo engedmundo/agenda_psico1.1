@@ -1,0 +1,172 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</h3>
+        <span class="section-divider"></span>
+        <p>Cadastrar nova sessão</p>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="box col-lg-8">
+          <div class="row">
+            <form action="{% url 'prontuary_save' %}" method="post" class="email-form" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="row">                        
+                  <div class="form-group mt-3">
+                    <label for="{{ form.patient.id_for_label }}">* {{ form.patient.label }}</label>
+                    <br>
+                    <select name="patient" id="patient.id_for_label" class="form-control">
+                      {% for patient in patients %}
+                        <option value={{ patient.id }}>{{ patient.patient_name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                      
+                  <div class="form-group mt-3">
+                    <label for="{{ form.prontuary_number.id_for_label }}">* {{ form.prontuary_number.label }}</label>
+                      <input 
+                        type="text" 
+                        class="form-control"
+                        name="prontuary_number"
+                        id="prontuary_number.id_for_label"
+                        value="1"  
+                      >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.open_date.id_for_label }}">* {{ form.open_date.label }}</label>
+                      <input 
+                        type="date" 
+                        class="form-control"
+                        name="open_date"
+                        id="open_date.id_for_label"  
+                      >
+                  </div>
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ form.close_date.id_for_label }}">{{ form.close_date.label }}</label>
+                      <input 
+                        type="date" 
+                        class="form-control"
+                        name="close_date"
+                        id="close_date.id_for_label"  
+                      >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.demand_description.id_for_label }}">* {{ form.demand_description.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="demand_description"
+                        id="demand_description.id_for_label"
+                        rows="5"
+                      >
+                    </textarea>
+                  </div>    
+                </div>
+                <div class="my-3">
+                  <div class="loading">Carregando</div>
+                  <div class="error-message">Erro ao cadastrar novo plano</div>
+                  <div class="sent-message">Plano criado com sucesso</div>
+                </div>
+                <div class="text-center">
+                  <p>Campos marcados com * são obrigatórios</p>
+                </div>
+                <div class="text-center"><button type="submit" title="Send Message">Cadastrar</button></div>
+            </form>
+            <div class="form-group mt-3">
+              {{ form.errors }}
+            </div>
+            
+
+            <div class="col-lg-9">
+
+
+              <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
+              <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
+              <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
+              <p class="section-description">
+                {% if prontuary.close_date %}
+                  <b>Data de fechamento:</b>{{ prontuary.close_date}}
+                {% else %}
+                  <b>Prontuário aberto!</b>
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-lg-3">
+              <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
+                  <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
+                  <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="box col-lg-8">
+          <div class="row">
+            <div class="col-lg-9">
+              <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
+              <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
+              <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
+              <p class="section-description">
+                {% if prontuary.close_date %}
+                  <b>Data de fechamento:</b>{{ prontuary.close_date}}
+                {% else %}
+                  <b>Prontuário aberto!</b>
+                {% endif %}
+              </p>
+            </div>
+            <div class="col-lg-3">
+              <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
+                  <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
+                  <p><a href="{% url 'prontuary_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
+                  <p><a href=""><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+            </div>
+          </div>
+        </div>
+        <br>
+      
+        {% for session in therapy_sessions %}
+        <div class="box col-lg-8">
+          <h4 class="title">Sessão {{ session.session_number }}</h4>
+            <div>
+              <p class="description"><b>Data:</b> {{ session.date_session }}</p>
+              <p class="description"><b>Horário:</b> {{ session.hour_session }}</p>
+              <br>
+              {% if session.fault %}
+                <p class="description"><b>Paciente Faltou!</b></p>
+              {% endif %}
+
+              {% if session.justify_fault %}
+                <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
+                <br>
+              {% endif %}
+              
+              <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
+              <br>
+              
+              {% if session.forwarding %}
+                <p class="description"><b>Encaminhamento:</b> {{ session.forwarding }}</p>
+                <br>
+              {% endif %}
+              
+              {% if session.payment %}
+                <p class="description"><b><i class="bi bi-check-circle"></i> Sessão paga!</b></p>
+              {% else %}
+                <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
+              {% endif %}
+              <br>                          
+              
+              <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
+              <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
+              <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock content %}
