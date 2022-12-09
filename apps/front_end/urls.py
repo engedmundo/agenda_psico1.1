@@ -210,6 +210,11 @@ urlpatterns += [
         create_therapy_session,
         name="create_session",
     ),
+    path(
+        "prontuaries/<int:id>/create_session/save/",
+        therapy_session_save,
+        name="therapy_session_save",
+    ),
     # path(
     #     "prontuaries/create/",
     #     create_prontuary,

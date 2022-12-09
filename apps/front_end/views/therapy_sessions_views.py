@@ -48,55 +48,32 @@ def create_therapy_session(request, id):
     )
 
 
-# @login_required(login_url="login_view")
-# def create_prontuary(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     register_form_data = request.session.get(
-#         "register_form_data",
-#         None,
-#     )
-#     patients = Patient.objects.filter(
-#         psychologist=psychologist,
-#     )
+@login_required(login_url="login_view")
+def therapy_session_save(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    prontuary = get_object_or_404(
+        Prontuary,
+        pk=id,
+    )
+    if not request.POST:
+        raise Http404()
 
-#     form = ProntuaryRegisterForm(
-#         register_form_data,
-#     )
-#     return render(
-#         request,
-#         "pages/patients_management/prontuary/create_prontuary.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#             "patients": patients,
-#         },
-#     )
+    POST = request.POST
+    request.session["register_form_data"] = POST
+    form = TherapySessionRegisterForm(POST)
 
+    if form.is_valid():
+        session = form.save(commit=False)
+        session.prontuary = prontuary
+        session.patient = prontuary.patient
+        session.save()
+        messages.success(request, "Sessão cadastrada com sucesso")
+        del request.session["register_form_data"]
 
-# @login_required(login_url="login_view")
-# def prontuary_save(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     if not request.POST:
-#         raise Http404()
-
-#     POST = request.POST
-#     request.session["register_form_data"] = POST
-#     form = ProntuaryRegisterForm(POST)
-
-#     if form.is_valid():
-#         prontuary = form.save(commit=False)
-#         prontuary.psychologist = psychologist
-#         prontuary.save()
-#         messages.success(request, "Prontuário cadastrado com sucesso")
-#         del request.session["register_form_data"]
-
-#     return redirect("prontuaries_list")
+    return redirect("prontuary_details", id)
 
 
 # @login_required(login_url="login_view")
