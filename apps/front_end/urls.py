@@ -215,21 +215,11 @@ urlpatterns += [
         therapy_session_save,
         name="therapy_session_save",
     ),
-    # path(
-    #     "prontuaries/create/",
-    #     create_prontuary,
-    #     name="create_prontuary",
-    # ),
-    # path(
-    #     "prontuaries/save/",
-    #     prontuary_save,
-    #     name="prontuary_save",
-    # ),
-    # path(
-    #     "prontuaries/<int:id>/update/",
-    #     prontuary_update,
-    #     name="prontuary_update",
-    # ),
+    path(
+        "therapy_session/<int:id>/update/",
+        therapy_session_update,
+        name="therapy_session_update",
+    ),
     # path(
     #     "prontuary/<int:id>/",
     #     prontuary_details,

@@ -76,44 +76,47 @@ def therapy_session_save(request, id):
     return redirect("prontuary_details", id)
 
 
-# @login_required(login_url="login_view")
-# def prontuary_update(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     prontuary = get_object_or_404(
-#         Prontuary,
-#         pk=id,
-#     )
-#     patient = prontuary.patient
+@login_required(login_url="login_view")
+def therapy_session_update(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    therapy_session = get_object_or_404(
+        TherapySession,
+        pk=id,
+    )
+    prontuary = therapy_session.prontuary
 
-#     if not prontuary:
-#         raise Http404()
+    if not prontuary:
+        raise Http404()
 
-#     if prontuary.patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     form = ProntuaryRegisterForm(
-#         data=request.POST or None,
-#         instance=prontuary,
-#     )
+    form = TherapySessionRegisterForm(
+        data=request.POST or None,
+        instance=therapy_session,
+    )
 
-#     if form.is_valid():
-#         prontuary = form.save(commit=False)
-#         prontuary.save()
-#         messages.success(request, "Prontuário atualizado com sucesso")
-#         return redirect("prontuaries_list")
+    if form.is_valid():
+        session = form.save(commit=False)
+        session.patient = prontuary.patient
+        session.prontuary = prontuary
+        session.save()
+        messages.success(request, "Sessão atualizada com sucesso")
+        return redirect("prontuary_details", prontuary.pk)
 
-#     return render(
-#         request,
-#         "pages/patients_management/prontuary/update_prontuary.html",
-#         context={
-#             "psychologist": psychologist,
-#             "form": form,
-#             "prontuary": prontuary,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/therapy_sessions/update_therapy_session.html",
+        context={
+            "psychologist": psychologist,
+            "prontuary": prontuary,
+            "therapy_session": therapy_session,
+            "form": form,
+        },
+    )
 
 
 # @login_required(login_url="login_view")

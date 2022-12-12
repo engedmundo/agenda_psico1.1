@@ -1,0 +1,163 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</h3>
+        <span class="section-divider"></span>
+        <h5 class="section-description">Atualizar sessão</h5>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="box col-lg-8">
+          <p class="description"><b>Contato:</b> {{ prontuary.patient.phone_number }}</p>
+          <p class="section-description"><b>Data de abertura:</b> {{ prontuary.open_date}}</p>
+          <p class="section-description"><b>Descrição da demanda:</b> {{ prontuary.demand_description}}</p>
+          <p class="section-description">
+            {% if prontuary.close_date %}
+              <b>Data de fechamento:</b>{{ prontuary.close_date}}
+            {% else %}
+              <b>Prontuário aberto!</b>
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="box col-lg-8">
+          <div class="row">
+            <form action="" method="post" class="email-form" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="row">                                            
+                  <input 
+                    name="prontuary"
+                    id="prontuary.id_for_label"
+                    value={{form.prontuary.value}}
+                    hidden 
+                  >
+                  <div class="form-group mt-3">
+                    <label for="{{ form.session_number.id_for_label }}">* {{ form.session_number.label }}</label>
+                      <input 
+                        type="text" 
+                        class="form-control"
+                        name="session_number"
+                        id="session_number.id_for_label"
+                        value={{ form.session_number.value }}
+                      >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.date_session.id_for_label }}">* {{ form.date_session.label }}</label>
+                      <input 
+                        type="date" 
+                        class="form-control"
+                        name="date_session"
+                        id="date_session.id_for_label"
+                        value="{{ form.date_session.value|date:'Y-m-d'}}"
+                      >
+                  </div>
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ form.hour_session.id_for_label }}">{{ form.hour_session.label }}</label>
+                      <input 
+                        type="time" 
+                        class="form-control"
+                        name="hour_session"
+                        id="hour_session.id_for_label"
+                        value="{{ form.hour_session.value|time:'h:i'}}"
+                      >
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.evolution.id_for_label }}">* {{ form.evolution.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="evolution"
+                        id="evolution.id_for_label"
+                        rows="5"
+                      >
+                      {{ form.evolution.value }}
+                    </textarea>
+                  </div>    
+
+                  <div class="form-group mt-3">
+                    <label for="{{ form.forwarding.id_for_label }}"> {{ form.forwarding.label }}</label>
+                    <textarea 
+                      class="form-control"
+                        name="forwarding"
+                        id="forwarding.id_for_label"
+                        rows="5"
+                      >
+                      {{ form.forwarding.value }}
+                    </textarea>
+                  </div>                
+                  <div class="form-group mt-3">
+                    <label for="{{ form.justify_fault.id_for_label }}"> {{ form.justify_fault.label }}</label>
+                    <textarea 
+                      class="form-control"
+                      name="justify_fault"
+                      id="justify_fault.id_for_label"
+                      rows="5"
+                      {{ form.justify_fault.value }}
+                      >
+                      {{ form.justify_fault.value }}
+                    </textarea>
+                  </div>
+
+                </div>
+                <br>
+                <div class="text-center">
+                  <p>Campos marcados com * são obrigatórios</p>
+                </div>
+                <div class="text-center">
+                  <br>
+                  <button class="form-button" type="submit" title="Send Message">Atualizar</button>
+                </div>
+            </form>
+            <div class="form-group mt-3">
+              {{ form.errors }}
+            </div>
+            
+          </div>
+        </div>
+        
+      
+        {% for session in therapy_sessions %}
+        <div class="box col-lg-8">
+          <h4 class="title">Sessão {{ session.session_number }}</h4>
+            <div>
+              <p class="description"><b>Data:</b> {{ session.date_session }}</p>
+              <p class="description"><b>Horário:</b> {{ session.hour_session }}</p>
+              <br>
+              {% if session.fault %}
+                <p class="description"><b>Paciente Faltou!</b></p>
+              {% endif %}
+
+              {% if session.justify_fault %}
+                <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
+                <br>
+              {% endif %}
+              
+              <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
+              <br>
+              
+              {% if session.forwarding %}
+                <p class="description"><b>Encaminhamento:</b> {{ session.forwarding }}</p>
+                <br>
+              {% endif %}
+              
+              {% if session.payment %}
+                <p class="description"><b><i class="bi bi-check-circle"></i> Sessão paga!</b></p>
+              {% else %}
+                <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
+              {% endif %}
+              <br>                          
+              
+              <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
+              <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
+              <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock content %}

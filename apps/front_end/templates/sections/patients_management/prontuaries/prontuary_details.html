@@ -45,10 +45,7 @@
                 <p class="description"><b>Paciente Faltou!</b></p>
               {% endif %}
 
-              {% if session.justify_fault %}
-                <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
-                <br>
-              {% endif %}
+              
               
               <p class="description"><b>Evolução:</b> {{ session.evolution }}</p>
               <br>
@@ -63,11 +60,21 @@
               {% else %}
                 <p class="description"><b><i class="bi bi-x-circle"></i> Sessão não paga!</b></p>
               {% endif %}
-              <br>                          
+
+              {% if session.justify_fault %}
+                <p class="description"><b>Justificativa da falta:</b> {{ session.justify_fault }}</p>
+                <br>
+              {% endif %}
+              <br>                      
               
-              <p><a href=""><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
+              <p><a href="{% url 'therapy_session_update' session.pk %}"><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
               <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
               <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
+              {% if not session.fault %}
+                <p><a href=""><i class="bi bi-person-dash"></i> Registrar falta</a></p>
+              {% else %}
+                <p><a href=""><i class="bi bi-person-check"></i> Cancelar falta</a></p>
+              {% endif %}
             </div>
         </div>
       {% endfor %}
