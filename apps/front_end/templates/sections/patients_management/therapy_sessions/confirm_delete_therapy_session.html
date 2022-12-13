@@ -1,0 +1,36 @@
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Deletar Sessão</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja apagar o Sessão abaixo?</p>
+    </div>
+    
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-8 col-md-8">
+        <div class="box">
+          <h3>{{ therapy_session.patient.patient_name }} | Prontuário {{ therapy_session.prontuary.prontuary_number }}</h3>
+          <ul>
+            <p class="description"><i class="bi bi-briefcase"></i> <b>Sessão número {{ therapy_session.session_number }}</b></p>
+            <p class="description"><i class="bi bi-telephone"></i> {{ therapy_session.patient.phone_number }}</p>
+            <p class="description"><i class="bi bi-calendar-week"></i> {{ therapy_session.date_session }}</p>
+            <p class="description"><i class="bi bi-clock"></i> {{ therapy_session.hour_session }}</p>
+            <p class="description"><i class="bi bi-card-list"></i> <b>Evolução:</b> </p>
+            <p>{{ therapy_session.evolution }}</p>
+            <p class="description"><i class="bi bi-card-list"></i> <b>Encaminhamento:</b> </p>
+            <p>{{ therapy_session.forwarding }}</p>
+          </ul>
+          <br><br>
+          <p class="section-description">Esta ação não poderá ser desfeita!!!</p>
+          <a href="{% url 'therapy_session_delete' therapy_session.pk %}" class="text-center form-button">Excluir</a>
+          <a href="{% url 'prontuary_details' therapy_session.prontuary.id %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

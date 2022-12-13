@@ -230,14 +230,14 @@ urlpatterns += [
         therapy_session_update_fault,
         name="therapy_session_update_fault",
     ),
-    # path(
-    #     "prontuary/<int:id>/delete/",
-    #     prontuary_delete,
-    #     name="prontuary_delete",
-    # ),
-    # path(
-    #     "prontuary/<int:id>/delete_confirm/",
-    #     prontuary_delete_confirm,
-    #     name="prontuary_delete_confirm",
-    # ),
+    path(
+        "therapy_session/<int:id>/delete/",
+        therapy_session_delete,
+        name="therapy_session_delete",
+    ),
+    path(
+        "therapy_session/<int:id>/delete_confirm/",
+        therapy_session_delete_confirm,
+        name="therapy_session_delete_confirm",
+    ),
 ]
