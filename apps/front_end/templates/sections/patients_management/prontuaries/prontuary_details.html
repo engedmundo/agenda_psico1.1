@@ -69,7 +69,14 @@
               
               <p><a href="{% url 'therapy_session_update' session.pk %}"><i class="bi bi-pencil-square"></i> Editar Sessão</a></p>
               <p><a href=""><i class="bi bi-x-circle"></i> Excluir Sessão</a></p>
-              <p><a href=""><i class="bi bi-currency-dollar"></i> Registrar pagamento</a></p>
+              <p><a href="{% url 'therapy_session_update_payment' session.pk %}">
+                {% if not session.payment %}
+                  <i class="bi bi-currency-dollar"></i> Registrar pagamento</a>
+                {% else %}
+                  <i class="bi bi-currency-dollar"></i> Cancelar pagamento</a>
+                {% endif %}
+              </p>
+              
               {% if not session.fault %}
                 <p><a href=""><i class="bi bi-person-dash"></i> Registrar falta</a></p>
               {% else %}

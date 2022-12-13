@@ -220,31 +220,11 @@ urlpatterns += [
         therapy_session_update,
         name="therapy_session_update",
     ),
-    # path(
-    #     "prontuary/<int:id>/",
-    #     prontuary_details,
-    #     name="prontuary_details",
-    # ),
-    # path(
-    #     "prontuary/<int:id>/archive/",
-    #     prontuary_archive,
-    #     name="prontuary_archive",
-    # ),
-    # path(
-    #     "prontuary/<int:id>/archive_confirm/",
-    #     prontuary_archive_confirm,
-    #     name="prontuary_archive_confirm",
-    # ),
-    # path(
-    #     "prontuaries/archived/",
-    #     prontuaries_archived,
-    #     name="prontuaries_arquived",
-    # ),
-    # path(
-    #     "prontuary/<int:id>/unarchive/",
-    #     prontuary_unarchive,
-    #     name="prontuary_unarchive",
-    # ),
+    path(
+        "therapy_session/<int:id>/update_payment/",
+        therapy_session_update_payment,
+        name="therapy_session_update_payment",
+    ),
     # path(
     #     "prontuary/<int:id>/delete/",
     #     prontuary_delete,
