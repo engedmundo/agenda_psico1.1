@@ -140,6 +140,27 @@ def therapy_session_update_payment(request, id):
     return redirect("prontuary_details", therapy_session.prontuary.id)
 
 
+@login_required(login_url="login_view")
+def therapy_session_update_fault(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    therapy_session = get_object_or_404(
+        TherapySession,
+        pk=id,
+    )
+
+    if not therapy_session.fault:
+        therapy_session.fault = True
+    else:
+        therapy_session.fault = False
+
+    therapy_session.save()
+
+    return redirect("prontuary_details", therapy_session.prontuary.id)
+
+
 # @login_required(login_url="login_view")
 # def prontuary_archive_confirm(request, id):
 #     psychologist = get_object_or_404(

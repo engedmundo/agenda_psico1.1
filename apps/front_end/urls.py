@@ -225,6 +225,11 @@ urlpatterns += [
         therapy_session_update_payment,
         name="therapy_session_update_payment",
     ),
+    path(
+        "therapy_session/<int:id>/update_fault/",
+        therapy_session_update_fault,
+        name="therapy_session_update_fault",
+    ),
     # path(
     #     "prontuary/<int:id>/delete/",
     #     prontuary_delete,

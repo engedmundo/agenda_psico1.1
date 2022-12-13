@@ -78,9 +78,9 @@
               </p>
               
               {% if not session.fault %}
-                <p><a href=""><i class="bi bi-person-dash"></i> Registrar falta</a></p>
+                <p><a href="{% url 'therapy_session_update_fault' session.pk %}"><i class="bi bi-person-dash"></i> Registrar falta</a></p>
               {% else %}
-                <p><a href=""><i class="bi bi-person-check"></i> Cancelar falta</a></p>
+                <p><a href="{% url 'therapy_session_update_fault' session.pk %}"><i class="bi bi-person-check"></i> Cancelar falta</a></p>
               {% endif %}
             </div>
         </div>
