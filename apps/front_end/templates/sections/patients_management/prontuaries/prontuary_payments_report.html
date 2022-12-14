@@ -1,0 +1,52 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</h3>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="row d-flex justify-content-center">      
+        <div class="box col-lg-8">
+          <h4 class="title">Relatório de pagamentos </h4>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"><p>Sessão</p></th>
+                <th scope="col"><p>Data</p></th>
+                <th scope="col"><p>Horário</p></th>
+                <th scope="col"><p>Pagamento</p></th>
+                <th scope="col"><p>Alterar Pagmento</p></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for session in therapy_sessions %}
+              <tr>
+                <td><p>{{ session.session_number }}</p></td>
+                <td><p>{{ session.date_session }}</p></td>
+                <td><p>{{ session.hour_session }}</p></td>
+                {% if session.payment %}
+                  <td><p class="description"><i class="bi bi-check-circle"></i></p></td>
+                  <td><p class="description"><a href="{% url 'therapy_session_update_payment' session.pk %}">Cancelar pagamento</a></p></td>
+                {% else %}
+                  <td><p class="description"><i class="bi bi-x-circle"></i></p></td>
+                  <td><p class="description"><a href="{% url 'therapy_session_update_payment' session.pk %}">Registrar pagamento</a></p></td> 
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+          <div class="d-flex justify-content-center">
+            <div>
+              <a href="{% url 'prontuary_details' prontuary.id %}" class="text-right form-button">Ver Prontuário</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

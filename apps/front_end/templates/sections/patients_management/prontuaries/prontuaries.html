@@ -25,14 +25,13 @@
                     <br>
                     <p><a href="{% url 'prontuary_details' prontuary.id %}"><i class="bi bi-clipboard2-pulse"></i> Prontuário Detalhado</a></p>
                   </div>
-                  <div>
-                    <a href=""></a>
-                    
+                  <div>           
+                    <p><a href="{% url 'create_session' prontuary.id %}"><i class="bi bi-node-plus"></i> Nova Seção</a></p>
+                    <p><a href="{% url 'prontuary_payments_report' prontuary.id %}"><i class="bi bi-file-ruled"></i> Relatório de pagamentos</a></p>
                     <p><a href="{% url 'patient_update' prontuary.patient.id %}"><i class="bi bi-pencil-square"></i> Editar Paciente</a></p>
                     <p><a href="{% url 'prontuary_update' prontuary.id %}"><i class="bi bi-pencil-square"></i> Editar Prontuário</a></p>
                     <p><a href="{% url 'patient_archive_confirm' prontuary.patient.id %}"><i class="bi bi-archive"></i> Arquivar Paciente</a></p>
                     <p><a href="{% url 'prontuary_archive_confirm' prontuary.id %}"><i class="bi bi-archive"></i> Arquivar Prontuário</a></p>
-                    <p><a href="{% url 'create_session' prontuary.id %}"><i class="bi bi-node-plus"></i> Nova Seção</a></p>
                   </div>
                 </div>
                 <div>

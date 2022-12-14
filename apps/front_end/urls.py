@@ -182,6 +182,11 @@ urlpatterns += [
         name="prontuary_archive_confirm",
     ),
     path(
+        "prontuary/<int:id>/payments_report/",
+        prontuary_payments_report,
+        name="prontuary_payments_report",
+    ),
+    path(
         "prontuaries/archived/",
         prontuaries_archived,
         name="prontuaries_arquived",
