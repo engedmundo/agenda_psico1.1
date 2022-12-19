@@ -33,7 +33,7 @@
                 <td><p>{{ session.prontuary.patient }}</p></td>
                 <td><p>{{ session.prontuary.prontuary_number}}</p></td>
                 <td><p>{{ session.session_number }}</p></td>
-                <td><p>{{ session.date_session }}</p></td>
+                <td><p>{{ session.date_session|date:'d/m/Y' }}</p></td>
                 <td><p>{{ session.hour_session }}</p></td>
                 <td><p>R$ 
                   {% if session.prontuary.patient.session_value %}
@@ -75,7 +75,7 @@
                 <td><p>{{ session.prontuary.patient }}</p></td>
                 <td><p>{{ session.prontuary.prontuary_number}}</p></td>
                 <td><p>{{ session.session_number }}</p></td>
-                <td><p>{{ session.date_session }}</p></td>
+                <td><p>{{ session.date_session|date:'d/m/Y' }}</p></td>
                 <td><p>{{ session.hour_session }}</p></td>
                 <td><p>R$ 
                   {% if session.prontuary.patient.session_value %}
