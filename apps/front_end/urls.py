@@ -182,11 +182,6 @@ urlpatterns += [
         name="prontuary_archive_confirm",
     ),
     path(
-        "prontuary/<int:id>/payments_report/",
-        prontuary_payments_report,
-        name="prontuary_payments_report",
-    ),
-    path(
         "prontuaries/archived/",
         prontuaries_archived,
         name="prontuaries_arquived",
@@ -244,5 +239,14 @@ urlpatterns += [
         "therapy_session/<int:id>/delete_confirm/",
         therapy_session_delete_confirm,
         name="therapy_session_delete_confirm",
+    ),
+]
+
+# report urls
+urlpatterns += [
+    path(
+        "session_payments_report/",
+        session_payments_report,
+        name="session_payments_report",
     ),
 ]

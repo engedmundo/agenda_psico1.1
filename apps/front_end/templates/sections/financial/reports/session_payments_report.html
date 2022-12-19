@@ -1,0 +1,131 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Relatório de pagamentos por sessão</h3>
+        <span class="section-divider"></span>
+        <h6 class="row d-flex justify-content-center">
+          Mostrando dados cadastrados entre {{ start_date|date:'d/m/Y' }} e {{ end_date|date:'d/m/Y' }}
+        </h6>
+      </div>
+      
+      <div class="row d-flex justify-content-center">
+        <div class="box col-lg-8">
+          <h3 class="title">Sessões Pagas</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"><p>Paciente</p></th>
+                <th scope="col"><p>Prontuário</p></th>
+                <th scope="col"><p>Sessão</p></th>
+                <th scope="col"><p>Data</p></th>
+                <th scope="col"><p>Horário</p></th>
+                <th scope="col"><p>Valor</p></th>
+                <th scope="col"><p>Alterar Pagmento</p></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for session in paid_sessions %}
+              <tr>
+                <td><p>{{ session.prontuary.patient }}</p></td>
+                <td><p>{{ session.prontuary.prontuary_number}}</p></td>
+                <td><p>{{ session.session_number }}</p></td>
+                <td><p>{{ session.date_session }}</p></td>
+                <td><p>{{ session.hour_session }}</p></td>
+                <td><p>R$ 
+                  {% if session.prontuary.patient.session_value %}
+                    {{ session.prontuary.patient.session_value }}
+                  {% else %}
+                    {{ session.prontuary.patient.plain.plain_value }}
+                  {% endif %}
+                </p></td>
+                <td><p class="description"><a href="{% url 'therapy_session_update_payment' session.pk %}">Cancelar pagamento</a></p></td> 
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <h4>Total de sessões pagas: R$ {{ paid_total }}</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">      
+        <div class="box col-lg-8">
+          <h3 class="title font-gray">Sessões Pendentes</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"><p>Paciente</p></th>
+                <th scope="col"><p>Prontuário</p></th>
+                <th scope="col"><p>Sessão</p></th>
+                <th scope="col"><p>Data</p></th>
+                <th scope="col"><p>Horário</p></th>
+                <th scope="col"><p>Valor</p></th>
+                <th scope="col"><p>Alterar Pagmento</p></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for session in pending_sessions %}
+              <tr>
+                <td><p>{{ session.prontuary.patient }}</p></td>
+                <td><p>{{ session.prontuary.prontuary_number}}</p></td>
+                <td><p>{{ session.session_number }}</p></td>
+                <td><p>{{ session.date_session }}</p></td>
+                <td><p>{{ session.hour_session }}</p></td>
+                <td><p>R$ 
+                  {% if session.prontuary.patient.session_value %}
+                    {{ session.prontuary.patient.session_value }}
+                  {% else %}
+                    {{ session.prontuary.patient.plain.plain_value }}
+                  {% endif %}
+                </p></td>
+                <td><p class="description"><a href="{% url 'therapy_session_update_payment' session.pk %}">Registrar pagamento</a></p></td> 
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <h4>Total de sessões pendentes: R$ {{ pending_total }}</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">      
+        <div class="box col-lg-8">
+          <h3 class="title">Filtrar por data </h3>
+          <form action="?" method="GET">
+            <div class="form-group mt-3">
+              <label>Data inicial</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  name="start_date"
+                >
+            </div>
+            <div class="form-group mt-3">
+              <label>Data final</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  name="end_date"
+                >
+            </div>
+            <br>
+            <div class="text-center">
+              <button class="form-button" type="submit" title="Send Message">Filtrar</button>
+              <a href="{% url 'session_payments_report' %}" class="form-button">Limpar</a>
+              <a href="{% url 'home' %}" class="text-right form-button">Voltar para home</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+{% endblock content %}

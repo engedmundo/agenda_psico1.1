@@ -11,6 +11,8 @@ class PatientForm(forms.ModelForm):
         fields = [
             "patient_name",
             "plain",
+            "session_value",
+            "discount_agreement",
             "birth_date",
             "cpf",
             "phone_number",
@@ -35,6 +37,8 @@ class PatientRegisterForm(forms.ModelForm):
         fields = [
             "patient_name",
             "plain",
+            "session_value",
+            "discount_agreement",
             "birth_date",
             "cpf",
             "phone_number",
@@ -55,6 +59,8 @@ class PatientRegisterForm(forms.ModelForm):
         labels = {
             "patient_name": "Nome do paciente:",
             "plain": "Plano de pagamento:",
+            "session_value": "Valor da sessão R$:",
+            "discount_agreement": "Acordo de desconto:",
             "birth_date": "Data de nascimento:",
             "cpf": "CPF:",
             "phone_number": "Telefone do paciente:",

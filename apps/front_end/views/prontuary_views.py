@@ -275,30 +275,3 @@ def prontuary_delete_confirm(request, id):
             "prontuary": prontuary,
         },
     )
-
-@login_required(login_url="login_view")
-def prontuary_payments_report(request, id):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    prontuary = get_object_or_404(
-        Prontuary,
-        pk=id,
-    )
-    if prontuary.patient.psychologist != psychologist:
-        raise HttpResponseBadRequest
-
-    therapy_sessions = TherapySession.objects.filter(
-        prontuary=prontuary,
-    )
-
-    return render(
-        request,
-        "pages/patients_management/prontuary/prontuary_payments_report.html",
-        context={
-            "psychologist": psychologist,
-            "prontuary": prontuary,
-            "therapy_sessions": therapy_sessions,
-        },
-    )

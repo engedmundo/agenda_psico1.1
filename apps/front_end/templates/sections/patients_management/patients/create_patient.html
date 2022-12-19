@@ -1,213 +1,234 @@
 {% load static %}
 {% block create_patient %}
-  <section id="contact">
+  <section id="more-features" class="section-bg">
     <div class="container" data-aos="fade-up">
-      <div class="row">
 
-        <div class="col-lg-2 col-md-2">
-        </div>
-        
-        <div class="col-lg-8 col-md-8">
-          <div class="section-header">
-            <h3 class="section-title">Cadastrar Paciente</h3>
-            <span class="section-divider"></span>
-          </div>
-            <form action="{% url 'patient_save' %}" method="post" class="email-form" enctype="multipart/form-data">
-              {% csrf_token %}
-                <div class="row">
-                  <div class="form-group col-lg-6">
-                    <div class="form-group mt-3">
-                      <label for="{{ form.patient_name.id_for_label }}">* {{ form.patient_name.label }}</label>
-                        <input 
-                          type="text" 
-                          name="patient_name" 
-                          class="form-control" 
-                          id="patient_name.id_for_label"
-                        >
-                    </div>
-                        
-                    <div class="form-group mt-3">
-                      <label for="{{ form.plain.id_for_label }}">* {{ form.plain.label }}</label>
-                      <br>
-                        <select name="plain" id="plain.id_for_label" class="form-control">
-                          {% for payment_plain in payment_plains %}
-                            <option value={{ payment_plain.id }}>{{ payment_plain.name_plain }}</option>
-                          {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.birth_date.id_for_label }}">{{ form.birth_date.label }}</label>
-                        <input 
-                          type="date" 
-                          class="form-control"
-                          name="birth_date"
-                          id="birth_date.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="cpf"
-                          id="cpf.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.phone_number.id_for_label }}">* {{ form.phone_number.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="phone_number"
-                          id="phone_number.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.patient_address.id_for_label }}">{{ form.patient_address.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="patient_address"
-                          id="patient_address.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-                        <input 
-                          type="email" 
-                          class="form-control"
-                          name="email"
-                          id="email.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.occupation.id_for_label }}">{{ form.occupation.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="occupation"
-                          id="occupation.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.school.id_for_label }}">{{ form.school.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="school"
-                          id="school.id_for_label"  
-                        >
-                    </div>
-
-                  </div>
-
-                  <div class="form-group col-lg-6">
-                    <div class="form-group mt-3">
-                      <label for="{{ form.responsable.id_for_label }}">{{ form.responsable.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="responsable"
-                          id="responsable.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.phone_resp.id_for_label }}">{{ form.phone_resp.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="phone_resp"
-                          id="phone_resp.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.father.id_for_label }}">{{ form.father.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="father"
-                          id="father.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.phone_father.id_for_label }}">{{ form.phone_father.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="phone_father"
-                          id="phone_father.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.mother.id_for_label }}">{{ form.mother.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="mother"
-                          id="mother.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.phone_mother.id_for_label }}">{{ form.phone_mother.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="phone_mother"
-                          id="phone_mother.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.session_week_day.id_for_label }}">{{ form.session_week_day.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="session_week_day"
-                          id="session_week_day.id_for_label"  
-                        >
-                    </div>
-
-                    <div class="form-group mt-3">
-                      <label for="{{ form.session_hour.id_for_label }}">{{ form.session_hour.label }}</label>
-                        <input 
-                          type="text" 
-                          class="form-control"
-                          name="session_hour"
-                          id="session_hour.id_for_label"  
-                        >
-                    </div>
-                  </div>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Carregando</div>
-                  <div class="error-message">Erro ao cadastrar novo plano</div>
-                  <div class="sent-message">Plano criado com sucesso</div>
-                </div>
-                <div class="text-center">
-                  <p>Campos marcados com * são obrigatórios</p>
-                </div>
-                <div class="text-center"><button type="submit" title="Send Message">Cadastrar</button></div>
-            </form>
-            <div class="form-group mt-3">
-              {{ form.errors }}
-            </div>
-
-            <div class="col-lg-2 col-md-2">
-            </div>
-
+      <div class="section-header">
+        <h3 class="section-title">Cadastrar Paciente</h3>
+        <span class="section-divider"></span>
       </div>
+
+      <form action="{% url 'patient_save' %}" method="post" class="email-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="row d-flex justify-content-center">        
+          <div class="box col-lg-8 col-md-8">
+            <h3>Informações gerais</h3>
+            <div class="form-group mt-3">
+              <label for="{{ form.patient_name.id_for_label }}">* {{ form.patient_name.label }}</label>
+                <input 
+                  type="text" 
+                  name="patient_name" 
+                  class="form-control" 
+                  id="patient_name.id_for_label"
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.birth_date.id_for_label }}">{{ form.birth_date.label }}</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  name="birth_date"
+                  id="birth_date.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="cpf"
+                  id="cpf.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.occupation.id_for_label }}">{{ form.occupation.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="occupation"
+                  id="occupation.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.school.id_for_label }}">{{ form.school.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="school"
+                  id="school.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.session_week_day.id_for_label }}">{{ form.session_week_day.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="session_week_day"
+                  id="session_week_day.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.session_hour.id_for_label }}">{{ form.session_hour.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="session_hour"
+                  id="session_hour.id_for_label"  
+                >
+            </div>
+          </div>
+          
+          <div class="box col-lg-8 col-md-8">
+            <h3>Pagamento</h3>
+            <div class="form-group mt-3">
+              <label for="{{ form.plain.id_for_label }}">* {{ form.plain.label }}</label>
+              <br>
+                <select name="plain" id="plain.id_for_label" class="form-control">
+                  {% for payment_plain in payment_plains %}
+                    <option value={{ payment_plain.id }}>{{ payment_plain.name_plain }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.session_value.id_for_label }}">{{ form.session_value.label }}</label>
+                <input 
+                  type="number" 
+                  class="form-control"
+                  name="session_value"
+                  id="session_value.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.discount_agreement.id_for_label }}">{{ form.discount_agreement.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="discount_agreement"
+                  id="discount_agreement.id_for_label"  
+                >
+            </div>
+          </div>
+          
+          <div class="box col-lg-8 col-md-8">
+            <h3>Contato</h3>
+            <div class="form-group mt-3">
+              <label for="{{ form.phone_number.id_for_label }}">* {{ form.phone_number.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="phone_number"
+                  id="phone_number.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.patient_address.id_for_label }}">{{ form.patient_address.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="patient_address"
+                  id="patient_address.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                <input 
+                  type="email" 
+                  class="form-control"
+                  name="email"
+                  id="email.id_for_label"  
+                >
+            </div>
+          </div>
+          
+          <div class="box col-lg-8 col-md-8">
+            <h3>Responsável</h3>
+            <div class="form-group mt-3">
+              <label for="{{ form.responsable.id_for_label }}">{{ form.responsable.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="responsable"
+                  id="responsable.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.phone_resp.id_for_label }}">{{ form.phone_resp.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="phone_resp"
+                  id="phone_resp.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.father.id_for_label }}">{{ form.father.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="father"
+                  id="father.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.phone_father.id_for_label }}">{{ form.phone_father.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="phone_father"
+                  id="phone_father.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.mother.id_for_label }}">{{ form.mother.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="mother"
+                  id="mother.id_for_label"  
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.phone_mother.id_for_label }}">{{ form.phone_mother.label }}</label>
+                <input 
+                  type="text" 
+                  class="form-control"
+                  name="phone_mother"
+                  id="phone_mother.id_for_label"  
+                >
+            </div>
+          </div>
+
+          <div class="box col-lg-8 col-md-8">
+            <div class="text-center">
+              <p>Campos marcados com * são obrigatórios</p>
+              <br>
+              <div class="text-center">
+                <button class="form-button" type="submit" title="Send Message">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            {{ form.errors }}
+          </div>
+          
+        </div>
+      </form>
     </div>
   </section>
 {% endblock create_patient %}

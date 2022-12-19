@@ -106,6 +106,19 @@ class Patient(CommonInfo):
         on_delete=models.SET_NULL,
         null=True,
     )
+    session_value = models.DecimalField(
+        "Valor da sessão (R$)",
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    discount_agreement = models.CharField(
+        "Acordo de desconto",
+        null=True,
+        blank=True,
+        max_length=255,
+    )
 
     class Meta:
         verbose_name = "Paciente"
