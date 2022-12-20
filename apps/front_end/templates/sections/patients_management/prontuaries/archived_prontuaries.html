@@ -19,9 +19,10 @@
                     <p class="description"><i class="bi bi-telephone"></i> {{ prontuary.patient.phone_number }}</p>
                     <p class="description"><i class="bi bi-calendar-week"></i> Aberto em {{ prontuary.open_date }}</p>
                     <p class="description"><i class="bi bi-calendar-week"></i> Fechado em {{ prontuary.close_date }}</p>
+                    
                   </div>
                   <div>
-                    <a href=""></a>
+                    <p><a href="{% url 'prontuary_details' prontuary.id %}"><i class="bi bi-clipboard2-pulse"></i> Prontuário Detalhado</a></p>
                     <p><a href="{% url 'prontuary_unarchive' prontuary.id %}"><i class="bi bi-archive"></i> Desarquivar</a></p>
                     <p><a href="{% url 'prontuary_delete_confirm' prontuary.id %}"><i class="bi bi-trash"></i> Excluir</a></p>
                   </div>
