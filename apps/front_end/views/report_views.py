@@ -9,7 +9,50 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 
 @login_required(login_url="login_view")
-def session_payments_report(request):
+def pending_session_payments_report(request):
+    payment_sessions_info = session_payments_report(
+        request=request,
+        payment_status="pending",
+    )
+    payment_sessions_info["pending"] = True
+
+    return render(
+        request,
+        "pages/financial/reports/session_payments_report.html",
+        context=payment_sessions_info,
+    )
+
+
+@login_required(login_url="login_view")
+def paid_session_payments_report(request):
+    payment_sessions_info = session_payments_report(
+        request=request,
+        payment_status="paid",
+    )
+    payment_sessions_info["paid"] = True
+
+    return render(
+        request,
+        "pages/financial/reports/session_payments_report.html",
+        context=payment_sessions_info,
+    )
+
+
+@login_required(login_url="login_view")
+def therapy_session_payments_report(request):
+    payment_sessions_info = session_payments_report(
+        request=request,
+    )
+    payment_sessions_info["therapy"] = True
+
+    return render(
+        request,
+        "pages/financial/reports/session_payments_report.html",
+        context=payment_sessions_info,
+    )
+
+
+def session_payments_report(request, payment_status: str = None) -> dict:
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
@@ -22,52 +65,39 @@ def session_payments_report(request):
     )
     end_date = (
         datetime.strptime(request.GET.get("end_date"), "%Y-%m-%d")
-        if request.GET.get("end_date") 
+        if request.GET.get("end_date")
         else date.today()
     )
-
     therapy_sessions = TherapySession.objects.filter(
         prontuary__patient__psychologist=psychologist,
-        created_at__range=[start_date, end_date],
+        date_session__range=[start_date, end_date],
     ).order_by(
         "patient",
         "-prontuary",
         "-date_session",
     )
-    pending_sessions = therapy_sessions.filter(
-        payment=False,
-    )
-    paid_sessions = therapy_sessions.filter(
-        payment=True,
-    )
+    if payment_status == "pending":
+        therapy_sessions = therapy_sessions.filter(
+            payment=False,
+        )
+    elif payment_status == "paid":
+        therapy_sessions = therapy_sessions.filter(
+            payment=True,
+        )
 
-    pendind_value = sum(
+    total_value = sum(
         [
             session.prontuary.patient.session_value
             if session.prontuary.patient.session_value
             else session.prontuary.patient.plain.plain_value
-            for session in pending_sessions
-        ]
-    )
-    paid_value = sum(
-        [
-            session.prontuary.patient.session_value
-            if session.prontuary.patient.session_value
-            else session.prontuary.patient.plain.plain_value
-            for session in paid_sessions
+            for session in therapy_sessions
         ]
     )
 
-    return render(
-        request,
-        "pages/financial/reports/session_payments_report.html",
-        context={
-            "psychologist": psychologist,
-            "pending_sessions": pending_sessions,
-            "paid_sessions": paid_sessions,
-            "pending_total": pendind_value,
-            "paid_total": paid_value,
-            "start_date": start_date,
-            "end_date": end_date,
-        },
-    )
+    return {
+        "psychologist": psychologist,
+        "therapy_sessions": therapy_sessions,
+        "total_value": total_value,
+        "start_date": start_date,
+        "end_date": end_date,
+    }
