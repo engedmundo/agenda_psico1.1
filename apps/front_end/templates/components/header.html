@@ -13,6 +13,7 @@
             <ul>
               <li><a class="nav-link" href="{% url 'patients_list' %}">Pacientes</a></li>
               <li><a class="nav-link" href="{% url 'prontuaries_list' %}">Prontuários</a></li>
+              <li><a class="nav-link" href="{% url 'service_modalities' %}">Modalidades de atendimento</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href=""><span>Financeiro</span> <i class="bi bi-chevron-down"></i></a>
@@ -28,7 +29,6 @@
           <li class="dropdown"><a href="#"><span>Meu perfil</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a class="nav-link" href="{% url 'my_profile' %}">Editar meus dados</a></li>
-              <li><a class="nav-link" href="{% url 'my_profile' %}">Modalidades de atendimento</a></li>
               <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>

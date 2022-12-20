@@ -8,7 +8,10 @@ class ServiceModalitiy(CommonInfo):
         verbose_name="Profissional",
         on_delete=models.CASCADE,
     )
-    name = models.CharField("Nome da modalidade", max_length=50)
+    name = models.CharField(
+        "Nome da modalidade",
+        max_length=50,
+    )
     description = models.TextField(
         "Descrição da modalidade",
         null=True,

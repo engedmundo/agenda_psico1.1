@@ -260,3 +260,27 @@ urlpatterns += [
         name="therapy_session_payments_report",
     ),
 ]
+
+# service modalities
+urlpatterns += [
+    path(
+        "service_modalities/",
+        service_modalities_list,
+        name="service_modalities",
+    ),
+    path(
+        "service_modalities/create/",
+        create_service_modality,
+        name="create_service_modality",
+    ),
+    path(
+        "service_modalities/save/",
+        service_modality_save,
+        name="service_modality_save",
+    ),
+    path(
+        "service_modalities/<int:id>/update/",
+        service_modality_update,
+        name="service_modality_update",
+    ),
+]
