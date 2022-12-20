@@ -1,0 +1,28 @@
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Arquivar Modalidade de Atendimento</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja arquivar a Modalidade de Atendimento abaixo?</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="box">
+          <h3>{{ service_modality.name }}</h3>
+          <ul>
+            <li>{{ service_modality.description }}</li>
+          </ul>
+          <br><br>
+          <a href="{% url 'service_modality_archive' service_modality.id %}" class="text-center form-button">Arquivar</a>
+          <a href="{% url 'service_modalities' %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

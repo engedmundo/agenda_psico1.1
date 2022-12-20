@@ -109,52 +109,45 @@ def service_modality_update(request, id):
     )
 
 
-# @login_required(login_url="login_view")
-# def patient_archive_confirm(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patient = get_object_or_404(
-#         Patient,
-#         pk=id,
-#     )
+@login_required(login_url="login_view")
+def service_modality_archive_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modality = get_object_or_404(
+        ServiceModalitiy,
+        pk=id,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/archive_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patient": patient,
-#         },
-#     )
+    return render(
+        request,
+        "pages/patients_management/service_modalities/confirm_archive_service_modality.html",
+        context={
+            "psychologist": psychologist,
+            "service_modality": service_modality,
+        },
+    )
 
 
-# @login_required(login_url="login_view")
-# def patient_archive(request, id):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patient = get_object_or_404(
-#         Patient,
-#         pk=id,
-#     )
-#     prontuaries = Prontuary.objects.filter(
-#         patient=patient,
-#     )
+@login_required(login_url="login_view")
+def service_modality_archive(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modality = get_object_or_404(
+        ServiceModalitiy,
+        pk=id,
+    )
 
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if service_modality.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     patient.is_active = False
-#     patient.save()
+    service_modality.is_active = False
+    service_modality.save()
 
-#     for prontuary in prontuaries:
-#         prontuary.is_active = False
-#         prontuary.save()
-
-#     return redirect("patients_list")
+    return redirect("service_modalities")
 
 
 # @login_required(login_url="login_view")

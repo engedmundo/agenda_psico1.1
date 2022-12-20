@@ -283,4 +283,14 @@ urlpatterns += [
         service_modality_update,
         name="service_modality_update",
     ),
+    path(
+        "service_modalities/<int:id>/archive_confirm/",
+        service_modality_archive_confirm,
+        name="service_modality_archive_confirm",
+    ),
+    path(
+        "service_modalities/<int:id>/archive/",
+        service_modality_archive,
+        name="service_modality_archive",
+    ),
 ]

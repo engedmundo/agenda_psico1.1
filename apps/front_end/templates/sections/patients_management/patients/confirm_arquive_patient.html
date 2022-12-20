@@ -17,14 +17,14 @@
             {% if  patient.cpf %}
               <li><b>CPF:</b>{{ patient.cpf }}</li>
             {% endif %}
-            <li><b>Telefone:</b>{{ patient.phone_number }}</li>
+            <li><b>Telefone:</b> {{ patient.phone_number }}</li>
             {% if patient.email %}
-              <li><b>E-mail:</b>{{ patient.email }}</li>
+              <li><b>E-mail:</b> {{ patient.email }}</li>
             {% endif %}
             {% if patient.occupation %}
-              <li><b>Profissão:</b>{{ patient.occupation }}</li>
+              <li><b>Profissão:</b> {{ patient.occupation }}</li>
             {% endif %}
-            <li><b>Plano:</b>{{ patient.plain }}</li>
+            <li><b>Plano:</b> {{ patient.plain }}</li>
           </ul>
           <br><br>
           <a href="{% url 'patient_archive' patient.id %}" class="text-center form-button">Arquivar</a>
