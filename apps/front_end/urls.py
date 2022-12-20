@@ -293,4 +293,24 @@ urlpatterns += [
         service_modality_archive,
         name="service_modality_archive",
     ),
+    path(
+        "service_modalities/archived/",
+        service_modalities_archived,
+        name="service_modalities_archived",
+    ),
+    path(
+        "service_modalities/<int:id>/unarchive/",
+        service_modality_unarchive,
+        name="service_modality_unarchive",
+    ),
+    path(
+        "service_modalities/<int:id>/delete/",
+        service_modality_delete,
+        name="service_modality_delete",
+    ),
+    path(
+        "service_modalities/<int:id>/delete_confirm/",
+        service_modality_delete_confirm,
+        name="service_modality_delete_confirm",
+    ),
 ]

@@ -150,64 +150,81 @@ def service_modality_archive(request, id):
     return redirect("service_modalities")
 
 
-# @login_required(login_url="login_view")
-# def patients_archived(request):
-#     psychologist = get_object_or_404(
-#         Psychologist,
-#         psychologist__username=request.user,
-#     )
-#     patients = Patient.objects.filter(
-#         psychologist=psychologist,
-#         is_active=False,
-#     )
+@login_required(login_url="login_view")
+def service_modalities_archived(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modalities = ServiceModalitiy.objects.filter(
+        psychologist=psychologist,
+        is_active=False,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/archived_patients.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patients": patients,
-#         },
-#     )
-
-
-# @login_required(login_url="login_view")
-# def patient_unarchive(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     patient = get_object_or_404(Patient, pk=id)
-
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
-
-#     patient.is_active = True
-#     patient.save()
-
-#     return redirect("patients_list")
+    return render(
+        request,
+        "pages/patients_management/service_modalities/archived_service_modalities.html",
+        context={
+            "psychologist": psychologist,
+            "service_modalities": service_modalities,
+        },
+    )
 
 
-# @login_required(login_url="login_view")
-# def patient_delete(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     patient = get_object_or_404(Patient, pk=id)
+@login_required(login_url="login_view")
+def service_modality_unarchive(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modality = get_object_or_404(
+        ServiceModalitiy,
+        pk=id,
+    )
 
-#     if patient.psychologist != psychologist:
-#         raise HttpResponseBadRequest
+    if service_modality.psychologist != psychologist:
+        raise HttpResponseBadRequest
 
-#     patient.delete()
-#     messages.success(request, "Paciente excluído com sucesso")
-#     return redirect("patients_list")
+    service_modality.is_active = True
+    service_modality.save()
+
+    return redirect("service_modalities")
 
 
-# @login_required(login_url="login_view")
-# def patient_delete_confirm(request, id):
-#     psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
-#     patient = get_object_or_404(Patient, pk=id)
+@login_required(login_url="login_view")
+def service_modality_delete(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modality = get_object_or_404(
+        ServiceModalitiy,
+        pk=id,
+    )
 
-#     return render(
-#         request,
-#         "pages/patients_management/patients/delete_patient.html",
-#         context={
-#             "psychologist": psychologist,
-#             "patient": patient,
-#         },
-#     )
+    if service_modality.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    service_modality.delete()
+    return redirect("service_modalities")
+
+
+@login_required(login_url="login_view")
+def service_modality_delete_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    service_modality = get_object_or_404(
+        ServiceModalitiy,
+        pk=id,
+    )
+
+    return render(
+        request,
+        "pages/patients_management/service_modalities/confirm_delete_service_modality.html",
+        context={
+            "psychologist": psychologist,
+            "service_modality": service_modality,
+        },
+    )
