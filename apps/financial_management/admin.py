@@ -62,4 +62,4 @@ class PaymentControlAdmin(admin.ModelAdmin):
         "payment_method",
     ]
     search_fields = ["prontuary"]
-    autocomplete_fields = ["prontuary", "therapy_session"]
+    autocomplete_fields = ["prontuary"]

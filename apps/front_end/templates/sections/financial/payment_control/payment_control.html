@@ -10,18 +10,23 @@
       </div>
 
         <div class="row gy-4">
-          {% for payment in payment %}
+          {% for payment in payments %}
             <div class="col-lg-6">
               <div class="box">
-                <h4 class="title"><a href="">{{ payment.id }}</a></h4>
+                <h4 class="title"><a href="">{{ payment.prontuary.patient }} | Recibo: {{ payment.id }}</a></h4>
                 <div class="d-flex justify-content-between">
                   <div class="col-lg-8">
-                    <p class="description">{{ payment.description }}</p>
+                    <p class="description"><i class="bi bi-currency-dollar"></i> R$ {{ payment.value_paid }}</p>
+                    <p class="description"><i class="bi bi-calendar-week"></i> {{ payment.date_of_pay|date:'d/m/Y' }}</p>
+                    <p class="description"><i class="bi bi-list-columns-reverse"></i> {{ payment.description }}</p>
+                    <p class="description"><i class="bi bi-wallet2"></i> {{ payment.payment_method }}</p>
+                    {% if payment.checking_copy %}
+                      <p class="description"><i class="bi bi-card-image"></i>{{ payment.checking_copy }}</p>
+                    {% endif %}
                   </div>
                   <div>
-                    <a href=""></a>
-                    <p><a href="{% url 'service_modality_update' modality.id %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
-                    <p><a href="{% url 'service_modality_archive_confirm' modality.id %}"><i class="bi bi-archive"></i> Arquivar</a></p>
+                    <p><a href="{% url 'payment_control' %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
+                    <p><a href="{% url 'payment_control' %}"><i class="bi bi-archive"></i> Arquivar</a></p>
                   </div>
                 </div>
                 <div>

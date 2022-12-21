@@ -1,6 +1,6 @@
 from apps.core.models import CommonInfo
 from apps.financial_management.enums.payment_enum import PaymentChoices
-from apps.patient_management.models import Patient, TherapySession, Prontuary
+from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.db import models
 
 
@@ -29,11 +29,6 @@ class PaymentControl(CommonInfo):
         "Forma de pagamento",
         choices=PaymentChoices.choices,
         max_length=50,
-    )
-    therapy_session = models.ManyToManyField(
-        TherapySession,
-        verbose_name="Sessões",
-        blank=True,
     )
     checking_copy = models.ImageField(
         "Comprovante de pagamento",

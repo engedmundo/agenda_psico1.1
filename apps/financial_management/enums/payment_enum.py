@@ -6,3 +6,4 @@ class PaymentChoices(models.TextChoices):
     DINHEIRO = "Dinheiro"
     TRANFERENCIA = "Transferência"
     CHEQUE = "Cheque"
+    CARTAO_DE_CREDITO = "Cartão de Crédito"

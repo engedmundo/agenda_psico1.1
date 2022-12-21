@@ -327,4 +327,9 @@ urlpatterns += [
         create_payment_control,
         name="create_payment_control",
     ),
+    path(
+        "payment_control/save/",
+        payment_control_save,
+        name="payment_control_save",
+    ),
 ]

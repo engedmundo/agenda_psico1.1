@@ -1,7 +1,7 @@
-from apps.financial_management.models import PaymentControl
-from apps.financial_management.forms import PaymentControlRegisterForm
 from apps.core.models import Psychologist
-from apps.patient_management.models import Prontuary
+from apps.financial_management.forms import PaymentControlRegisterForm
+from apps.financial_management.models import PaymentControl
+from apps.patient_management.models import Prontuary, TherapySession
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseBadRequest
@@ -56,9 +56,9 @@ def create_payment_control(request):
         },
     )
 
-"""
+
 @login_required(login_url="login")
-def service_modality_save(request):
+def payment_control_save(request):
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
@@ -68,17 +68,17 @@ def service_modality_save(request):
 
     POST = request.POST
     request.session["register_form_data"] = POST
-    form = ServiceModalitiesRegisterForm(POST)
+    form = PaymentControlRegisterForm(POST)
 
     if form.is_valid():
-        service_modality = form.save(commit=False)
-        service_modality.psychologist = psychologist
-        service_modality.save()
+        payment = form.save(commit=False)
+        payment.save()
         del request.session["register_form_data"]
 
-    return redirect("service_modalities")
+    return redirect("create_payment_control")
 
 
+"""
 @login_required(login_url="login")
 def service_modality_update(request, id):
     psychologist = get_object_or_404(
