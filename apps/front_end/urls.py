@@ -314,3 +314,17 @@ urlpatterns += [
         name="service_modality_delete_confirm",
     ),
 ]
+
+# payment_control
+urlpatterns += [
+    path(
+        "payment_control/",
+        payment_control_list,
+        name="payment_control",
+    ),
+    path(
+        "payment_control/create/",
+        create_payment_control,
+        name="create_payment_control",
+    ),
+]

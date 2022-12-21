@@ -1,30 +1,31 @@
 from apps.core.models import CommonInfo
 from apps.financial_management.enums.payment_enum import PaymentChoices
-from apps.patient_management.models import Patient, TherapySession
+from apps.patient_management.models import Patient, TherapySession, Prontuary
 from django.db import models
 
 
 class PaymentControl(CommonInfo):
-    patient = models.ForeignKey(
-        Patient,
-        verbose_name="Paciente",
+    prontuary = models.ForeignKey(
+        Prontuary,
+        verbose_name="Prontuário",
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
-    value_pay = models.DecimalField(
+    value_paid = models.DecimalField(
         "Valor pago",
         max_digits=8,
         decimal_places=2,
     )
-    data_pay = models.DateField(
+    date_of_pay = models.DateField(
         "Data de pagamento",
     )
     description = models.TextField(
         "Descrição do pagamento",
         null=True,
         blank=True,
-        max_length=100,
     )
-    way_pay = models.CharField(
+    payment_method = models.CharField(
         "Forma de pagamento",
         choices=PaymentChoices.choices,
         max_length=50,

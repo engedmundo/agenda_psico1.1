@@ -1,0 +1,102 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Cadastrar Recebimento</h3>
+        <span class="section-divider"></span>
+      </div>
+
+      <form action="{% url 'service_modality_save' %}" method="post" class="email-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="row d-flex justify-content-center">        
+          <div class="box col-lg-8 col-md-8">
+            <div class="form-group mt-3">
+              <label for="{{ form.prontuary.id_for_label }}">* {{ form.prontuary.label }}</label>
+              <select size=5 name="prontuary" id="prontuary.id_for_label" class="form-control">
+                {% for prontuary in prontuaries %}
+                  <option value={{ prontuary.id }}>{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div class="form-group mt-3">
+              <label for="{{ form.value_paid.id_for_label }}">* {{ form.value_paid.label }}</label>
+                <input 
+                  type="number" 
+                  name="value_paid" 
+                  class="form-control" 
+                  id="value_paid.id_for_label"
+                >
+            </div>
+            
+            <div class="form-group mt-3">
+              <label for="{{ form.date_of_pay.id_for_label }}">* {{ form.date_of_pay.label }}</label>
+                <input 
+                  type="date" 
+                  name="date_of_pay" 
+                  class="form-control" 
+                  id="date_of_pay.id_for_label"
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+              <textarea 
+                class="form-control"
+                name="description"
+                id="description.id_for_label"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.payment_method.id_for_label }}">* {{ form.payment_method.label }}</label>
+              <select size=4 name="payment_method" id="payment_method.id_for_label" class="form-control">
+                <option value="Cartão de crédito">Pix</option>
+                <option value="Cartão de crédito">Dinheiro</option>
+                <option value="Cartão de crédito">Cartão de crédito</option>
+                <option value="Cartão de crédito">Transferência Bancária</option>
+                
+              </select>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.therapy_session.id_for_label }}">{{ form.therapy_session.label }}</label>
+                <input 
+                  type="number" 
+                  name="therapy_session" 
+                  class="form-control" 
+                  id="therapy_session.id_for_label"
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.checking_copy.id_for_label }}">{{ form.checking_copy.label }}</label>
+                <input 
+                  type="file" 
+                  name="checking_copy" 
+                  class="form-control" 
+                  id="checking_copy.id_for_label"
+                >
+            </div>
+
+            <div class="text-center">
+              <p>Campos marcados com * são obrigatórios</p>
+              <br>
+              <div class="text-center">
+                <button class="form-button" type="submit" title="Send Message">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            {{ form.errors }}
+          </div>
+          
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock content %}

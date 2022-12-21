@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 
 from apps.core.services.filter_data_service import FilterDataService
-from apps.patient_management.models import Patient
+from apps.patient_management.models import Patient, Prontuary
 
 from .models import PaymentControl, PaymentPlain
 
@@ -43,23 +43,23 @@ class PaymentControlAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         _service = FilterDataService(request=request)
-        if db_field.name == "patient":
-            kwargs["queryset"] = Patient.objects.filter(
+        if db_field.name == "prontuary":
+            kwargs["queryset"] = Prontuary.objects.filter(
                 psychologist=_service.psychologist
             )
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     list_display = [
-        "patient",
-        "data_pay",
-        "value_pay",
-        "way_pay",
+        "prontuary",
+        "date_of_pay",
+        "value_paid",
+        "payment_method",
     ]
     list_filter = [
-        ("patient", admin.RelatedOnlyFieldListFilter),
-        "data_pay",
-        "value_pay",
-        "way_pay",
+        ("prontuary", admin.RelatedOnlyFieldListFilter),
+        "date_of_pay",
+        "value_paid",
+        "payment_method",
     ]
-    search_fields = ["patient"]
-    autocomplete_fields = ["patient", "therapy_session"]
+    search_fields = ["prontuary"]
+    autocomplete_fields = ["prontuary", "therapy_session"]

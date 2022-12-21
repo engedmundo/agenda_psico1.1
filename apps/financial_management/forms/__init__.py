@@ -1,1 +1,2 @@
 from .payment_plain_form import PaymentPlainRegisterForm
+from .payment_control_form import PaymentControlRegisterForm

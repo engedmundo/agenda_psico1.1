@@ -1,0 +1,44 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Controle de Recebimentos</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          {% for payment in payment %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="">{{ payment.id }}</a></h4>
+                <div class="d-flex justify-content-between">
+                  <div class="col-lg-8">
+                    <p class="description">{{ payment.description }}</p>
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <p><a href="{% url 'service_modality_update' modality.id %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
+                    <p><a href="{% url 'service_modality_archive_confirm' modality.id %}"><i class="bi bi-archive"></i> Arquivar</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <a href="{% url 'create_payment_control' %}" class="text-right form-button">Inserir recebimento</a>
+            </div>
+            <div>
+              <a href="{% url 'service_modalities_archived' %}" class="text-center form-button">Mostrar arquivados</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock content %}

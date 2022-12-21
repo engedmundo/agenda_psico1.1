@@ -6,3 +6,4 @@ from .prontuary_views import *
 from .report_views import *
 from .service_modalities_views import *
 from .therapy_sessions_views import *
+from .payment_control_views import *
