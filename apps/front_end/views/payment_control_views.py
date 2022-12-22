@@ -119,124 +119,40 @@ def payment_control_update(request, id):
     )
 
 
-"""
 @login_required(login_url="login")
-def service_modality_archive_confirm(request, id):
+def payment_control_delete(request, id):
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
     )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
+    payment_control = get_object_or_404(
+        PaymentControl,
+        pk=id,
+    )
+
+    if payment_control.prontuary.patient.psychologist != psychologist:
+        raise HttpResponseBadRequest
+
+    payment_control.delete()
+    return redirect("payment_control")
+
+
+@login_required(login_url="login")
+def payment_control_delete_confirm(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    payment_control = get_object_or_404(
+        PaymentControl,
         pk=id,
     )
 
     return render(
         request,
-        "pages/patients_management/service_modalities/confirm_archive_service_modality.html",
+        "pages/financial/payment_control/confirm_delete_payment_control.html",
         context={
             "psychologist": psychologist,
-            "service_modality": service_modality,
+            "payment_control": payment_control,
         },
     )
-
-
-@login_required(login_url="login")
-def service_modality_archive(request, id):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
-        pk=id,
-    )
-
-    if service_modality.psychologist != psychologist:
-        raise HttpResponseBadRequest
-
-    service_modality.is_active = False
-    service_modality.save()
-
-    return redirect("service_modalities")
-
-
-@login_required(login_url="login")
-def service_modalities_archived(request):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    service_modalities = ServiceModalitiy.objects.filter(
-        psychologist=psychologist,
-        is_active=False,
-    )
-
-    return render(
-        request,
-        "pages/patients_management/service_modalities/archived_service_modalities.html",
-        context={
-            "psychologist": psychologist,
-            "service_modalities": service_modalities,
-        },
-    )
-
-
-@login_required(login_url="login")
-def service_modality_unarchive(request, id):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
-        pk=id,
-    )
-
-    if service_modality.psychologist != psychologist:
-        raise HttpResponseBadRequest
-
-    service_modality.is_active = True
-    service_modality.save()
-
-    return redirect("service_modalities")
-
-
-@login_required(login_url="login")
-def service_modality_delete(request, id):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
-        pk=id,
-    )
-
-    if service_modality.psychologist != psychologist:
-        raise HttpResponseBadRequest
-
-    service_modality.delete()
-    return redirect("service_modalities")
-
-
-@login_required(login_url="login")
-def service_modality_delete_confirm(request, id):
-    psychologist = get_object_or_404(
-        Psychologist,
-        psychologist__username=request.user,
-    )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
-        pk=id,
-    )
-
-    return render(
-        request,
-        "pages/patients_management/service_modalities/confirm_delete_service_modality.html",
-        context={
-            "psychologist": psychologist,
-            "service_modality": service_modality,
-        },
-    )
-"""

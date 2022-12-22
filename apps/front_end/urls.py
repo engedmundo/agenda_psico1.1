@@ -337,4 +337,14 @@ urlpatterns += [
         payment_control_update,
         name="payment_control_update",
     ),
+    path(
+        "payment_control/<int:id>/delete/",
+        payment_control_delete,
+        name="payment_control_delete",
+    ),
+    path(
+        "payment_control/<int:id>/delete_confirm/",
+        payment_control_delete_confirm,
+        name="payment_control_delete_confirm",
+    ),
 ]

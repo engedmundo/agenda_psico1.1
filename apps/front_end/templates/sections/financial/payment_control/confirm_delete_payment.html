@@ -1,0 +1,32 @@
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Excluir Pagamento</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja excluir o Pagamento abaixo?</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6 col-md-6">
+        <div class="box">
+          <h3>{{ payment_control.prontuary }} | Pagamento {{ payment_control.id }}</h3>
+          <ul>
+            <li><b>Valor pago:</b> R$ {{ payment_control.value_paid }}</li>
+            <li><b>Data do pagamento:</b> {{ payment_control.date_of_pay }}</li>
+            <li><b>Descrição:</b> {{ payment_control.description }}</li>
+            <li><b>Método de pagamento:</b>{{ payment_control.payment_method }}</li>
+          </ul>
+          <br><br>
+          <p class="section-description">Esta ação não poderá ser desfeita!!!</p>
+          <a href="{% url 'payment_control_delete' payment_control.id %}" class="text-center form-button">Excluir</a>
+          <a href="{% url 'payment_control' %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
