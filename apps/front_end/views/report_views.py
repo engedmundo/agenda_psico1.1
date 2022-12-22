@@ -1,6 +1,7 @@
 from datetime import date, datetime
 
 from apps.core.models import Psychologist
+from apps.financial_management.models import PaymentControl
 from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -101,3 +102,42 @@ def session_payments_report(request, payment_status: str = None) -> dict:
         "start_date": start_date,
         "end_date": end_date,
     }
+
+
+@login_required(login_url="login_view")
+def payment_control_report(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+
+    start_date = (
+        datetime.strptime(request.GET.get("start_date"), "%Y-%m-%d")
+        if request.GET.get("start_date")
+        else date(2020, 1, 1)
+    )
+    end_date = (
+        datetime.strptime(request.GET.get("end_date"), "%Y-%m-%d")
+        if request.GET.get("end_date")
+        else date.today()
+    )
+    payments = PaymentControl.objects.filter(
+        prontuary__patient__psychologist=psychologist,
+        date_of_pay__range=[start_date, end_date],
+    ).order_by(
+        "prontuary",
+        "-date_of_pay",
+    )
+    total_value = sum([payment.value_paid for payment in payments])
+    
+    return render(
+        request,
+        "pages/financial/reports/payment_control_report.html",
+        context={
+            "psychologist": psychologist,
+            "payments": payments,
+            "total_value": total_value,
+            "start_date": start_date,
+            "end_date": end_date,
+        },
+    )

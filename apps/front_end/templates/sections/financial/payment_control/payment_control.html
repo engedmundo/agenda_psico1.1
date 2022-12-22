@@ -12,7 +12,7 @@
         <div class="row gy-4">
           <div class="d-flex justify-content-between">
               <a href="{% url 'create_payment_control' %}" class="text-right form-button">Inserir recebimento</a>
-              <a href="{% url 'create_payment_control' %}" class="text-right form-button">Relatório de recebimentos</a>
+              <a href="{% url 'payment_control_report' %}" class="text-right form-button">Relatório de recebimentos</a>
           </div>
           
           {% for payment in payments %}
@@ -32,7 +32,7 @@
                     {% endif %}
                   </div>
                   <div>
-                    <p><a href="{% url 'payment_control' %}"><i class="bi bi-card-text"></i> Gerar Recibo</a></p>
+                    {% comment %} <p><a href="{% url 'payment_control' %}"><i class="bi bi-card-text"></i> Gerar Recibo</a></p> {% endcomment %}
                     <p><a href="{% url 'payment_control_update' payment.id %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
                     <br>
                     <p><a href="{% url 'payment_control_delete_confirm' payment.id %}"><i class="bi bi-trash"></i> Excluir</a></p>

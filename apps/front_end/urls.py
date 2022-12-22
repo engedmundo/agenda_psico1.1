@@ -259,6 +259,11 @@ urlpatterns += [
         therapy_session_payments_report,
         name="therapy_session_payments_report",
     ),
+    path(
+        "payment_control_report/",
+        payment_control_report,
+        name="payment_control_report",
+    ),
 ]
 
 # service modalities

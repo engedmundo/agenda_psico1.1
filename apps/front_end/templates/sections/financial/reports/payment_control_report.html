@@ -1,0 +1,84 @@
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Relatório de Recebimentos</h3>
+        <span class="section-divider"></span>
+        <h6 class="row d-flex justify-content-center">
+          Mostrando dados cadastrados entre {{ start_date|date:'d/m/Y' }} e {{ end_date|date:'d/m/Y' }}
+        </h6>
+      </div>
+
+      <div class="row d-flex justify-content-center">      
+        <div class="box col-lg-8">
+          <h3 class="title">Filtrar por data </h3>
+          <form action="?" method="GET">
+            <div class="form-group mt-3">
+              <label>Data inicial</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  name="start_date"
+                >
+            </div>
+        
+            <div class="form-group mt-3">
+              <label>Data final</label>
+                <input 
+                  type="date" 
+                  class="form-control"
+                  name="end_date"
+                >
+            </div>
+            <br>
+            <div class="text-center">
+              <button class="form-button" type="submit" title="Send Message">Filtrar</button>
+              <a href="{% url 'payment_control_report' %}" class="form-button">Limpar</a>
+            </div>          
+            <div>              
+              <p>
+                <a href="{% url 'home' %}" class="text-right">Voltar para home</a>
+              </p>
+            </div>
+          </form>
+        </div>
+        
+        <div class="box col-lg-8">
+          <h3 class="title">
+            {% if therapy %}
+              Sessões
+            {% elif paid %}
+              Sessões Pagas
+            {% elif pending %}
+              Sessões Pendentes
+            {% endif %}
+          </h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"><p>Paciente</p></th>
+                <th scope="col"><p>Data</p></th>
+                <th scope="col"><p>Valor Recebido</p></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for payment in payments %}
+              <tr>
+                <td><p>{{ payment.prontuary.patient.patient_name }}</p></td>
+                <td><p>{{ payment.date_of_pay|date:'d/m/Y'}}</p></td>
+                <td><p>R$ {{ payment.value_paid }}</p></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <h4>Valor total de recebimentos: R$ {{ total_value }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

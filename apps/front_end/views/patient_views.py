@@ -93,6 +93,7 @@ def patient_update(request, id):
     payment_plains = PaymentPlain.objects.filter(
         psychologist=psychologist,
     )
+    patient_plain = patient.plain
 
     if not patient:
         raise Http404()
@@ -119,6 +120,7 @@ def patient_update(request, id):
             "psychologist": psychologist,
             "form": form,
             "payment_plains": payment_plains,
+            "patient_plain": patient_plain,
         },
     )
 
@@ -194,7 +196,9 @@ def patients_archived(request):
 
 @login_required(login_url="login_view")
 def patient_unarchive(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -208,7 +212,9 @@ def patient_unarchive(request, id):
 
 @login_required(login_url="login_view")
 def patient_delete(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -221,7 +227,9 @@ def patient_delete(request, id):
 
 @login_required(login_url="login_view")
 def patient_delete_confirm(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     return render(
