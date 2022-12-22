@@ -19,7 +19,7 @@ def service_modalities_list(request):
 
     return render(
         request,
-        "pages/patients_management/service_modalities/service_modalities.html",
+        "sections/patients_management/service_modalities/service_modalities.html",
         context={
             "psychologist": psychologist,
             "service_modalities": service_modalities,
@@ -42,7 +42,7 @@ def create_service_modality(request):
     )
     return render(
         request,
-        "pages/patients_management/service_modalities/create_service_modality.html",
+        "sections/patients_management/service_modalities/create_service_modality.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -101,7 +101,7 @@ def service_modality_update(request, id):
 
     return render(
         request,
-        "pages/patients_management/service_modalities/update_service_modality.html",
+        "sections/patients_management/service_modalities/update_service_modality.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -122,7 +122,7 @@ def service_modality_archive_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/service_modalities/confirm_archive_service_modality.html",
+        "sections/patients_management/service_modalities/confirm_archive_service_modality.html",
         context={
             "psychologist": psychologist,
             "service_modality": service_modality,
@@ -163,7 +163,7 @@ def service_modalities_archived(request):
 
     return render(
         request,
-        "pages/patients_management/service_modalities/archived_service_modalities.html",
+        "sections/patients_management/service_modalities/archived_service_modalities.html",
         context={
             "psychologist": psychologist,
             "service_modalities": service_modalities,
@@ -222,7 +222,7 @@ def service_modality_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/service_modalities/confirm_delete_service_modality.html",
+        "sections/patients_management/service_modalities/confirm_delete_service_modality.html",
         context={
             "psychologist": psychologist,
             "service_modality": service_modality,

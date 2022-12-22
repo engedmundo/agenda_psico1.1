@@ -38,7 +38,7 @@ def create_therapy_session(request, id):
 
     return render(
         request,
-        "pages/patients_management/therapy_sessions/create_therapy_session.html",
+        "sections/patients_management/therapy_sessions/create_therapy_session.html",
         context={
             "psychologist": psychologist,
             "prontuary": prontuary,
@@ -109,7 +109,7 @@ def therapy_session_update(request, id):
 
     return render(
         request,
-        "pages/patients_management/therapy_sessions/update_therapy_session.html",
+        "sections/patients_management/therapy_sessions/update_therapy_session.html",
         context={
             "psychologist": psychologist,
             "prontuary": prontuary,
@@ -194,7 +194,7 @@ def therapy_session_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/therapy_sessions/delete_therapy_session.html",
+        "sections/patients_management/therapy_sessions/confirm_delete_therapy_session.html",
         context={
             "psychologist": psychologist,
             "therapy_session": therapy_session,

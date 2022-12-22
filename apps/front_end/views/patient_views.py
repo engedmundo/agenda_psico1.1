@@ -21,7 +21,7 @@ def patients_list(request):
 
     return render(
         request,
-        "pages/patients_management/patients/patients.html",
+        "sections/patients_management/patients/patients.html",
         context={
             "psychologist": psychologist,
             "patients": patients,
@@ -48,7 +48,7 @@ def create_patient(request):
     )
     return render(
         request,
-        "pages/patients_management/patients/create_patient.html",
+        "sections/patients_management/patients/create_patient.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -115,7 +115,7 @@ def patient_update(request, id):
 
     return render(
         request,
-        "pages/patients_management/patients/update_patient.html",
+        "sections/patients_management/patients/update_patient.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -138,7 +138,7 @@ def patient_archive_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/patients/archive_patient.html",
+        "sections/patients_management/patients/confirm_archive_patient.html",
         context={
             "psychologist": psychologist,
             "patient": patient,
@@ -186,7 +186,7 @@ def patients_archived(request):
 
     return render(
         request,
-        "pages/patients_management/patients/archived_patients.html",
+        "sections/patients_management/patients/archived_patients.html",
         context={
             "psychologist": psychologist,
             "patients": patients,
@@ -228,7 +228,7 @@ def patient_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/patients/delete_patient.html",
+        "sections/patients_management/patients/confirm_delete_patient.html",
         context={
             "psychologist": psychologist,
             "patient": patient,

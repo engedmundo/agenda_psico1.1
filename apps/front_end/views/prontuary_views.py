@@ -23,7 +23,7 @@ def prontuaries_list(request):
 
     return render(
         request,
-        "pages/patients_management/prontuary/prontuaries.html",
+        "sections/patients_management/prontuaries/prontuaries.html",
         context={
             "psychologist": psychologist,
             "prontuaries": prontuaries,
@@ -50,7 +50,7 @@ def create_prontuary(request):
     )
     return render(
         request,
-        "pages/patients_management/prontuary/create_prontuary.html",
+        "sections/patients_management/prontuaries/create_prontuary.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -113,7 +113,7 @@ def prontuary_update(request, id):
 
     return render(
         request,
-        "pages/patients_management/prontuary/update_prontuary.html",
+        "sections/patients_management/prontuaries/update_prontuary.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -144,7 +144,7 @@ def prontuary_details(request, id):
 
     return render(
         request,
-        "pages/patients_management/prontuary/prontuary_details.html",
+        "sections/patients_management/prontuaries/prontuary_details.html",
         context={
             "psychologist": psychologist,
             "prontuary": prontuary,
@@ -166,7 +166,7 @@ def prontuary_archive_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/prontuary/archive_prontuary.html",
+        "sections/patients_management/prontuaries/confirm_archive_prontuary.html",
         context={
             "psychologist": psychologist,
             "prontuary": prontuary,
@@ -209,7 +209,7 @@ def prontuaries_archived(request):
 
     return render(
         request,
-        "pages/patients_management/prontuary/archived_prontuaries.html",
+        "sections/patients_management/prontuaries/archived_prontuaries.html",
         context={
             "psychologist": psychologist,
             "prontuaries": prontuaries,
@@ -269,7 +269,7 @@ def prontuary_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/patients_management/prontuary/delete_prontuary.html",
+        "sections/patients_management/prontuaries/confirm_delete_prontuary.html",
         context={
             "psychologist": psychologist,
             "prontuary": prontuary,
