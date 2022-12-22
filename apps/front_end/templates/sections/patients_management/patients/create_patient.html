@@ -89,7 +89,7 @@
             <div class="form-group mt-3">
               <label for="{{ form.plain.id_for_label }}">* {{ form.plain.label }}</label>
               <br>
-                <select name="plain" id="plain.id_for_label" class="form-control">
+                <select size=3 name="plain" id="plain.id_for_label" class="form-control">
                   {% for payment_plain in payment_plains %}
                     <option value={{ payment_plain.id }}>{{ payment_plain.name_plain }}</option>
                   {% endfor %}

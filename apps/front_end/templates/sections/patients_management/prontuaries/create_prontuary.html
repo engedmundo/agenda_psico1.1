@@ -19,7 +19,7 @@
                   <div class="form-group mt-3">
                     <label for="{{ form.patient.id_for_label }}">* {{ form.patient.label }}</label>
                     <br>
-                    <select name="patient" id="patient.id_for_label" class="form-control">
+                    <select size=5 name="patient" id="patient.id_for_label" class="form-control">
                       {% for patient in patients %}
                         <option value={{ patient.id }}>{{ patient.patient_name }}</option>
                       {% endfor %}

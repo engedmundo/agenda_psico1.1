@@ -1,34 +1,31 @@
 {% load static %}
+{% load l10n %}
 {% block content %}
   <section id="more-features" class="section-bg">
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h3 class="section-title">Cadastrar Recebimento</h3>
+        <h3 class="section-title">Editar Recebimento</h3>
         <span class="section-divider"></span>
       </div>
 
-      <form action="{% url 'payment_control_save' %}" method="post" class="email-form" enctype="multipart/form-data">
+      <form action="" method="post" class="email-form" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="row d-flex justify-content-center">        
           <div class="box col-lg-8 col-md-8">
             <div class="form-group mt-3">
-              <label for="{{ form.prontuary.id_for_label }}">* {{ form.prontuary.label }}</label>
-              <select size=5 name="prontuary" id="prontuary.id_for_label" class="form-control">
-                {% for prontuary in prontuaries %}
-                  <option value={{ prontuary.id }}>{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</option>
-                {% endfor %}
-              </select>
+              <h4 >Pagamento de {{ payment_control.prontuary }}</h4>
             </div>
             
             <div class="form-group mt-3">
               <label for="{{ form.value_paid.id_for_label }}">* {{ form.value_paid.label }}</label>
-                <input 
-                  type="number" 
-                  name="value_paid" 
-                  class="form-control" 
-                  id="value_paid.id_for_label"
-                >
+              <input 
+                type="number" 
+                name="value_paid" 
+                class="form-control" 
+                id="value_paid.id_for_label"
+                value="{{ form.value_paid.value|unlocalize }}"
+              >
             </div>
             
             <div class="form-group mt-3">
@@ -38,6 +35,7 @@
                   name="date_of_pay" 
                   class="form-control" 
                   id="date_of_pay.id_for_label"
+                  value="{{ form.date_of_pay.value|date:'Y-m-d' }}"
                 >
             </div>
 
@@ -48,36 +46,40 @@
                 name="description"
                 id="description.id_for_label"
                 rows="5"
-              ></textarea>
+              >{{ form.description.value }}</textarea>
             </div>
 
             <div class="form-group mt-3">
               <label for="{{ form.payment_method.id_for_label }}">* {{ form.payment_method.label }}</label>
               <select size=5 name="payment_method" id="payment_method.id_for_label" class="form-control">
-                <option value="Pix">Pix</option>
-                <option value="Dinheiro">Dinheiro</option>
-                <option value="Cartão de Crédito">Cartão de Crédito</option>
-                <option value="Transferência Bancária">Transferência Bancária</option>
-                <option value="Cheque">Cheque</option>
+                <option value="Pix" {% if form.payment_method.value == 'Pix' %}selected{% endif %}>Pix</option>
+                <option value="Dinheiro" {% if form.payment_method.value == 'Dinheiro' %}selected{% endif %}>Dinheiro</option>
+                <option value="Cartão de Crédito" {% if form.payment_method.value == 'Cartão de Crédito' %}selected{% endif %}>Cartão de Crédito</option>
+                <option value="Transferência" {% if form.payment_method.value == 'Transferência Bancária' %}selected{% endif %}>Transferência Bancária</option>
+                <option value="Cheque" {% if form.payment_method.value == 'Cheque' %}selected{% endif %}>Cheque</option>
               </select>
             </div>
 
             <div class="form-group mt-3">
               <label for="{{ form.checking_copy.id_for_label }}">{{ form.checking_copy.label }}</label>
-                <input 
+              <p>
+                <img class="advanced-feature-img-right wow fadeInRight" src="/media/{{payment_control.checking_copy}}" width="100%" alt="checking copy image">
+              </p>
+              <br>
+              <input 
                   type="file" 
-                  name="checking_copy"
-                  accept=".jpg, .png"
+                  name="checking_copy" 
                   class="form-control" 
                   id="checking_copy.id_for_label"
-                >
+                  value="{{ form.checking_copy.value }}"
+                >         
             </div>
 
             <div class="text-center">
               <p>Campos marcados com * são obrigatórios</p>
               <br>
               <div class="text-center">
-                <button class="form-button" type="submit" title="Send Message">Cadastrar</button>
+                <button class="form-button" type="submit" title="Send Message">Atualizar</button>
               </div>
             </div>
           </div>

@@ -17,7 +17,7 @@ def payment_control_list(request):
     payments = PaymentControl.objects.filter(
         prontuary__patient__psychologist=psychologist,
         is_active=True,
-    )
+    ).order_by("-date_of_pay")
 
     return render(
         request,
@@ -66,56 +66,60 @@ def payment_control_save(request):
     if not request.POST:
         raise Http404()
 
-    POST = request.POST
-    request.session["register_form_data"] = POST
-    form = PaymentControlRegisterForm(POST)
+    form = PaymentControlRegisterForm(
+        data=request.POST or None,
+        files=request.FILES or None,
+    )
 
     if form.is_valid():
         payment = form.save(commit=False)
         payment.save()
         del request.session["register_form_data"]
 
-    return redirect("create_payment_control")
+    return redirect("payment_control")
 
 
-"""
 @login_required(login_url="login")
-def service_modality_update(request, id):
+def payment_control_update(request, id):
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
     )
-    service_modality = get_object_or_404(
-        ServiceModalitiy,
+    payment_control = get_object_or_404(
+        PaymentControl,
         pk=id,
     )
-    if not service_modality:
+    prontuary = payment_control.prontuary
+    if not payment_control:
         raise Http404()
 
-    if service_modality.psychologist != psychologist:
+    if payment_control.prontuary.patient.psychologist != psychologist:
         raise HttpResponseBadRequest
 
-    form = ServiceModalitiesRegisterForm(
-        data=request.POST or None,
-        instance=service_modality,
+    form = PaymentControlRegisterForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=payment_control,
     )
 
     if form.is_valid():
-        service_modality = form.save(commit=False)
-        service_modality.psychologist = psychologist
-        service_modality.save()
-        return redirect("service_modalities")
+        payment = form.save(commit=False)
+        payment.prontuary = prontuary
+        payment.save()
+        return redirect("payment_control")
 
     return render(
         request,
-        "pages/patients_management/service_modalities/update_service_modality.html",
+        "pages/financial/payment_control/update_payment_control.html",
         context={
             "psychologist": psychologist,
             "form": form,
+            "payment_control": payment_control,
         },
     )
 
 
+"""
 @login_required(login_url="login")
 def service_modality_archive_confirm(request, id):
     psychologist = get_object_or_404(

@@ -332,4 +332,9 @@ urlpatterns += [
         payment_control_save,
         name="payment_control_save",
     ),
+    path(
+        "payment_control/<int:id>/update/",
+        payment_control_update,
+        name="payment_control_update",
+    ),
 ]
