@@ -15,6 +15,9 @@
             <div class="col-lg-6">
               <div class="box">
                 <h4 class="title"><a href="">{{ prontuary.patient.patient_name }} | Prontuário {{ prontuary.prontuary_number }}</a></h4>
+                {% if prontuary.type_of_service %}
+                  <h6>{{ prontuary.type_of_service }}</h6>
+                {% endif %}
                 <div class="d-flex justify-content-between">
                   <div>
                     <p class="description"><i class="bi bi-telephone"></i> {{ prontuary.patient.phone_number }}</p>

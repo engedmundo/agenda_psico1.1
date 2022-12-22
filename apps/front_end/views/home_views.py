@@ -1,6 +1,6 @@
 from random import randint
 
-from apps.core.models import Psychologist
+from apps.core.models import Psychologist, ServiceModalitiy
 from apps.front_end.forms import LoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -26,11 +26,15 @@ def home(request):
 
 def professional_description(request, id):
     psychologist = get_object_or_404(Psychologist, id=id)
+    types_of_service = ServiceModalitiy.objects.filter(
+        psychologist=psychologist,
+    )
     return render(
         request,
         "pages/home/profile_description.html",
         context={
             "psychologist": psychologist,
+            "types_of_service": types_of_service,
         },
     )
 

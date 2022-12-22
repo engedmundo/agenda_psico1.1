@@ -1,4 +1,4 @@
-from apps.core.models import CommonInfo
+from apps.core.models import CommonInfo, ServiceModalitiy
 from apps.patient_management.models import Patient
 from django.db import models
 
@@ -24,6 +24,13 @@ class Prontuary(CommonInfo):
     )
     demand_description = models.TextField(
         verbose_name="Avaliação da demanda",
+    )
+    type_of_service = models.ForeignKey(
+        ServiceModalitiy,
+        verbose_name="Tipo de atendimento",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
 
     class Meta:

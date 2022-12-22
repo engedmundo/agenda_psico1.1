@@ -13,6 +13,11 @@
             <h2>{{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}</h2>
             <h3>{{ psychologist.short_description }} | {{ psychologist.crp_register }}</h3>
             <p>{{ psychologist.bio }}</p>
+            <h4><b>Modalidades de atendimento</b></h4>
+            {% for service in types_of_service %}
+              <h5>{{ service.name }}</h5>
+              <p>{{ service.description }}</p>
+            {% endfor %}
           </div>
         </div>
       </div>

@@ -35,6 +35,16 @@
                 </div>
 
                 <div class="form-group mt-3">
+                  <label for="{{ form.type_of_service.id_for_label }}">* {{ form.type_of_service.label }}</label>
+                  <br>
+                  <select size=5 name="type_of_service" id="type_of_service.id_for_label" class="form-control">
+                    {% for service in types_of_service %}
+                      <option value={{ service.id }} {% if service == active_service %}selected{% endif %}>{{ service.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="form-group mt-3">
                   <label for="{{ form.open_date.id_for_label }}">* {{ form.open_date.label }}</label>
                     <input 
                       type="date" 

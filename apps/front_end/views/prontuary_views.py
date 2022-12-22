@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from apps.core.models import Psychologist
+from apps.core.models import Psychologist, ServiceModalitiy
 from apps.patient_management.forms import ProntuaryRegisterForm
 from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.contrib import messages
@@ -43,6 +43,11 @@ def create_prontuary(request):
     )
     patients = Patient.objects.filter(
         psychologist=psychologist,
+        is_active=True,
+    )
+    types_of_service = ServiceModalitiy.objects.filter(
+        psychologist=psychologist,
+        is_active=True,
     )
 
     form = ProntuaryRegisterForm(
@@ -55,6 +60,7 @@ def create_prontuary(request):
             "psychologist": psychologist,
             "form": form,
             "patients": patients,
+            "types_of_service": types_of_service,
         },
     )
 
@@ -94,6 +100,12 @@ def prontuary_update(request, id):
     )
     patient = prontuary.patient
 
+    types_of_service = ServiceModalitiy.objects.filter(
+        psychologist=psychologist,
+        is_active=True,
+    )
+    active_service = prontuary.type_of_service
+
     if not prontuary:
         raise Http404()
 
@@ -118,6 +130,8 @@ def prontuary_update(request, id):
             "psychologist": psychologist,
             "form": form,
             "prontuary": prontuary,
+            "types_of_service": types_of_service,
+            "active_service": active_service,
         },
     )
 
