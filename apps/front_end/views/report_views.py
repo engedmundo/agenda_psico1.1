@@ -19,7 +19,7 @@ def pending_session_payments_report(request):
 
     return render(
         request,
-        "pages/financial/reports/session_payments_report.html",
+        "sections/financial/reports/session_payments_report.html",
         context=payment_sessions_info,
     )
 
@@ -34,7 +34,7 @@ def paid_session_payments_report(request):
 
     return render(
         request,
-        "pages/financial/reports/session_payments_report.html",
+        "sections/financial/reports/session_payments_report.html",
         context=payment_sessions_info,
     )
 
@@ -48,7 +48,7 @@ def therapy_session_payments_report(request):
 
     return render(
         request,
-        "pages/financial/reports/session_payments_report.html",
+        "sections/financial/reports/session_payments_report.html",
         context=payment_sessions_info,
     )
 
@@ -129,10 +129,10 @@ def payment_control_report(request):
         "-date_of_pay",
     )
     total_value = sum([payment.value_paid for payment in payments])
-    
+
     return render(
         request,
-        "pages/financial/reports/payment_control_report.html",
+        "sections/financial/reports/payment_control_report.html",
         context={
             "psychologist": psychologist,
             "payments": payments,

@@ -21,7 +21,7 @@ def payment_control_list(request):
 
     return render(
         request,
-        "pages/financial/payment_control/payment_control.html",
+        "sections/financial/payment_control/payment_control.html",
         context={
             "psychologist": psychologist,
             "payments": payments,
@@ -48,7 +48,7 @@ def create_payment_control(request):
     )
     return render(
         request,
-        "pages/financial/payment_control/create_payment_control.html",
+        "sections/financial/payment_control/create_payment_control.html",
         context={
             "psychologist": psychologist,
             "prontuaries": prontuaries,
@@ -74,7 +74,6 @@ def payment_control_save(request):
     if form.is_valid():
         payment = form.save(commit=False)
         payment.save()
-        del request.session["register_form_data"]
 
     return redirect("payment_control")
 
@@ -110,7 +109,7 @@ def payment_control_update(request, id):
 
     return render(
         request,
-        "pages/financial/payment_control/update_payment_control.html",
+        "sections/financial/payment_control/update_payment_control.html",
         context={
             "psychologist": psychologist,
             "form": form,
@@ -150,7 +149,7 @@ def payment_control_delete_confirm(request, id):
 
     return render(
         request,
-        "pages/financial/payment_control/confirm_delete_payment_control.html",
+        "sections/financial/payment_control/confirm_delete_payment_control.html",
         context={
             "psychologist": psychologist,
             "payment_control": payment_control,

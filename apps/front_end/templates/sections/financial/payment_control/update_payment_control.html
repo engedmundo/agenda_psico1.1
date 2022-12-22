@@ -1,3 +1,4 @@
+{% extends "pages/financial/payment_control.html" %}
 {% load static %}
 {% load l10n %}
 {% block content %}
@@ -62,9 +63,11 @@
 
             <div class="form-group mt-3">
               <label for="{{ form.checking_copy.id_for_label }}">{{ form.checking_copy.label }}</label>
+              {% if form.checking_copy.value %}
               <p>
                 <img class="advanced-feature-img-right wow fadeInRight" src="/media/{{payment_control.checking_copy}}" width="100%" alt="checking copy image">
               </p>
+              {% endif %}
               <br>
               <input 
                   type="file" 
