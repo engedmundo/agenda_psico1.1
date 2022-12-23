@@ -1,0 +1,17 @@
+body {
+    background: #fff;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+}
+
+.page {
+    width: 21cm;
+    height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    background: white;
+}
+
+.tab {
+    tab-size: 4;
+}
