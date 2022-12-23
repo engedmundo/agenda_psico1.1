@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
+from num2words import num2words
 
 
 @login_required(login_url="login_view")
@@ -139,5 +140,42 @@ def payment_control_report(request):
             "total_value": total_value,
             "start_date": start_date,
             "end_date": end_date,
+        },
+    )
+
+
+@login_required(login_url="login_view")
+def payment_receipt(request, id):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    payment = get_object_or_404(
+        PaymentControl,
+        pk=id,
+    )
+    today = datetime.today()
+
+    value_in_words = num2words(
+        number=payment.value_paid,
+        lang="pt_BR",
+        to="currency",
+    )
+    signature_line = "_" * (
+        (
+            len(psychologist.psychologist.first_name)
+            + len(psychologist.psychologist.last_name)
+        )
+        + 20
+    )
+
+    return render(
+        request,
+        "sections/financial/reports/payment_receipt.html",
+        context={
+            "psychologist": psychologist,
+            "payment": payment,
+            "value_in_words": value_in_words,
+            "signature_line": signature_line,
         },
     )

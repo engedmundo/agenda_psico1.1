@@ -22,7 +22,7 @@ class Patient(CommonInfo):
         "CPF",
         null=True,
         blank=True,
-        max_length=11,
+        max_length=20,
     )
     phone_number = models.CharField(
         "Telefone",

@@ -1,0 +1,67 @@
+{% comment %} {% extends "pages/financial/reports.html" %}{% endcomment %}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>Recibo de pagamento | Psique Ativa</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href={% static "vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href={% static "css/receipt_style.css" %} rel="stylesheet">
+  </head>
+
+
+<body >
+  <section class="page">
+    <div class="d-flex justify-content-center mb-5">
+      <h1>RECIBO</h1>
+    </div>
+    <div class="d-flex justify-content-between mb-5">
+      <h3>Número: {{ payment.id }}</h3>
+      <h3>Valor: R$ {{ payment.value_paid}}</h3>
+    </div>
+    
+    <div class="mb-4">
+      <p>         
+        Recebi de {{ payment.prontuary.patient.patient_name }}, 
+        {% if payment.prontuary.patient.cpf %}
+        inscrito(a) sob o CPF {{ payment.prontuary.patient.cpf }},
+        {% endif %}
+        
+        a quantia de <b>R$ {{ payment.value_paid}} ({{ value_in_words }})</b>,
+        
+        {% if payment.description %}
+        referente a {{ payment.description }}, 
+        {% endif %},
+        e para clareza firmo o presente recibo.
+      </p>
+    </div >
+
+    <div class="mb-5">
+      <p class="text-end">{{ psychologist.city }}, {{ payment.date_of_pay }}</p>
+    </div>
+
+    <div class"mt-5">
+      <p class="text-center lh-sm">
+        {{ signature_line }}
+        <br>
+        {{ psychologist.psychologist.first_name }} {{ psychologist.psychologist.last_name }}
+        <br>
+        {{ psychologist.crp_register }}
+        <br>
+        {{ psychologist.cpf }}
+        <br>
+        {{ psychologist.professional_address }}, {{ psychologist.city }}
+      </p>
+    </div>
+
+</body>
+  

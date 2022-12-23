@@ -264,6 +264,11 @@ urlpatterns += [
         payment_control_report,
         name="payment_control_report",
     ),
+    path(
+        "payment_receipt/<int:id>/",
+        payment_receipt,
+        name="payment_receipt",
+    ),
 ]
 
 # service modalities

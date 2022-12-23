@@ -10,14 +10,25 @@ class Psychologist(CommonInfo):
         verbose_name="Psicólogo(a)",
         on_delete=models.CASCADE,
     )
-    crp_register = models.CharField("Registro CRP", max_length=20)
+    crp_register = models.CharField(
+        "Registro CRP",
+        max_length=20,
+    )
     short_description = models.CharField(
         "Descrição curta",
         max_length=100,
         null=True,
         blank=True,
     )
-    professional_address = models.CharField("Endereço Profissional", max_length=200)
+    professional_address = models.CharField(
+        "Endereço Profissional",
+        max_length=200,
+    )
+    city = models.CharField(
+        "Cidade",
+        max_length=200,
+        default="Passo Fundo-RS",
+    )
     secondary_address = models.CharField(
         "Endereço secundário",
         max_length=200,

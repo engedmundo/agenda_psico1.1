@@ -33,7 +33,7 @@
                     {% endif %}
                   </div>
                   <div>
-                    {% comment %} <p><a href="{% url 'payment_control' %}"><i class="bi bi-card-text"></i> Gerar Recibo</a></p> {% endcomment %}
+                    <p><a href="{% url 'payment_receipt' payment.id %}"><i class="bi bi-card-text"></i> Gerar Recibo</a></p>
                     <p><a href="{% url 'payment_control_update' payment.id %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
                     <br>
                     <p><a href="{% url 'payment_control_delete_confirm' payment.id %}"><i class="bi bi-trash"></i> Excluir</a></p>
