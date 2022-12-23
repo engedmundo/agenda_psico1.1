@@ -127,6 +127,17 @@
                       value="{{ psycho_form.professional_address.value }}"
                     >
                   </div>
+                  
+                  <div class="form-group mt-3">
+                    <label for="{{ psycho_form.city.id_for_label }}">{{ psycho_form.city.label }}</label>
+                    <input 
+                      type="text" 
+                      name="city" 
+                      class="form-control" 
+                      id="city.id_for_label"
+                      value="{{ psycho_form.city.value }}"
+                    >
+                  </div>
 
                   <div class="form-group mt-3">
                     <label for="{{ psycho_form.secondary_address.id_for_label }}">{{ psycho_form.secondary_address.label }}</label>
