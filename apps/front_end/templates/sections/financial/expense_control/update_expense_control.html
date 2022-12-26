@@ -1,0 +1,87 @@
+{% extends "pages/financial/expense_control.html" %}
+{% load static %}
+{% load l10n %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Atualizar Despesa</h3>
+        <span class="section-divider"></span>
+      </div>
+
+      <form action="" method="post" class="email-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="row d-flex justify-content-center">        
+          <div class="box col-lg-8 col-md-8">
+            <div class="form-group mt-3">
+              <label for="{{ form.category.id_for_label }}">* {{ form.category.label }}</label>
+              <select size=4 name="category" id="category.id_for_label" class="form-control">
+                {% for category in categories %}
+                  <option value={{ category.id }} {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div class="form-group mt-3">
+              <label for="{{ form.expense_value.id_for_label }}">* {{ form.expense_value.label }}</label>
+                <input 
+                  type="number" 
+                  name="expense_value" 
+                  class="form-control" 
+                  id="expense_value.id_for_label"
+                  value="{{ form.expense_value.value|unlocalize }}"
+                >
+            </div>
+            
+            <div class="form-group mt-3">
+              <label for="{{ form.completion_date.id_for_label }}">* {{ form.completion_date.label }}</label>
+                <input 
+                  type="date" 
+                  name="completion_date" 
+                  class="form-control" 
+                  id="completion_date.id_for_label"
+                  value="{{ form.completion_date.value|date:'Y-m-d' }}"
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.cpf_cnpj.id_for_label }}">{{ form.cpf_cnpj.label }}</label>
+                <input 
+                  type="text" 
+                  name="cpf_cnpj" 
+                  class="form-control" 
+                  id="cpf_cnpj.id_for_label"
+                  alue="{% if form.cpf_cnpj.value %}{{ form.cpf_cnpj.value }}{% endif %}"
+                >
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+              <textarea 
+                class="form-control"
+                name="description"
+                id="description.id_for_label"
+                rows="5"
+              >{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+            </div>
+
+
+            <div class="text-center">
+              <p>Campos marcados com * são obrigatórios</p>
+              <br>
+              <div class="text-center">
+                <button class="form-button" type="submit" title="Send Message">Atualizar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            {{ form.errors }}
+          </div>
+          
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "pages/financial/expense_control.html" %}
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Excluir Despesa</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja excluir a despesa abaixo?</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6 col-md-6">
+        <div class="box">
+          <h3>{{ expense.completion_date|date:'d/m/Y' }} #{{ expense.id }}</h3>
+          <ul>
+            <li><b>Valor pago:</b> R$ {{ expense.expense_value }}</li>
+            <li><b>Data do pagamento:</b> {{ expense.completion_date }}</li>
+            {% if expense.description %}
+              <li><b>Descrição:</b> {{ expense.description }}</li>
+            {% endif %}
+            {% if expense.cpf_cnpj %}
+              <li><b>CPF/CNPJ do recebedor: </b>{{ expense.cpf_cnpj }}</li>
+            {% endif %}
+          </ul>
+          <br><br>
+          <p class="section-description">Esta ação não poderá ser desfeita!!!</p>
+          <a href="{% url 'expense_control_delete' expense.id %}" class="text-center form-button">Excluir</a>
+          <a href="{% url 'expense_control' %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

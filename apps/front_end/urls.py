@@ -359,7 +359,7 @@ urlpatterns += [
     ),
 ]
 
-# service modalities
+# expense categories
 urlpatterns += [
     path(
         "expense_categories/",
@@ -410,5 +410,39 @@ urlpatterns += [
         "expense_categories/<int:id>/delete_confirm/",
         expense_category_delete_confirm,
         name="expense_category_delete_confirm",
+    ),
+]
+
+# expense control
+urlpatterns += [
+    path(
+        "expense_control/",
+        expense_control_list,
+        name="expense_control",
+    ),
+    path(
+        "expense_control/create/",
+        create_expense_control,
+        name="create_expense_control",
+    ),
+    path(
+        "expense_control/save/",
+        expense_control_save,
+        name="expense_control_save",
+    ),
+    path(
+        "expense_control/<int:id>/update/",
+        expense_control_update,
+        name="expense_control_update",
+    ),
+    path(
+        "expense_control/<int:id>/delete/",
+        expense_control_delete,
+        name="expense_control_delete",
+    ),
+    path(
+        "expense_control/<int:id>/delete_confirm/",
+        expense_control_delete_confirm,
+        name="expense_control_delete_confirm",
     ),
 ]

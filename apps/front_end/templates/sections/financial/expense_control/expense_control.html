@@ -1,0 +1,49 @@
+{% extends "pages/financial/expense_control.html" %}
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Controle de Despesas</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          <div class="d-flex justify-content-between">
+              <a href="{% url 'create_expense_control' %}" class="text-right form-button">Inserir despesa</a>
+              <a href="{% url 'payment_control_report' %}" class="text-right form-button">Relatório de despesas</a>
+          </div>
+          
+          {% for expense in expenses %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="">{{ expense.completion_date|date:'d/m/Y' }} #{{ expense.id }}</a></h4>
+                <div class="d-flex justify-content-between">
+                  <div class="col-lg-8">
+                    <p class="description"><b>{{ expense.category }}</b></p>
+                    <p class="description">R$ {{ expense.expense_value }}</p>
+                    <p class="description"><i class="bi bi-calendar-week"></i> {{ expense.completion_date|date:'d/m/Y' }}</p>
+                    {% if expense.description %}
+                      <p class="description"><i class="bi bi-list-columns-reverse"></i> {{ expense.description }}</p>
+                    {% endif %}
+                    {% if expense.cpf_cnpj %}
+                      <p class="description"><i class="bi bi-bank"></i> {{ expense.cpf_cnpj }}</p>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <p><a href="{% url 'expense_control_update' expense.id %}"><i class="bi bi-pencil-square"></i> Editar</a></p>
+                    <br>
+                    <p><a href="{% url 'expense_control_delete_confirm' expense.id %}"><i class="bi bi-trash"></i> Excluir</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+  </section>
+{% endblock content %}

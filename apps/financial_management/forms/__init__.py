@@ -1,3 +1,4 @@
 from .expense_category_form import ExpenseCategoryRegisterForm
+from .expense_control_form import ExpenseControlRegisterForm
 from .payment_control_form import PaymentControlRegisterForm
 from .payment_plain_form import PaymentPlainRegisterForm

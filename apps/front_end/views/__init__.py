@@ -1,4 +1,5 @@
 from .expense_categories_views import *
+from .expense_control_views import *
 from .home_views import *
 from .patient_views import *
 from .payment_control_views import *

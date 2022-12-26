@@ -15,7 +15,9 @@ class ExpenseControl(CommonInfo):
         on_delete=models.CASCADE,
     )
     expense_value = models.DecimalField(
-        "Valor da despesa", max_digits=8, decimal_places=2
+        "Valor da despesa",
+        max_digits=8,
+        decimal_places=2,
     )
     completion_date = models.DateField("Data de pagamento")
     description = models.TextField(
