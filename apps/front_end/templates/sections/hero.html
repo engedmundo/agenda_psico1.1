@@ -6,7 +6,7 @@
       <h2>Bem vindo à Psique Ativa</h2>
       <p>A sua forma simples de cuidado com saúde mental</p>
       {% if request.user.is_authenticated %}
-        <a href="/meuconsultorio" class="btn-get-started scrollto">Meu consultório</a>
+        <a href="{% url 'patients_list' %}" class="btn-get-started scrollto">Meu consultório</a>
       {% else %} 
         <a href="{% url 'login' %}" class="btn-get-started scrollto">Entrar na área restrita</a>
       {% endif %}
