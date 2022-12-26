@@ -5,7 +5,7 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h3 class="section-title">Relatório de pagamentos por sessão</h3>
+        <h3 class="section-title">Relatório de Despesas</h3>
         <span class="section-divider"></span>
         <h6 class="row d-flex justify-content-center">
           Mostrando dados cadastrados entre {{ start_date|date:'d/m/Y' }} e {{ end_date|date:'d/m/Y' }}
@@ -32,21 +32,19 @@
               </div>
 
               <div class="form-group mt-3 col-lg-6">
-                <label>Status de pagamento</label>
-                  <select size=3 name="payment_status" class="form-control">
-                    <option value="pending">Sessões pendentes</option>
-                    <option value="paid">Sessões pagas</option>
-                  </select>
+                <label>Categoria</label>
+                <select size=4 name="category" class="form-control">
+                  {% for category in categories %}
+                    <option value={{ category.id }}>{{ category }}</option>
+                  {% endfor %}
+                </select>
               </div>
-
             </div>
             <br>
-        
             <div class="text-center">
               <button class="form-button" type="submit" title="Send Message">Filtrar</button>
-              <a href="{% url 'therapy_session_payments_report' %}" class="form-button">Limpar</a>
-            </div>
-            
+              <a href="{% url 'payment_control_report' %}" class="form-button">Limpar</a>
+            </div>          
             <div>              
               <p>
                 <a href="{% url 'home' %}" class="text-right">Voltar para home</a>
@@ -56,56 +54,31 @@
         </div>
         
         <div class="box col-lg-8">
-          <h3 class="title">
-            {% if payment_status == "paid" %}
-              Sessões Pagas
-            {% elif payment_status == "pending" %}
-              Sessões Pendentes
-            {% elif pending %}
-              Sessões
-            {% endif %}
-          </h3>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col"><p>Paciente</p></th>
-                <th scope="col"><p>Prontuário</p></th>
-                <th scope="col"><p>Sessão</p></th>
+                <th scope="col"><p>Categoria</p></th>
+                <th scope="col"><p>CPF/CNPJ</p></th>
                 <th scope="col"><p>Data</p></th>
-                <th scope="col"><p>Horário</p></th>
                 <th scope="col"><p>Valor</p></th>
-                <th scope="col"><p>Pagmento</p></th>
+                <th scope="col"><p>Descrição</p></th>
               </tr>
             </thead>
             
             <tbody>
-              {% for session in therapy_sessions %}
+              {% for expense in expenses %}
               <tr>
-                <td><p>{{ session.prontuary.patient }}</p></td>
-                <td><p>{{ session.prontuary.prontuary_number}}</p></td>
-                <td><p>{{ session.session_number }}</p></td>
-                <td><p>{{ session.date_session|date:'d/m/Y' }}</p></td>
-                <td><p>{{ session.hour_session }}</p></td>
-                <td><p>R$ 
-                  {% if session.prontuary.patient.session_value %}
-                    {{ session.prontuary.patient.session_value }}
-                  {% else %}
-                    {{ session.prontuary.patient.plain.plain_value }}
-                  {% endif %}
-                </p></td>
-                <td><p class="description">
-                  {% if session.payment %}
-                    <i class="bi bi-check-circle"></i>
-                  {% else %}
-                    <i class="bi bi-x-circle"></i>
-                  {% endif %}
-                </p></td> 
+                <td><p>{{ expense.category }}</p></td>
+                <td><p>{{ expense.cpf_cnpj }}</p></td>
+                <td><p>{{ expense.completion_date|date:'d/m/Y'}}</p></td>
+                <td><p>R$ {{ expense.expense_value }}</p></td>
+                <td><p>{{ expense.description }}</p></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
           <div class="d-flex justify-content-center">
-            <h4>Valor total das sessões: R$ {{ total_value }}</h4>
+            <h4>Valor total de recebimentos: R$ {{ total_value }}</h4>
           </div>
         </div>
       </div>

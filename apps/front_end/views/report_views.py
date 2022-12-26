@@ -1,7 +1,11 @@
 from datetime import date, datetime
 
 from apps.core.models import Psychologist
-from apps.financial_management.models import PaymentControl
+from apps.financial_management.models import (
+    ExpenseCategory,
+    ExpenseControl,
+    PaymentControl,
+)
 from apps.patient_management.models import Patient, Prontuary, TherapySession
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,66 +14,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 from num2words import num2words
 
 
-@login_required(login_url="login_view")
-def pending_session_payments_report(request):
-    payment_sessions_info = session_payments_report(
-        request=request,
-        payment_status="pending",
-    )
-    payment_sessions_info["pending"] = True
-
-    return render(
-        request,
-        "sections/financial/reports/session_payments_report.html",
-        context=payment_sessions_info,
-    )
-
-
-@login_required(login_url="login_view")
-def paid_session_payments_report(request):
-    payment_sessions_info = session_payments_report(
-        request=request,
-        payment_status="paid",
-    )
-    payment_sessions_info["paid"] = True
-
-    return render(
-        request,
-        "sections/financial/reports/session_payments_report.html",
-        context=payment_sessions_info,
-    )
-
-
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_payments_report(request):
-    payment_sessions_info = session_payments_report(
-        request=request,
-    )
-    payment_sessions_info["therapy"] = True
-
-    return render(
-        request,
-        "sections/financial/reports/session_payments_report.html",
-        context=payment_sessions_info,
-    )
-
-
-def session_payments_report(request, payment_status: str = None) -> dict:
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
     )
+    start_date, end_date = get_start_and_end_date(request=request)
 
-    start_date = (
-        datetime.strptime(request.GET.get("start_date"), "%Y-%m-%d")
-        if request.GET.get("start_date")
-        else date(2020, 1, 1)
-    )
-    end_date = (
-        datetime.strptime(request.GET.get("end_date"), "%Y-%m-%d")
-        if request.GET.get("end_date")
-        else date.today()
-    )
     therapy_sessions = TherapySession.objects.filter(
         prontuary__patient__psychologist=psychologist,
         date_session__range=[start_date, end_date],
@@ -78,14 +30,21 @@ def session_payments_report(request, payment_status: str = None) -> dict:
         "-prontuary",
         "-date_session",
     )
-    if payment_status == "pending":
-        therapy_sessions = therapy_sessions.filter(
-            payment=False,
-        )
-    elif payment_status == "paid":
-        therapy_sessions = therapy_sessions.filter(
-            payment=True,
-        )
+    payment_status = None
+
+    if request.GET.get("payment_status"):
+        payment_status = request.GET.get("payment_status")
+
+        if payment_status == "pending":
+            therapy_sessions = therapy_sessions.filter(
+                payment=False,
+            )
+        elif payment_status == "paid":
+            therapy_sessions = therapy_sessions.filter(
+                payment=True,
+            )
+        else:
+            raise Http404
 
     total_value = sum(
         [
@@ -96,32 +55,27 @@ def session_payments_report(request, payment_status: str = None) -> dict:
         ]
     )
 
-    return {
-        "psychologist": psychologist,
-        "therapy_sessions": therapy_sessions,
-        "total_value": total_value,
-        "start_date": start_date,
-        "end_date": end_date,
-    }
+    return render(
+        request,
+        "sections/financial/reports/session_payments_report.html",
+        context={
+            "psychologist": psychologist,
+            "therapy_sessions": therapy_sessions,
+            "total_value": total_value,
+            "start_date": start_date,
+            "end_date": end_date,
+            "payment_status": payment_status,
+        },
+    )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def payment_control_report(request):
     psychologist = get_object_or_404(
         Psychologist,
         psychologist__username=request.user,
     )
-
-    start_date = (
-        datetime.strptime(request.GET.get("start_date"), "%Y-%m-%d")
-        if request.GET.get("start_date")
-        else date(2020, 1, 1)
-    )
-    end_date = (
-        datetime.strptime(request.GET.get("end_date"), "%Y-%m-%d")
-        if request.GET.get("end_date")
-        else date.today()
-    )
+    start_date, end_date = get_start_and_end_date(request=request)
     payments = PaymentControl.objects.filter(
         prontuary__patient__psychologist=psychologist,
         date_of_pay__range=[start_date, end_date],
@@ -129,6 +83,25 @@ def payment_control_report(request):
         "prontuary",
         "-date_of_pay",
     )
+    patients = Patient.objects.filter(
+        psychologist=psychologist,
+        is_active=True,
+    )
+    if request.GET.get("patient"):
+        try:
+            patient = get_object_or_404(
+                Patient,
+                pk=request.GET.get("patient"),
+            )
+            if patient.psychologist != psychologist:
+                raise HttpResponseBadRequest
+
+            payments = payments.filter(
+                prontuary__patient=patient,
+            )
+        except:
+            raise Http404
+
     total_value = sum([payment.value_paid for payment in payments])
 
     return render(
@@ -137,6 +110,7 @@ def payment_control_report(request):
         context={
             "psychologist": psychologist,
             "payments": payments,
+            "patients": patients,
             "total_value": total_value,
             "start_date": start_date,
             "end_date": end_date,
@@ -144,7 +118,7 @@ def payment_control_report(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def payment_receipt(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -154,7 +128,6 @@ def payment_receipt(request, id):
         PaymentControl,
         pk=id,
     )
-    today = datetime.today()
 
     value_in_words = num2words(
         number=payment.value_paid,
@@ -179,3 +152,65 @@ def payment_receipt(request, id):
             "signature_line": signature_line,
         },
     )
+
+
+@login_required(login_url="login")
+def expense_control_report(request):
+    psychologist = get_object_or_404(
+        Psychologist,
+        psychologist__username=request.user,
+    )
+    start_date, end_date = get_start_and_end_date(request=request)
+
+    expenses = ExpenseControl.objects.filter(
+        psychologist=psychologist,
+        completion_date__range=[start_date, end_date],
+    ).order_by("-completion_date")
+
+    categories = ExpenseCategory.objects.filter(
+        psychologist=psychologist,
+        is_active=True,
+    )
+    if request.GET.get("category"):
+        try:
+            category = get_object_or_404(
+                ExpenseCategory,
+                pk=request.GET.get("category"),
+            )
+            if category.psychologist != psychologist:
+                raise HttpResponseBadRequest
+
+            expenses = expenses.filter(
+                category=category,
+            )
+        except:
+            raise Http404
+
+    total_value = sum([expense.expense_value for expense in expenses])
+
+    return render(
+        request,
+        "sections/financial/reports/expense_control_report.html",
+        context={
+            "psychologist": psychologist,
+            "expenses": expenses,
+            "categories": categories,
+            "total_value": total_value,
+            "start_date": start_date,
+            "end_date": end_date,
+        },
+    )
+
+
+def get_start_and_end_date(request) -> tuple:
+    start_date = (
+        datetime.strptime(request.GET.get("start_date"), "%Y-%m-%d")
+        if request.GET.get("start_date")
+        else date(2020, 1, 1)
+    )
+    end_date = (
+        datetime.strptime(request.GET.get("end_date"), "%Y-%m-%d")
+        if request.GET.get("end_date")
+        else date.today()
+    )
+    return start_date, end_date

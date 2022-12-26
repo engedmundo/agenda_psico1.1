@@ -245,16 +245,6 @@ urlpatterns += [
 # report urls
 urlpatterns += [
     path(
-        "pending_session_payments_report/",
-        pending_session_payments_report,
-        name="pending_session_payments_report",
-    ),
-    path(
-        "paid_session_payments_report/",
-        paid_session_payments_report,
-        name="paid_session_payments_report",
-    ),
-    path(
         "therapy_session_payments_report/",
         therapy_session_payments_report,
         name="therapy_session_payments_report",
@@ -268,6 +258,11 @@ urlpatterns += [
         "payment_receipt/<int:id>/",
         payment_receipt,
         name="payment_receipt",
+    ),
+    path(
+        "expense_control_report/",
+        expense_control_report,
+        name="expense_control_report",
     ),
 ]
 

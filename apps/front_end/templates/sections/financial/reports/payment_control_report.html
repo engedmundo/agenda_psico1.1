@@ -14,24 +14,30 @@
 
       <div class="row d-flex justify-content-center">      
         <div class="box col-lg-8">
-          <h3 class="title">Filtrar por data </h3>
           <form action="?" method="GET">
-            <div class="form-group mt-3">
-              <label>Data inicial</label>
-                <input 
-                  type="date" 
-                  class="form-control"
-                  name="start_date"
-                >
-            </div>
-        
-            <div class="form-group mt-3">
-              <label>Data final</label>
-                <input 
-                  type="date" 
-                  class="form-control"
-                  name="end_date"
-                >
+            <div class="d-flex justify-content-between">
+              <div class="form-group mt-3 col-lg-5">
+                <label>Data inicial</label>
+                  <input 
+                    type="date" 
+                    class="form-control"
+                    name="start_date"
+                  >
+                  <label>Data final</label>
+                  <input 
+                    type="date" 
+                    class="form-control"
+                    name="end_date"
+                  >
+              </div>
+              <div class="form-group mt-3 col-lg-6">
+                <label>Paciente</label>
+                  <select size=4 name="patient" class="form-control">
+                    {% for patient in patients %}
+                      <option value={{ patient.id }}>{{ patient }}</option>
+                    {% endfor %}
+                  </select>
+              </div>
             </div>
             <br>
             <div class="text-center">
@@ -47,15 +53,6 @@
         </div>
         
         <div class="box col-lg-8">
-          <h3 class="title">
-            {% if therapy %}
-              Sessões
-            {% elif paid %}
-              Sessões Pagas
-            {% elif pending %}
-              Sessões Pendentes
-            {% endif %}
-          </h3>
           <table class="table table-hover">
             <thead>
               <tr>

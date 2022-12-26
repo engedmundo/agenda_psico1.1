@@ -9,7 +9,10 @@ class ExpenseCategory(CommonInfo):
         on_delete=models.CASCADE,
         null=True,
     )
-    name = models.CharField("Nome da categoria", max_length=50)
+    name = models.CharField(
+        "Nome da categoria",
+        max_length=50,
+    )
     description = models.TextField(
         "Descrição da modalidade",
         null=True,

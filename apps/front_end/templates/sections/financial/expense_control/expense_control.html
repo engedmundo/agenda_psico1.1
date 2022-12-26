@@ -13,7 +13,7 @@
         <div class="row gy-4">
           <div class="d-flex justify-content-between">
               <a href="{% url 'create_expense_control' %}" class="text-right form-button">Inserir despesa</a>
-              <a href="{% url 'payment_control_report' %}" class="text-right form-button">Relatório de despesas</a>
+              <a href="{% url 'expense_control_report' %}" class="text-right form-button">Relatório de despesas</a>
           </div>
           
           {% for expense in expenses %}
