@@ -9,7 +9,7 @@ from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def create_therapy_session(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -48,7 +48,7 @@ def create_therapy_session(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_save(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -76,7 +76,7 @@ def therapy_session_save(request, id):
     return redirect("prontuary_details", id)
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_update(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -119,7 +119,7 @@ def therapy_session_update(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_update_payment(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -140,7 +140,7 @@ def therapy_session_update_payment(request, id):
     return redirect("prontuary_details", therapy_session.prontuary.id)
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_update_fault(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -161,7 +161,7 @@ def therapy_session_update_fault(request, id):
     return redirect("prontuary_details", therapy_session.prontuary.id)
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_delete(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -181,7 +181,7 @@ def therapy_session_delete(request, id):
     return redirect("prontuary_details", prontuary_id)
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def therapy_session_delete_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,

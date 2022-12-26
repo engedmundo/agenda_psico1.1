@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patients_list(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -29,7 +29,7 @@ def patients_list(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def create_patient(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -57,7 +57,7 @@ def create_patient(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_save(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -80,7 +80,7 @@ def patient_save(request):
     return redirect("patients_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_update(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -125,7 +125,7 @@ def patient_update(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_archive_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -146,7 +146,7 @@ def patient_archive_confirm(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_archive(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -173,7 +173,7 @@ def patient_archive(request, id):
     return redirect("patients_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patients_archived(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -194,9 +194,11 @@ def patients_archived(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_unarchive(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -208,9 +210,11 @@ def patient_unarchive(request, id):
     return redirect("patients_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_delete(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -221,9 +225,11 @@ def patient_delete(request, id):
     return redirect("patients_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def patient_delete_confirm(request, id):
-    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
+    psychologist = get_object_or_404(
+        Psychologist, psychologist__username=request.user
+    )
     patient = get_object_or_404(Patient, pk=id)
 
     return render(

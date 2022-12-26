@@ -7,11 +7,11 @@ from apps.patient_management.models import Patient
 from faker import Faker
 
 fake = Faker("pt_BR")
-
+# _psychologist = PsychologistFactory()
 
 class PatientFactory(factory.django.DjangoModelFactory):
     patient_name = fake.name()
-    psychologist = factory.SubFactory(PsychologistFactory)
+    # psychologist = _psychologist
     birth_date = fake.date()
     cpf = fake.cpf()
     phone_number = fake.phone_number()
@@ -19,9 +19,10 @@ class PatientFactory(factory.django.DjangoModelFactory):
     email = fake.email()
     occupation = fake.job()
     responsable = fake.name()
-    fone_resp = fake.phone_number()
+    phone_resp = fake.phone_number()
     session_week_day = fake.day_of_week()
     session_hour = fake.numerify(text="##:##")
+    # plain = factory.SubFactory(PaymentPlainFactory)
 
     class Meta:
         model = Patient

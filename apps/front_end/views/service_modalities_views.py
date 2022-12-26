@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modalities_list(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -27,7 +27,7 @@ def service_modalities_list(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def create_service_modality(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -50,7 +50,7 @@ def create_service_modality(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_save(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -72,7 +72,7 @@ def service_modality_save(request):
     return redirect("service_modalities")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_update(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -109,7 +109,7 @@ def service_modality_update(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_archive_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -130,7 +130,7 @@ def service_modality_archive_confirm(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_archive(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -150,7 +150,7 @@ def service_modality_archive(request, id):
     return redirect("service_modalities")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modalities_archived(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -171,7 +171,7 @@ def service_modalities_archived(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_unarchive(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -191,7 +191,7 @@ def service_modality_unarchive(request, id):
     return redirect("service_modalities")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_delete(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -209,7 +209,7 @@ def service_modality_delete(request, id):
     return redirect("service_modalities")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def service_modality_delete_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,

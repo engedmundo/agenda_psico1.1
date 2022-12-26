@@ -9,7 +9,7 @@ from django.http import Http404, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuaries_list(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -31,7 +31,7 @@ def prontuaries_list(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def create_prontuary(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -65,7 +65,7 @@ def create_prontuary(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_save(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -88,7 +88,7 @@ def prontuary_save(request):
     return redirect("prontuaries_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_update(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -136,7 +136,7 @@ def prontuary_update(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_details(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -167,7 +167,7 @@ def prontuary_details(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_archive_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -188,7 +188,7 @@ def prontuary_archive_confirm(request, id):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_archive(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -210,7 +210,7 @@ def prontuary_archive(request, id):
     return redirect("prontuaries_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuaries_archived(request):
     psychologist = get_object_or_404(
         Psychologist,
@@ -231,7 +231,7 @@ def prontuaries_archived(request):
     )
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_unarchive(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -251,7 +251,7 @@ def prontuary_unarchive(request, id):
     return redirect("prontuaries_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_delete(request, id):
     psychologist = get_object_or_404(
         Psychologist,
@@ -270,7 +270,7 @@ def prontuary_delete(request, id):
     return redirect("prontuaries_list")
 
 
-@login_required(login_url="login_view")
+@login_required(login_url="login")
 def prontuary_delete_confirm(request, id):
     psychologist = get_object_or_404(
         Psychologist,
