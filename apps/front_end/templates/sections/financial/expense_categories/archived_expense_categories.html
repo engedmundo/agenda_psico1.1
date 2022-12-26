@@ -1,0 +1,45 @@
+{% extends "pages/financial/expense_categories.html" %}
+{% load static %}
+{% block content %}
+  <section id="more-features" class="section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h3 class="section-title">Categorias de Despesa Arquivadas</h3>
+        <span class="section-divider"></span>
+        <p class="section-description"></p>
+      </div>
+
+        <div class="row gy-4">
+          {% for category in expense_categories %}
+            <div class="col-lg-6">
+              <div class="box">
+                <h4 class="title"><a href="">{{ category.name }}</a></h4>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p class="description">{{ category.description }}</p>
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <p><a href="{% url 'expense_category_delete_confirm' category.id %}"><i class="bi bi-pencil-square"></i> Excluir</a></p>
+                    <p><a href="{% url 'expense_category_unarchive' category.id %}"><i class="bi bi-archive"></i> Desarquivar</a></p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <a href="{% url 'create_expense_category' %}" class="text-right form-button">Inserir nova modalidade</a>
+            </div>
+            <div>
+              <a href="{% url 'expense_categories' %}" class="text-center form-button">Mostrar não arquivados</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock content %}

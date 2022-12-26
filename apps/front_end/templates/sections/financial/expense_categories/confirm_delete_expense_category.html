@@ -1,0 +1,30 @@
+{% extends "pages/financial/expense_categories.html" %}
+{% load static %}
+{% block content %}
+<section id="pricing" class="section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h3 class="section-title">Excluir Categoria de Despesas</h3>
+      <span class="section-divider"></span>
+      <p class="section-description">Deseja excluir a Categoria de Despesas abaixo?</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="box">
+          <h3>{{ expense_category.name }}</h3>
+          <ul>
+            <li>{{ expense_category.description }}</li>
+          </ul>
+          <br><br>
+          <p class="section-description">Esta ação não poderá ser desfeita!!!</p>
+          <a href="{% url 'expense_category_delete' expense_category.id %}" class="text-center form-button">Excluir</a>
+          <a href="{% url 'expense_categories' %}" class="text-center form-button">Cancelar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock content %}

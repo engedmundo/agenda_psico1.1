@@ -358,3 +358,57 @@ urlpatterns += [
         name="payment_control_delete_confirm",
     ),
 ]
+
+# service modalities
+urlpatterns += [
+    path(
+        "expense_categories/",
+        expense_categories_list,
+        name="expense_categories",
+    ),
+    path(
+        "expense_categories/create/",
+        create_expense_category,
+        name="create_expense_category",
+    ),
+    path(
+        "expense_categories/save/",
+        expense_category_save,
+        name="expense_category_save",
+    ),
+    path(
+        "expense_categories/<int:id>/update/",
+        expense_category_update,
+        name="expense_category_update",
+    ),
+    path(
+        "expense_categories/<int:id>/archive_confirm/",
+        expense_category_archive_confirm,
+        name="expense_category_archive_confirm",
+    ),
+    path(
+        "expense_categories/<int:id>/archive/",
+        expense_category_archive,
+        name="expense_category_archive",
+    ),
+    path(
+        "expense_categories/archived/",
+        expense_categories_archived,
+        name="expense_categories_archived",
+    ),
+    path(
+        "expense_categories/<int:id>/unarchive/",
+        expense_category_unarchive,
+        name="expense_category_unarchive",
+    ),
+    path(
+        "expense_categories/<int:id>/delete/",
+        expense_category_delete,
+        name="expense_category_delete",
+    ),
+    path(
+        "expense_categories/<int:id>/delete_confirm/",
+        expense_category_delete_confirm,
+        name="expense_category_delete_confirm",
+    ),
+]
