@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 
 def home(request):
@@ -25,7 +25,10 @@ def home(request):
 
 
 def professional_description(request, id):
-    psychologist = get_object_or_404(Psychologist, id=id)
+    psychologist = get_object_or_404(
+        Psychologist,
+        id=id,
+    )
     types_of_service = ServiceModalitiy.objects.filter(
         psychologist=psychologist,
     )
