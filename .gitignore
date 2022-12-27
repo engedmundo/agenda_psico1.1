@@ -16,6 +16,8 @@ _static/
 *.bak 
 .old_apps
 
+.vscode/
+
 # enviroments
 .venv/
 venv/
