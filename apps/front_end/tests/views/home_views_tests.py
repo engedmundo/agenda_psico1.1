@@ -1,12 +1,13 @@
 from apps.front_end.forms import LoginForm
-from apps.front_end.tests.fixtures.core_test_fixtures import CoreTestFixtures
+from apps.core.tests.fixtures.core_models_fixtures import CoreModelFixtures
+from apps.core.tests.fixtures.core_form_fixtures import CoreFormFixtures
 from apps.front_end.views import *
 from django.test import TestCase
 from django.urls import resolve, reverse
 from parameterized import parameterized
 
 
-class HomeViewsTests(CoreTestFixtures, TestCase):
+class HomeViewsUnitTests(CoreModelFixtures, TestCase):
     @parameterized.expand(
         [
             ("home", home),
@@ -110,3 +111,16 @@ class HomeViewsTests(CoreTestFixtures, TestCase):
         response_context = response.context["form"]
 
         self.assertIsInstance(response_context, LoginForm)
+
+
+class HomeViewsIntegratedTests(CoreFormFixtures, TestCase):
+    def test_login_create_successfully(self):
+        form_data = self.make_login_form_data()
+        url = reverse("login_create")
+        response = self.client.post(
+            path=url,
+            data=form_data,
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)

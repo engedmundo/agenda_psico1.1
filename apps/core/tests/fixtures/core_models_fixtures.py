@@ -5,12 +5,13 @@ from faker import Faker
 faker = Faker("pt_BR")
 
 
-class CoreTestFixtures:
+class CoreModelFixtures:
     def make_user(
         self,
         username=faker.user_name(),
         first_name=faker.first_name(),
         last_name=faker.last_name(),
+        password=faker.password(),
         email=faker.email(),
         is_staff=False,
         is_active=True,
@@ -20,6 +21,7 @@ class CoreTestFixtures:
             username=username,
             first_name=first_name,
             last_name=last_name,
+            password=password,
             email=email,
             is_staff=is_staff,
             is_active=is_active,
