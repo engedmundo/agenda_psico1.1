@@ -36,20 +36,20 @@ urlpatterns = [
     ),
 ]
 
-# payment plains urls
+# payment plain urls
 urlpatterns += [
     path(
-        "payment_plains/",
+        "payment_plain/",
         payment_plains_list,
-        name="payment_plains",
+        name="payment_plain",
     ),
     path(
-        "payment_plains/create/",
+        "payment_plain/create/",
         create_payment_plain,
         name="create_payment_plain",
     ),
     path(
-        "payment_plains/save/",
+        "payment_plain/save/",
         payment_plain_save,
         name="payment_plain_save",
     ),
@@ -69,9 +69,9 @@ urlpatterns += [
         name="payment_plain_archive_confirm",
     ),
     path(
-        "payment_plains/archived/",
+        "payment_plain/archived/",
         payment_plains_archived,
-        name="payment_plains_arquived",
+        name="payment_plain_archived",
     ),
     path(
         "payment_plain/<int:id>/unarchive/",
@@ -90,25 +90,25 @@ urlpatterns += [
     ),
 ]
 
-# patients urls
+# patient urls
 urlpatterns += [
     path(
-        "patients/",
+        "patient/",
         patients_list,
-        name="patients_list",
+        name="patient",
     ),
     path(
-        "patients/create/",
+        "patient/create/",
         create_patient,
         name="create_patient",
     ),
     path(
-        "patients/save/",
+        "patient/save/",
         patient_save,
         name="patient_save",
     ),
     path(
-        "patients/<int:id>/update/",
+        "patient/<int:id>/update/",
         patient_update,
         name="patient_update",
     ),
@@ -123,9 +123,9 @@ urlpatterns += [
         name="patient_archive_confirm",
     ),
     path(
-        "patients/archived/",
+        "patient/archived/",
         patients_archived,
-        name="patients_arquived",
+        name="patient_archived",
     ),
     path(
         "patient/<int:id>/unarchive/",
@@ -144,25 +144,25 @@ urlpatterns += [
     ),
 ]
 
-# prontuaries urls
+# prontuary urls
 urlpatterns += [
     path(
-        "prontuaries/",
+        "prontuary/",
         prontuaries_list,
-        name="prontuaries_list",
+        name="prontuary",
     ),
     path(
-        "prontuaries/create/",
+        "prontuary/create/",
         create_prontuary,
         name="create_prontuary",
     ),
     path(
-        "prontuaries/save/",
+        "prontuary/save/",
         prontuary_save,
         name="prontuary_save",
     ),
     path(
-        "prontuaries/<int:id>/update/",
+        "prontuary/<int:id>/update/",
         prontuary_update,
         name="prontuary_update",
     ),
@@ -182,9 +182,9 @@ urlpatterns += [
         name="prontuary_archive_confirm",
     ),
     path(
-        "prontuaries/archived/",
+        "prontuary/archived/",
         prontuaries_archived,
-        name="prontuaries_arquived",
+        name="prontuary_archived",
     ),
     path(
         "prontuary/<int:id>/unarchive/",
@@ -206,12 +206,12 @@ urlpatterns += [
 # therapy sessions urls
 urlpatterns += [
     path(
-        "prontuaries/<int:id>/create_session/",
+        "prontuary/<int:id>/create_session/",
         create_therapy_session,
         name="create_session",
     ),
     path(
-        "prontuaries/<int:id>/create_session/save/",
+        "prontuary/<int:id>/create_session/save/",
         therapy_session_save,
         name="therapy_session_save",
     ),
@@ -245,9 +245,9 @@ urlpatterns += [
 # report urls
 urlpatterns += [
     path(
-        "therapy_session_payments_report/",
+        "therapy_session_payment_report/",
         therapy_session_payments_report,
-        name="therapy_session_payments_report",
+        name="therapy_session_payment_report",
     ),
     path(
         "payment_control_report/",
@@ -269,52 +269,52 @@ urlpatterns += [
 # service modalities
 urlpatterns += [
     path(
-        "service_modalities/",
+        "service_modality/",
         service_modalities_list,
-        name="service_modalities",
+        name="service_modality",
     ),
     path(
-        "service_modalities/create/",
+        "service_modality/create/",
         create_service_modality,
         name="create_service_modality",
     ),
     path(
-        "service_modalities/save/",
+        "service_modality/save/",
         service_modality_save,
         name="service_modality_save",
     ),
     path(
-        "service_modalities/<int:id>/update/",
+        "service_modality/<int:id>/update/",
         service_modality_update,
         name="service_modality_update",
     ),
     path(
-        "service_modalities/<int:id>/archive_confirm/",
+        "service_modality/<int:id>/archive_confirm/",
         service_modality_archive_confirm,
         name="service_modality_archive_confirm",
     ),
     path(
-        "service_modalities/<int:id>/archive/",
+        "service_modality/<int:id>/archive/",
         service_modality_archive,
         name="service_modality_archive",
     ),
     path(
-        "service_modalities/archived/",
+        "service_modality/archived/",
         service_modalities_archived,
-        name="service_modalities_archived",
+        name="service_modality_archived",
     ),
     path(
-        "service_modalities/<int:id>/unarchive/",
+        "service_modality/<int:id>/unarchive/",
         service_modality_unarchive,
         name="service_modality_unarchive",
     ),
     path(
-        "service_modalities/<int:id>/delete/",
+        "service_modality/<int:id>/delete/",
         service_modality_delete,
         name="service_modality_delete",
     ),
     path(
-        "service_modalities/<int:id>/delete_confirm/",
+        "service_modality/<int:id>/delete_confirm/",
         service_modality_delete_confirm,
         name="service_modality_delete_confirm",
     ),
@@ -357,52 +357,52 @@ urlpatterns += [
 # expense categories
 urlpatterns += [
     path(
-        "expense_categories/",
+        "expense_category/",
         expense_categories_list,
-        name="expense_categories",
+        name="expense_category",
     ),
     path(
-        "expense_categories/create/",
+        "expense_category/create/",
         create_expense_category,
         name="create_expense_category",
     ),
     path(
-        "expense_categories/save/",
+        "expense_category/save/",
         expense_category_save,
         name="expense_category_save",
     ),
     path(
-        "expense_categories/<int:id>/update/",
+        "expense_category/<int:id>/update/",
         expense_category_update,
         name="expense_category_update",
     ),
     path(
-        "expense_categories/<int:id>/archive_confirm/",
+        "expense_category/<int:id>/archive_confirm/",
         expense_category_archive_confirm,
         name="expense_category_archive_confirm",
     ),
     path(
-        "expense_categories/<int:id>/archive/",
+        "expense_category/<int:id>/archive/",
         expense_category_archive,
         name="expense_category_archive",
     ),
     path(
-        "expense_categories/archived/",
+        "expense_category/archived/",
         expense_categories_archived,
-        name="expense_categories_archived",
+        name="expense_category_archived",
     ),
     path(
-        "expense_categories/<int:id>/unarchive/",
+        "expense_category/<int:id>/unarchive/",
         expense_category_unarchive,
         name="expense_category_unarchive",
     ),
     path(
-        "expense_categories/<int:id>/delete/",
+        "expense_category/<int:id>/delete/",
         expense_category_delete,
         name="expense_category_delete",
     ),
     path(
-        "expense_categories/<int:id>/delete_confirm/",
+        "expense_category/<int:id>/delete_confirm/",
         expense_category_delete_confirm,
         name="expense_category_delete_confirm",
     ),

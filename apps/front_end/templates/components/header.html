@@ -9,20 +9,20 @@
       <ul>
         <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
         {% if request.user.is_authenticated %}
-          <li class="dropdown"><a href="{% url 'prontuaries_list' %}"><span>Meu Consultório</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="{% url 'prontuary' %}"><span>Meu Consultório</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a class="nav-link" href="{% url 'patients_list' %}">Pacientes</a></li>
-              <li><a class="nav-link" href="{% url 'prontuaries_list' %}">Prontuários</a></li>
-              <li><a class="nav-link" href="{% url 'service_modalities' %}">Modalidades de atendimento</a></li>
+              <li><a class="nav-link" href="{% url 'patient' %}">Pacientes</a></li>
+              <li><a class="nav-link" href="{% url 'prontuary' %}">Prontuários</a></li>
+              <li><a class="nav-link" href="{% url 'service_modality' %}">Modalidades de atendimento</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href=""><span>Financeiro</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a class="nav-link" href="{% url 'payment_control' %}">Recebimentos</a></li>
               <li><a class="nav-link" href="{% url 'expense_control' %}">Despesas</a></li>
-              <li><a class="nav-link" href="{% url 'therapy_session_payments_report' %}">Relatório de pagamentos por sessão</a></li>
-              <li><a class="nav-link" href="{% url 'payment_plains' %}">Planos de pagamento</a></li>
-              <li><a class="nav-link" href="{% url 'expense_categories' %}">Categorias de despesas</a></li>
+              <li><a class="nav-link" href="{% url 'therapy_session_payment_report' %}">Relatório de pagamentos por sessão</a></li>
+              <li><a class="nav-link" href="{% url 'payment_plain' %}">Planos de pagamento</a></li>
+              <li><a class="nav-link" href="{% url 'expense_category' %}">Categorias de despesas</a></li>
             </ul>
           </li>
           

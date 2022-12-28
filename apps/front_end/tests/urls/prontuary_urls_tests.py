@@ -9,7 +9,7 @@ class ProntuaryURLsTest(TestCase):
             ("prontuary", "/prontuary/"),
             ("create_prontuary", "/prontuary/create/"),
             ("prontuary_save", "/prontuary/save/"),
-            ("prontuary_arquived", "/prontuary/archived/"),
+            ("prontuary_archived", "/prontuary/archived/"),
         ]
     )
     def test_prontuaries_urls_is_correct(self, url_name, expected_path):

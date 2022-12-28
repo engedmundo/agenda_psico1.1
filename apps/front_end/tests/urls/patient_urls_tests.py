@@ -9,7 +9,7 @@ class PatientURLsTest(TestCase):
             ("patient", "/patient/"),
             ("create_patient", "/patient/create/"),
             ("patient_save", "/patient/save/"),
-            ("patient_arquived", "/patient/archived/"),
+            ("patient_archived", "/patient/archived/"),
         ]
     )
     def test_patients_urls_is_correct(self, url_name, expected_path):
