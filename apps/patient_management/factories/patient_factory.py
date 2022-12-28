@@ -9,6 +9,7 @@ from faker import Faker
 fake = Faker("pt_BR")
 # _psychologist = PsychologistFactory()
 
+
 class PatientFactory(factory.django.DjangoModelFactory):
     patient_name = fake.name()
     # psychologist = _psychologist

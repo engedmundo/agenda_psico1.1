@@ -1,26 +1,45 @@
-import pytest
 from apps.front_end.forms import LoginForm
 from apps.front_end.tests.fixtures.core_test_fixtures import CoreTestFixtures
 from apps.front_end.views import *
 from django.test import TestCase
 from django.urls import resolve, reverse
+from parameterized import parameterized
 
 
 class HomeViewsTests(CoreTestFixtures, TestCase):
-    def test_home_view_function_is_correct(self):
-        view = resolve(reverse("home"))
+    @parameterized.expand(
+        [
+            ("home", home),
+            ("login", login_view),
+            ("login_create", login_create),
+            ("logout", logout_view),
+        ]
+    )
+    def test_home_views_functions_is_correct(self, url_name, expected_function_name):
+        view = resolve(reverse(url_name))
+        self.assertIs(view.func, expected_function_name)
 
-        self.assertIs(view.func, home)
-
-    def test_home_view_return_status_code_200(self):
-        response = self.client.get(reverse("home"))
+    @parameterized.expand(
+        [
+            ("home"),
+            ("login"),
+        ]
+    )
+    def test_home_views_return_status_code_200(self, url_name):
+        response = self.client.get(reverse(url_name))
 
         self.assertEqual(response.status_code, 200)
 
-    def test_home_view_render_correct_template(self):
-        response = self.client.get(reverse("home"))
+    @parameterized.expand(
+        [
+            ("home", "pages/home/index.html"),
+            ("login", "pages/home/login.html"),
+        ]
+    )
+    def test_home_views_render_correct_templates(self, url_name, expected_template):
+        response = self.client.get(reverse(url_name))
 
-        self.assertTemplateUsed(response, "pages/home/index.html")
+        self.assertTemplateUsed(response, expected_template)
 
     def test_home_view_returns_correct_context(self):
         self.make_psychologist()
@@ -86,29 +105,8 @@ class HomeViewsTests(CoreTestFixtures, TestCase):
         )
         self.assertTemplateUsed(response, "pages/home/profile_description.html")
 
-    def test_login_view_function_is_correct(self):
-        view = resolve(reverse("login"))
-        self.assertIs(view.func, login_view)
-
-    def test_login_view_return_status_code_200(self):
-        response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "pages/home/index.html")
-
-    def test_login_view_render_correct_template(self):
-        response = self.client.get(reverse("home"))
-        self.assertTemplateUsed(response, "pages/home/index.html")
-
     def test_login_view_return_correct_context(self):
         response = self.client.get(reverse("login"))
         response_context = response.context["form"]
 
         self.assertIsInstance(response_context, LoginForm)
-
-    def test_login_create_function_is_correct(self):
-        view = resolve("/login/create/")
-        self.assertIs(view.func, login_create)
-
-    def test_logout_view_function_is_correct(self):
-        view = resolve(reverse("logout"))
-        self.assertIs(view.func, logout_view)

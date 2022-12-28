@@ -1,29 +1,22 @@
-import pytest
 from django.test import TestCase
 from django.urls import reverse
+from parameterized import parameterized
 
 
 class HomeURLsTest(TestCase):
-    def test_home_url_is_correct(self):
-        url = reverse("home")
-        self.assertEqual(url, "/")
+    @parameterized.expand(
+        [
+            ("home", "/"),
+            ("login", "/login/"),
+            ("login_create", "/login/create/"),
+            ("logout", "/logout/"),
+            ("my_profile", "/my_profile/"),
+        ]
+    )
+    def test_home_urls_is_correct(self, url_name, expected_path):
+        url = reverse(url_name)
+        self.assertEqual(url, expected_path)
 
     def test_professional_description_url_is_correct(self):
         url = reverse("professional_description", kwargs={"id": 1})
         self.assertEqual(url, "/professional_description/1/")
-
-    def test_login_url_is_correct(self):
-        url = reverse("login")
-        self.assertEqual(url, "/login/")
-
-    def test_login_create_url_is_correct(self):
-        url = reverse("login_create")
-        self.assertEqual(url, "/login/create/")
-
-    def test_logout_url_is_correct(self):
-        url = reverse("logout")
-        self.assertEqual(url, "/logout/")
-
-    def test_my_profile_url_is_correct(self):
-        url = reverse("my_profile")
-        self.assertEqual(url, "/my_profile/")

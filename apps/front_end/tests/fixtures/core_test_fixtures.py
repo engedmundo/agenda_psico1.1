@@ -5,7 +5,7 @@ from faker import Faker
 faker = Faker("pt_BR")
 
 
-class CoreTestFixtures():
+class CoreTestFixtures:
     def make_user(
         self,
         username=faker.user_name(),

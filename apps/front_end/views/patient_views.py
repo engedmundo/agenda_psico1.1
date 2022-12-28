@@ -196,9 +196,7 @@ def patients_archived(request):
 
 @login_required(login_url="login")
 def patient_unarchive(request, id):
-    psychologist = get_object_or_404(
-        Psychologist, psychologist__username=request.user
-    )
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -212,9 +210,7 @@ def patient_unarchive(request, id):
 
 @login_required(login_url="login")
 def patient_delete(request, id):
-    psychologist = get_object_or_404(
-        Psychologist, psychologist__username=request.user
-    )
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     patient = get_object_or_404(Patient, pk=id)
 
     if patient.psychologist != psychologist:
@@ -227,9 +223,7 @@ def patient_delete(request, id):
 
 @login_required(login_url="login")
 def patient_delete_confirm(request, id):
-    psychologist = get_object_or_404(
-        Psychologist, psychologist__username=request.user
-    )
+    psychologist = get_object_or_404(Psychologist, psychologist__username=request.user)
     patient = get_object_or_404(Patient, pk=id)
 
     return render(
