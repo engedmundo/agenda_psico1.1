@@ -1,92 +1,92 @@
 from apps.core.models import Psychologist
-from apps.core.tests.fixtures.core_models_fixtures import CoreModelFixtures
-from apps.patient_management.tests.fixtures.patient_fixtures import (
-    PatientManagementModelFixtures,
-)
-from apps.financial_management.models import (
-    ExpenseCategory,
-    ExpenseControl,
-    PaymentPlain,
-)
+from apps.core.tests.fixtures import *
+from apps.financial_management.models import *
+from apps.patient_management.models import Prontuary
+from apps.patient_management.tests.fixtures import *
 from faker import Faker
 
 faker = Faker("pt_BR")
 
 
-class FinancialManagementModelFixtures:
-    def __init__(self) -> None:
-        self.core_models_fixtures = CoreModelFixtures()
-        self.patient_models_fixtures = PatientManagementModelFixtures()
+def payment_plain_fixture(
+    psychologist: Psychologist = None,
+    name_plain=faker.word(),
+    plain_value=faker.random_int(min=0, max=500),
+) -> PaymentPlain:
 
-    def payment_plain_fixture(
-        self,
-        psychologist: Psychologist = None,
-        name_plain=faker.word(),
-        plain_value=faker.random_int(min=0, max=500),
-    ) -> PaymentPlain:
+    if psychologist is None:
+        psychologist = psychologist_fixture()
 
-        if psychologist is None:
-            psychologist = self.core_models_fixtures.psychologist_fixture()
+    return PaymentPlain.objects.create(
+        psychologist=psychologist,
+        name_plain=name_plain,
+        plain_value=plain_value,
+    )
 
-        return PaymentPlain.objects.create(
-            psychologist=psychologist,
-            name_plain=name_plain,
-            plain_value=plain_value,
-        )
 
-    def payment_control_fixture(
-        self,
-        psychologist: Psychologist = None,
-        name_plain=faker.word(),
-        plain_value=faker.random_int(min=0, max=500),
-    ) -> PaymentPlain:
+def payment_control_fixture(
+    prontuary: Prontuary = None,
+    value_paid=faker.random_int(min=0, max=500),
+    date_of_pay=faker.date_object(),
+    description=faker.paragraph(nb_sentences=5),
+    payment_method=faker.random_element(
+        elements=(
+            "Pix",
+            "Dinheiro",
+            "Tranferência",
+            "Cheque",
+        ),
+    ),
+) -> PaymentControl:
 
-        if psychologist is None:
-            psychologist = self.psychologist
+    if prontuary is None:
+        prontuary = prontuary_fixture()
 
-        return PaymentPlain.objects.create(
-            psychologist=psychologist,
-            name_plain=name_plain,
-            plain_value=plain_value,
-        )
+    return PaymentControl.objects.create(
+        prontuary=prontuary,
+        value_paid=value_paid,
+        date_of_pay=date_of_pay,
+        description=description,
+        payment_method=payment_method,
+    )
 
-    def expense_category_fixture(
-        self,
-        psychologist: Psychologist = None,
-        name=faker.word(),
-        description=faker.paragraph(nb_sentences=5),
-    ) -> ExpenseCategory:
 
-        if psychologist is None:
-            psychologist = self.core_models_fixtures.psychologist_fixture()
+def expense_category_fixture(
+    psychologist: Psychologist = None,
+    name=faker.word(),
+    description=faker.paragraph(nb_sentences=5),
+) -> ExpenseCategory:
 
-        return ExpenseCategory.objects.create(
-            psychologist=psychologist,
-            name=name,
-            description=description,
-        )
+    if psychologist is None:
+        psychologist = psychologist_fixture()
 
-    def expense_control_fixture(
-        self,
-        psychologist: Psychologist = None,
-        category: ExpenseCategory = None,
-        expense_value=faker.random_int(min=0, max=500),
-        completion_date=faker.date_object(),
-        description=faker.paragraph(nb_sentences=5),
-        cpf_cnpj=faker.cpf(),
-    ) -> ExpenseControl:
+    return ExpenseCategory.objects.create(
+        psychologist=psychologist,
+        name=name,
+        description=description,
+    )
 
-        if psychologist is None:
-            psychologist = self.core_models_fixtures.psychologist_fixture()
 
-        if category is None:
-            category = self.expense_category_fixture()
+def expense_control_fixture(
+    psychologist: Psychologist = None,
+    category: ExpenseCategory = None,
+    expense_value=faker.random_int(min=0, max=500),
+    completion_date=faker.date_object(),
+    description=faker.paragraph(nb_sentences=5),
+    cpf_cnpj=faker.cpf(),
+) -> ExpenseControl:
 
-        return ExpenseControl.objects.create(
-            psychologist=psychologist,
-            category=category,
-            expense_value=expense_value,
-            completion_date=completion_date,
-            description=description,
-            cpf_cnpj=cpf_cnpj,
-        )
+    if psychologist is None:
+        psychologist = psychologist_fixture()
+
+    if category is None:
+        category = expense_category_fixture()
+
+    return ExpenseControl.objects.create(
+        psychologist=psychologist,
+        category=category,
+        expense_value=expense_value,
+        completion_date=completion_date,
+        description=description,
+        cpf_cnpj=cpf_cnpj,
+    )
