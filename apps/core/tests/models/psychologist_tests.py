@@ -5,5 +5,5 @@ from apps.core.models import Psychologist
 
 class PsychologistModelTest(TestCase, CoreModelFixtures):
     def test_create_psychologist(self):
-        _user = self.make_psychologist()
+        _user = self.psychologist_fixture()
         self.assertIsInstance(_user, Psychologist)

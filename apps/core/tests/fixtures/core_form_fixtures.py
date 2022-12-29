@@ -6,7 +6,7 @@ faker = Faker("pt_BR")
 
 class CoreFormFixtures:
     def make_login_form_data(self):
-        _user = CoreModelFixtures().make_user()
+        _user = CoreModelFixtures().user_fixture()
         return {
             "username": _user.username,
             "password": _user.password,

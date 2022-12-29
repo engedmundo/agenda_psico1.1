@@ -43,7 +43,7 @@ class HomeViewsUnitTests(CoreModelFixtures, TestCase):
         self.assertTemplateUsed(response, expected_template)
 
     def test_home_view_returns_correct_context(self):
-        self.make_psychologist()
+        self.psychologist_fixture()
         response = self.client.get(reverse("home"))
         psycho_query = response.context["psychologists"]
 
@@ -68,7 +68,7 @@ class HomeViewsUnitTests(CoreModelFixtures, TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_professional_description_view_return_status_code_200(self):
-        psycho = self.make_psychologist()
+        psycho = self.psychologist_fixture()
 
         response = self.client.get(
             reverse(
@@ -80,8 +80,8 @@ class HomeViewsUnitTests(CoreModelFixtures, TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_professional_description_view_return_correct_context(self):
-        psycho = self.make_psychologist()
-        service = self.make_service_modality(psychologist=psycho)
+        psycho = self.psychologist_fixture()
+        service = self.service_modality_fixture(psychologist=psycho)
 
         response = self.client.get(
             reverse(
@@ -96,7 +96,7 @@ class HomeViewsUnitTests(CoreModelFixtures, TestCase):
         self.assertEqual(len(response_services), 1)
 
     def test_professional_description_view_render_correct_template(self):
-        psycho = self.make_psychologist()
+        psycho = self.psychologist_fixture()
 
         response = self.client.get(
             reverse(

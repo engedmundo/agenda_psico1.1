@@ -5,5 +5,5 @@ from apps.core.models import ServiceModalitiy
 
 class ServiceModalityModelTest(TestCase, CoreModelFixtures):
     def test_create_service_modality(self):
-        _user = self.make_service_modality()
+        _user = self.service_modality_fixture()
         self.assertIsInstance(_user, ServiceModalitiy)

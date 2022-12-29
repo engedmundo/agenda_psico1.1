@@ -6,7 +6,7 @@ faker = Faker("pt_BR")
 
 
 class CoreModelFixtures:
-    def make_user(
+    def user_fixture(
         self,
         username=faker.user_name(),
         first_name=faker.first_name(),
@@ -28,7 +28,7 @@ class CoreModelFixtures:
             is_superuser=is_superuser,
         )
 
-    def make_psychologist(
+    def psychologist_fixture(
         self,
         _user: User = None,
         crp_register=faker.numerify(text="CRP 0#/######-IS"),
@@ -47,7 +47,7 @@ class CoreModelFixtures:
     ) -> Psychologist:
 
         if _user is None:
-            _user = self.make_user()
+            _user = self.user_fixture()
 
         return Psychologist.objects.create(
             psychologist=_user,
@@ -66,7 +66,7 @@ class CoreModelFixtures:
             schedule_description=schedule_description,
         )
 
-    def make_service_modality(
+    def service_modality_fixture(
         self,
         psychologist: Psychologist = None,
         name=faker.word(),
@@ -74,7 +74,7 @@ class CoreModelFixtures:
     ) -> ServiceModalitiy:
 
         if psychologist is None:
-            psychologist = self.make_psychologist()
+            psychologist = self.psychologist_fixture()
 
         return ServiceModalitiy.objects.create(
             psychologist=psychologist,

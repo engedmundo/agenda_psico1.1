@@ -5,5 +5,5 @@ from django.contrib.auth.models import User
 
 class UserModelTest(TestCase, CoreModelFixtures):
     def test_create_user(self):
-        _user = self.make_user()
+        _user = self.user_fixture()
         self.assertIsInstance(_user, User)
