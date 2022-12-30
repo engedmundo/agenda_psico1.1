@@ -1,8 +1,14 @@
 from apps.core.models import Psychologist
-from apps.core.tests.fixtures import *
-from apps.financial_management.models import *
+from apps.core.tests.fixtures import psychologist_fixture
+from apps.financial_management.models import (
+    ExpenseCategory,
+    ExpenseControl,
+    PaymentControl,
+    PaymentPlain,
+)
+from apps.financial_management.tests.fixtures import expense_category_fixture
 from apps.patient_management.models import Prontuary
-from apps.patient_management.tests.fixtures import *
+from apps.patient_management.tests.fixtures import prontuary_fixture
 from faker import Faker
 
 faker = Faker("pt_BR")

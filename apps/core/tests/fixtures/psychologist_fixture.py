@@ -1,29 +1,10 @@
-from apps.core.models import Psychologist, ServiceModalitiy
+from apps.core.models import Psychologist
 from django.contrib.auth.models import User
 from faker import Faker
+from .user_fixture import user_fixture
 
 faker = Faker("pt_BR")
 
-def user_fixture(
-    username=faker.user_name(),
-    first_name=faker.first_name(),
-    last_name=faker.last_name(),
-    password=faker.password(),
-    email=faker.email(),
-    is_staff=False,
-    is_active=True,
-    is_superuser=False,
-) -> User:
-    return User.objects.create(
-        username=username,
-        first_name=first_name,
-        last_name=last_name,
-        password=password,
-        email=email,
-        is_staff=is_staff,
-        is_active=is_active,
-        is_superuser=is_superuser,
-    )
 
 def psychologist_fixture(
     _user: User = None,
@@ -60,19 +41,4 @@ def psychologist_fixture(
         whatsapp_number=whatsapp_number,
         bio=bio,
         schedule_description=schedule_description,
-    )
-
-def service_modality_fixture(
-    psychologist: Psychologist = None,
-    name=faker.word(),
-    description=faker.paragraph(nb_sentences=5),
-) -> ServiceModalitiy:
-
-    if psychologist is None:
-        psychologist = psychologist_fixture()
-
-    return ServiceModalitiy.objects.create(
-        psychologist=psychologist,
-        name=name,
-        description=description,
     )

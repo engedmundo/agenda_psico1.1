@@ -1,5 +1,5 @@
 from django.test import TestCase
-from apps.core.tests.fixtures import *
+from apps.core.tests.fixtures import service_modality_fixture
 from apps.core.models import ServiceModalitiy
 
 

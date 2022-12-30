@@ -1,1 +1,1 @@
-from .financial_fixtures import *
+from .payment_plain_fixture import payment_plain_fixture

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from apps.financial_management.tests.fixtures import *
+from apps.financial_management.tests.fixtures import payment_control_fixture
 from apps.financial_management.models import PaymentControl
 
 
