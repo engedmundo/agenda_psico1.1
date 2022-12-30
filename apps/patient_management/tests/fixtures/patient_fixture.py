@@ -35,7 +35,9 @@ def patient_fixture(
         psychologist = psychologist_fixture()
 
     if plain is None:
-        plain = payment_plain_fixture()
+        plain = payment_plain_fixture(
+            psychologist=psychologist,
+        )
 
     return Patient.objects.create(
         patient_name=patient_name,
