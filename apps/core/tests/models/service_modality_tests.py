@@ -1,9 +1,10 @@
-from django.test import TestCase
-from apps.core.tests.fixtures import service_modality_fixture
+import pytest
 from apps.core.models import ServiceModalitiy
+from django.test import TestCase
+
+_test = TestCase()
 
 
-class ServiceModalityModelTest(TestCase):
-    def test_create_service_modality(self):
-        _user = service_modality_fixture()
-        self.assertIsInstance(_user, ServiceModalitiy)
+@pytest.mark.models
+def test_create_service_modality(make_service_modality):
+    _test.assertIsInstance(make_service_modality, ServiceModalitiy)

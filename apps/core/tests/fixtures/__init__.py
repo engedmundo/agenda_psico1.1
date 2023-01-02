@@ -1,3 +1,3 @@
-from .psychologist_fixture import psychologist_fixture
-from .service_modality_fixture import service_modality_fixture
-from .user_fixture import user_fixture
+from .psychologist_fixture import make_psychologist
+from .service_modality_fixture import make_service_modality
+from .user_fixture import make_user

@@ -1,14 +1,16 @@
 from apps.core.models import Psychologist
-from apps.core.tests.fixtures import psychologist_fixture
+from apps.core.tests.fixtures.psychologist_fixture import make_psychologist
 from apps.financial_management.models import PaymentPlain
-from apps.financial_management.tests.fixtures import payment_plain_fixture
+from apps.financial_management.tests.fixtures.payment_plain_fixture import (
+    make_payment_plain,
+)
 from apps.patient_management.models import Patient
 from faker import Faker
 
 faker = Faker("pt_BR")
 
 
-def patient_fixture(
+def make_patient(
     patient_name=faker.name(),
     psychologist: Psychologist = None,
     plain: PaymentPlain = None,
@@ -32,10 +34,10 @@ def patient_fixture(
 ) -> Patient:
 
     if psychologist is None:
-        psychologist = psychologist_fixture()
+        psychologist = make_psychologist()
 
     if plain is None:
-        plain = payment_plain_fixture(
+        plain = make_payment_plain(
             psychologist=psychologist,
         )
 

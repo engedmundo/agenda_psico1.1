@@ -1,9 +1,10 @@
-from django.test import TestCase
-from apps.core.tests.fixtures import *
+import pytest
 from django.contrib.auth.models import User
+from django.test import TestCase
+
+_test = TestCase()
 
 
-class UserModelTest(TestCase):
-    def test_create_user(self):
-        _user = user_fixture()
-        self.assertIsInstance(_user, User)
+@pytest.mark.models
+def test_create_user(make_user):
+    _test.assertIsInstance(make_user, User)

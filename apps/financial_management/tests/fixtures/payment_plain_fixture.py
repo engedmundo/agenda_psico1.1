@@ -1,19 +1,19 @@
 from apps.core.models import Psychologist
-from apps.core.tests.fixtures import psychologist_fixture
+from apps.core.tests.fixtures.psychologist_fixture import make_psychologist
 from apps.financial_management.models import PaymentPlain
 from faker import Faker
 
 faker = Faker("pt_BR")
 
 
-def payment_plain_fixture(
+def make_payment_plain(
     psychologist: Psychologist = None,
     name_plain=faker.word(),
     plain_value=faker.random_int(min=0, max=500),
 ) -> PaymentPlain:
 
     if psychologist is None:
-        psychologist = psychologist_fixture()
+        psychologist = make_psychologist()
 
     return PaymentPlain.objects.create(
         psychologist=psychologist,

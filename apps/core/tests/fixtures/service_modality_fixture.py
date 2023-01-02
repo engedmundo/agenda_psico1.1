@@ -1,22 +1,7 @@
-from apps.core.models import Psychologist, ServiceModalitiy
-from faker import Faker
-
-from .psychologist_fixture import psychologist_fixture
-
-faker = Faker("pt_BR")
+import pytest
+from apps.core.factories import ServiceModalityFactory
 
 
-def service_modality_fixture(
-    psychologist: Psychologist = None,
-    name=faker.word(),
-    description=faker.paragraph(nb_sentences=5),
-) -> ServiceModalitiy:
-
-    if psychologist is None:
-        psychologist = psychologist_fixture()
-
-    return ServiceModalitiy.objects.create(
-        psychologist=psychologist,
-        name=name,
-        description=description,
-    )
+@pytest.fixture
+def make_service_modality(db):
+    return ServiceModalityFactory()

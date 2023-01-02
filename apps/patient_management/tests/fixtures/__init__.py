@@ -1,2 +1,2 @@
-from .patient_fixture import patient_fixture
-from .prontuary_fixture import prontuary_fixture
+from .patient_fixture import make_patient
+from .prontuary_fixture import make_prontuary

@@ -1,14 +1,13 @@
 from apps.core.models import ServiceModalitiy
-from apps.core.tests.fixtures import service_modality_fixture
+from apps.core.tests.fixtures import make_service_modality
 from apps.patient_management.models import Patient, Prontuary
-from apps.patient_management.tests.fixtures import patient_fixture
+from apps.patient_management.tests.fixtures.patient_fixture import make_patient
 from faker import Faker
-
 
 faker = Faker("pt_BR")
 
 
-def prontuary_fixture(
+def make_prontuary(
     patient: Patient = None,
     type_of_service: ServiceModalitiy = None,
     prontuary_number=faker.random_int(min=0, max=500),
@@ -18,10 +17,10 @@ def prontuary_fixture(
 ) -> Prontuary:
 
     if patient is None:
-        patient = patient_fixture()
+        patient = make_patient()
 
     if type_of_service is None:
-        type_of_service = service_modality_fixture(
+        type_of_service = make_service_modality(
             psychologist=patient.psychologist,
         )
 

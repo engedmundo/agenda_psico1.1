@@ -2,13 +2,13 @@ from apps.financial_management.models import (
     PaymentControl,
 )
 from apps.patient_management.models import Prontuary
-from apps.patient_management.tests.fixtures import prontuary_fixture
+from apps.patient_management.tests.fixtures.prontuary_fixture import make_prontuary
 from faker import Faker
 
 faker = Faker("pt_BR")
 
 
-def payment_control_fixture(
+def make_payment_control(
     prontuary: Prontuary = None,
     value_paid=faker.random_int(min=0, max=500),
     date_of_pay=faker.date_object(),
@@ -24,7 +24,7 @@ def payment_control_fixture(
 ) -> PaymentControl:
 
     if prontuary is None:
-        prontuary = prontuary_fixture()
+        prontuary = make_prontuary()
 
     return PaymentControl.objects.create(
         prontuary=prontuary,

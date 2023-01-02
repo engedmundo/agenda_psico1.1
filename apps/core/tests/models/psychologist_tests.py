@@ -1,9 +1,10 @@
-from django.test import TestCase
-from apps.core.tests.fixtures import psychologist_fixture
+import pytest
 from apps.core.models import Psychologist
+from django.test import TestCase
+
+_test = TestCase()
 
 
-class PsychologistModelTest(TestCase):
-    def test_create_psychologist(self):
-        _user = psychologist_fixture()
-        self.assertIsInstance(_user, Psychologist)
+@pytest.mark.models
+def test_create_psychologist(make_psychologist):
+    _test.assertIsInstance(make_psychologist, Psychologist)
