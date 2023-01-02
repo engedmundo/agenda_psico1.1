@@ -1,2 +1,1 @@
-from .payment_control_fixture import make_payment_control
 from .payment_plain_fixture import make_payment_plain

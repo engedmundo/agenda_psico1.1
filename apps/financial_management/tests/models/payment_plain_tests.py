@@ -1,9 +1,10 @@
-from django.test import TestCase
-from apps.financial_management.tests.fixtures import make_payment_plain
+import pytest
 from apps.financial_management.models import PaymentPlain
+from django.test import TestCase
+
+_test = TestCase()
 
 
-class PaymentPlainModelTest(TestCase):
-    def test_create_payment_plain(self):
-        payment_plain = make_payment_plain()
-        self.assertIsInstance(payment_plain, PaymentPlain)
+@pytest.mark.models
+def test_create_payment_plain(make_payment_plain):
+    _test.assertIsInstance(make_payment_plain, PaymentPlain)
