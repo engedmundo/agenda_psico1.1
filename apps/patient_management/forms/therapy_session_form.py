@@ -37,7 +37,6 @@ class TherapySessionRegisterForm(forms.ModelForm):
     class Meta:
         model = TherapySession
         fields = [
-            "patient",
             "prontuary",
             "session_number",
             "date_session",

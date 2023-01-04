@@ -6,13 +6,6 @@ from django.db import models
 # Create your models here.
 class TherapySession(CommonInfo):
     session_id = models.AutoField(primary_key=True)
-    patient = models.ForeignKey(
-        Patient,
-        verbose_name="Paciente",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
     prontuary = models.ForeignKey(
         Prontuary,
         verbose_name="Prontuário",

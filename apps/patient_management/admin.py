@@ -110,7 +110,7 @@ class TherapySessionAdmin(admin.ModelAdmin):
     ]
     form = TherapySessionForm
     autocomplete_fields = [
-        "patient",
+        "prontuary",
     ]
     list_per_page = 10
 

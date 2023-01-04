@@ -1,9 +1,10 @@
+import pytest
 from apps.patient_management.models import Patient
-from apps.patient_management.tests.fixtures.patient_fixture import make_patient
 from django.test import TestCase
 
+_test = TestCase()
 
-class PatientModelTest(TestCase):
-    def test_create_patient(self):
-        patient = make_patient()
-        self.assertIsInstance(patient, Patient)
+
+@pytest.mark.models
+def test_create_patient(make_patient):
+    _test.assertIsInstance(make_patient, Patient)
