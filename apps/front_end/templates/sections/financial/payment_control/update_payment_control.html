@@ -21,7 +21,8 @@
             <div class="form-group mt-3">
               <label for="{{ form.value_paid.id_for_label }}">* {{ form.value_paid.label }}</label>
               <input 
-                type="number" 
+                type="number"
+                step=0.01
                 name="value_paid" 
                 class="form-control" 
                 id="value_paid.id_for_label"
