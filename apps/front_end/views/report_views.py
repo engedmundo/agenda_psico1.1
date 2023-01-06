@@ -26,7 +26,7 @@ def therapy_session_payments_report(request):
         prontuary__patient__psychologist=psychologist,
         date_session__range=[start_date, end_date],
     ).order_by(
-        "patient",
+        "prontuary__patient",
         "-prontuary",
         "-date_session",
     )
